@@ -304,7 +304,8 @@ class ControllerProductSchool extends Controller
 
 			foreach ($results as $result) {
 				$data['images'][] = array(
-					'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height')),
+					//'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height')),
+					'popup' => $this->model_tool_image->resize($result['image'], 1300, 700),
 					'thumb' => $this->model_tool_image->resize($result['image'], 256,192),
 					'image_name' => $result['image_name'],
 					'image_description' => html_entity_decode($result['image_description'], ENT_QUOTES, 'UTF-8'),

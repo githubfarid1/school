@@ -29,6 +29,8 @@ class ModelCatalogSchool extends Model
 				'meta_description' => $query->row['meta_description'],
 				'meta_keyword'     => $query->row['meta_keyword'],
 				'monthly_cost'     => $query->row['price'],
+				'reg_status_id'     => $query->row['stock_status_id'],
+				'date_closed' => $query->row['date_closed'],
 			);
 		} else {
 			return false;

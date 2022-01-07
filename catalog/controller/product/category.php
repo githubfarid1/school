@@ -1,6 +1,8 @@
 <?php
-class ControllerProductCategory extends Controller {
-	public function index() {
+class ControllerProductCategory extends Controller
+{
+	public function index()
+	{
 		$this->load->language('product/category');
 
 		$this->load->model('catalog/category');
@@ -81,7 +83,6 @@ class ControllerProductCategory extends Controller {
 						'text' => $category_info['name'],
 						'href' => $this->url->link('product/category', 'path=' . $path . $url),
 					);
-
 				}
 			}
 		} else {
@@ -163,7 +164,7 @@ class ControllerProductCategory extends Controller {
 				);
 
 				$data['categories'][] = array(
-					'name' => $result['name'],// . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'name' => $result['name'], // . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
 					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url)
 				);
 			}
@@ -196,6 +197,27 @@ class ControllerProductCategory extends Controller {
 					$price = false;
 				}
 
+				$regstatus = 'Tutup';
+				$regStatusId = 3;
+				if (isset($result['reg_status_id'])) {
+					$regStatusId = $result['reg_status_id'];
+					if ($result['reg_status_id'] == 1 && $result['date_closed'] && $result['date_closed'] <> '0000-00-00') {
+						$now = time();
+						$closeddate = strtotime($result['date_closed']);
+						$datediff = $closeddate - $now;
+						$datediff = round($datediff / (60 * 60 * 24));
+						if ($datediff <= 0) {
+							$regStatusId = 3;
+						} elseif ($datediff <= 30) {
+							$regstatus = "Tutup " . $datediff . " Hari Lagi";
+							$regStatusId = 4;
+						}
+					}
+					if ($regStatusId <> 4) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "stock_status WHERE stock_status_id ='" . (int)$regStatusId . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+						$regstatus = $query->row['name'];
+					}
+				}
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
@@ -203,7 +225,10 @@ class ControllerProductCategory extends Controller {
 					'name'        => $result['school_name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['school_profile'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,
-					'href'        => $this->url->link('product/school', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url)
+					'href'        => $this->url->link('product/school', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
+					'regstatus_name' => $regstatus,
+					'regstatus_id' => $regStatusId
+
 				);
 			}
 
@@ -295,7 +320,7 @@ class ControllerProductCategory extends Controller {
 
 			sort($limits);
 
-			foreach($limits as $value) {
+			foreach ($limits as $value) {
 				$data['limits'][] = array(
 					'text'  => $value,
 					'value' => $value,
@@ -333,15 +358,15 @@ class ControllerProductCategory extends Controller {
 
 			// http://googlewebmastercentral.blogspot.com/2011/09/pagination-with-relnext-and-relprev.html
 			if ($page == 1) {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], true), 'canonical');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], true), 'canonical');
 			} elseif ($page == 2) {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], true), 'prev');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'], true), 'prev');
 			} else {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page - 1), true), 'prev');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page=' . ($page - 1), true), 'prev');
 			}
 
 			if ($limit && ceil($product_total / $limit) > $page) {
-			    $this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page='. ($page + 1), true), 'next');
+				$this->document->addLink($this->url->link('product/category', 'path=' . $category_info['category_id'] . '&page=' . ($page + 1), true), 'next');
 			}
 
 			$data['sort'] = $sort;

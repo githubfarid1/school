@@ -7,7 +7,7 @@
                 </a></li>
         <?php } ?>
     </ul> -->
-    <?=$breadcrumbs;?>
+    <?= $breadcrumbs; ?>
 
     <div class="row">
         <?php echo $column_left; ?>
@@ -115,27 +115,18 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row gy-4">
+                    <div class="row">
                         <?php foreach ($products as $product) { ?>
-                            <div class="col-sm-4">
-                                <div class="card h-100">
-                                <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" class="card-img-top" alt="<?php echo $product['name']; ?>"></a>
+                            <div class="col-sm-3 mb-2">
+                                <div class="card bg-light">
+                                    <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" class="card-img-top px-5 pt-3" alt="<?php echo $product['name']; ?>"></a>
                                     <div class="card-body">
-                                        <h5 class="card-title fw-bold"><?php echo $product['name']; ?></h5>
-                                        <p class="card-text"><?= $product['address']; ?></p>
+                                        <h4 class="card-title fw-bold text-center"><strong><?php echo $product['name']; ?></strong></h4>
+                                        <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $product['address']; ?></small></p>
+                                        <div class="text-center"><a href="#" class="btn <?=$product['regstatus_id'] == 1 ? 'btn-info' : ($product['regstatus_id'] == 2 ? 'btn-danger' : ($product['regstatus_id'] == 3 ? 'btn-secondary' : 'btn-warning') ); ?>"><?=$product['regstatus_name'];?></a></div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-sm-4">
-                        <div class="card">
-                        <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" class="card-img-top" alt="<?php echo $product['name']; ?>"></a>
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $product['name']; ?></h5>
-                                <p class="card-text"><?= $product['address']; ?></p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                        </div> -->
                         <?php } ?>
                     </div>
                 </div>

@@ -744,7 +744,7 @@ class ControllerCatalogSchool extends Controller
         } elseif (!empty($product_info)) {
             $data['date_closed'] = ($product_info['date_closed'] != '0000-00-00') ? $product_info['date_closed'] : '';
         } else {
-            $data['date_closed'] = date('Y-m-d');
+            $data['date_closed'] = '';//date('Y-m-d');
         }
         $this->load->model('setting/store');
         $data['stores'] = $this->model_setting_store->getStores();
