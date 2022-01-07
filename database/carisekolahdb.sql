@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 03, 2022 at 08:42 AM
+-- Generation Time: Jan 07, 2022 at 07:01 AM
 -- Server version: 10.5.8-MariaDB-1:10.5.8+maria~focal
 -- PHP Version: 7.4.13
 
@@ -195,13 +195,30 @@ CREATE TABLE `oc_attribute` (
 --
 
 INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) VALUES
+(24, 9, 3),
+(23, 9, 2),
+(25, 9, 4),
+(22, 9, 1),
 (21, 13, 3),
 (20, 13, 2),
 (19, 13, 1),
 (18, 15, 4),
 (15, 15, 1),
 (16, 15, 2),
-(17, 15, 3);
+(17, 15, 3),
+(26, 9, 5),
+(27, 9, 6),
+(28, 9, 7),
+(29, 9, 8),
+(30, 9, 9),
+(31, 9, 10),
+(32, 10, 1),
+(33, 10, 2),
+(34, 10, 3),
+(35, 10, 4),
+(36, 10, 5),
+(37, 10, 6),
+(38, 10, 7);
 
 -- --------------------------------------------------------
 
@@ -234,7 +251,24 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`, `
 (16, 1, 'Phone', NULL),
 (15, 1, 'Whatsapp', NULL),
 (19, 2, '#beasiswa1', NULL),
-(21, 1, '#beasiswa3', NULL);
+(21, 1, '#beasiswa3', NULL),
+(22, 2, '#extra1', NULL),
+(23, 2, '#extra2', NULL),
+(24, 2, '#extra3', NULL),
+(25, 2, '#extra4', NULL),
+(26, 2, '#extra5', NULL),
+(27, 2, '#extra6', NULL),
+(28, 2, '#extra7', NULL),
+(29, 2, '#extra8', NULL),
+(30, 2, '#extra9', NULL),
+(31, 2, '#extra10', NULL),
+(32, 2, 'Senin', NULL),
+(33, 2, 'Selasa', NULL),
+(34, 2, 'Rabu', NULL),
+(35, 2, 'Kamis', NULL),
+(36, 2, 'Jum\'at', NULL),
+(37, 2, 'Sabtu', NULL),
+(38, 2, 'Ahad', NULL);
 
 -- --------------------------------------------------------
 
@@ -415,7 +449,7 @@ INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `column`,
 (74, '', 63, 0, 1, 1, 1, '2021-12-26 00:04:36', '2021-12-26 00:04:36'),
 (75, '', 63, 0, 1, 2, 1, '2021-12-26 00:05:10', '2021-12-26 00:05:10'),
 (76, '', 59, 0, 1, 7, 1, '2021-12-26 00:06:46', '2021-12-26 00:07:00'),
-(59, '', 0, 1, 1, 0, 1, '2021-12-24 05:43:05', '2021-12-24 13:27:39'),
+(59, '', 0, 1, 1, 0, 1, '2021-12-24 05:43:05', '2022-01-05 12:01:04'),
 (60, '', 59, 0, 1, 1, 1, '2021-12-24 05:46:23', '2021-12-25 05:44:42'),
 (61, '', 59, 0, 1, 2, 1, '2021-12-24 05:48:15', '2021-12-27 00:43:20'),
 (62, '', 59, 0, 3, 3, 1, '2021-12-24 05:49:35', '2021-12-25 05:46:22'),
@@ -464,8 +498,7 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `de
 (75, 1, 'SMA', '', 'SMA', '', ''),
 (76, 2, 'Kursus-kursus', '', 'Kursus-kursus', '', ''),
 (76, 1, 'Courses', '', 'Courses', '', ''),
-(59, 2, 'Cari Sekolah', '', 'Kategori', '', ''),
-(59, 1, 'Search Education', '', 'Category', '', ''),
+(59, 2, 'Jenis Sekolah', '', 'Kategori', '', ''),
 (60, 2, 'Prasekolah', '', 'Prasekolah', '', ''),
 (61, 2, 'Sekolah Dasar', '', 'sekolah-dasar', '', ''),
 (61, 1, 'Elementary School', '', 'elementary', '', ''),
@@ -1013,9 +1046,9 @@ CREATE TABLE `oc_currency` (
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 0, '2021-12-26 08:32:50'),
-(2, 'US Dollar', 'USD', '$', '', '2', 0.00007000, 0, '2021-12-26 08:58:01'),
+(2, 'US Dollar', 'USD', '$', '', '2', 0.00007000, 0, '2022-01-03 13:39:14'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 0, '2021-12-26 08:32:34'),
-(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-01-03 08:39:51');
+(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-01-06 06:36:53');
 
 -- --------------------------------------------------------
 
@@ -1329,7 +1362,8 @@ CREATE TABLE `oc_education_category` (
 --
 
 INSERT INTO `oc_education_category` (`category_id`, `column_ids`, `filter_ids`, `attribute_ids`) VALUES
-(70, '[1,2,3,4,5,6,7,8,9,10,11,12,13]', '[4,8,1,6,3]', '[13,15]'),
+(67, '[1,2,5,8,9,10,12,13]', '[4,8,7,6,3]', '[10,15,14]'),
+(70, '[1,2,3,5,6,7,8,9,10,11,12,13]', '[4,8,1,6,3]', '[13,9,10,15]'),
 (71, '[1,2]', '[4]', '[]'),
 (72, '[1,11]', '[]', '[13]'),
 (73, '[]', '[4,3]', '[]'),
@@ -1360,14 +1394,13 @@ CREATE TABLE `oc_education_column` (
 INSERT INTO `oc_education_column` (`education_column_id`, `description`, `name`, `colname`, `required`, `multilang`, `coltype`, `length`, `sort_order`) VALUES
 (1, 'product_description.name', 'Nama Sekolah', 'school_name', 2, 1, 'text', '', 1),
 (2, 'product_description.description', 'Profil Sekolah', 'school_profile', 1, 1, 'textarea', '', 2),
-(3, 'product_image:12-21', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '12-21', 9),
-(4, 'product_image:1', 'Logo', 'photo_secondary', 1, 0, 'images', '1-1', 4),
+(3, 'product_image:12-21', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '11-20', 9),
 (5, 'product.address', 'Alamat', 'address', 2, 0, 'text', '', 3),
 (6, 'product.akreditasi', 'Status Akreditasi', 'akreditasi', 0, 0, 'text', '', 12),
-(7, 'product_image:22-31', 'Foto Program', 'photo_secondary', 0, 0, 'images', '22-31', 10),
-(8, 'product_image:32-41', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '32-41', 11),
-(9, 'product.image', 'Foto Utama', 'photo_main', 1, 0, 'image', '', 5),
-(10, 'product_image:2-11', 'Foto Tambahan', 'photo_secondary', 0, 0, 'images', '2-11', 6),
+(7, 'product_image:22-31', 'Foto Program', 'photo_secondary', 0, 0, 'images', '21-30', 10),
+(8, 'product_image:32-41', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '31-40', 11),
+(9, 'product.image', 'Logo', 'photo_main', 1, 0, 'image', '', 5),
+(10, 'product_image:2-11', 'Foto Gallery', 'photo_secondary', 0, 0, 'images', '1-10', 6),
 (11, 'product_description.faq', 'FAQ', 'faq', 0, 1, 'textarea', '', 13),
 (12, 'product.price', 'SPP Bulanan', 'monthly_cost', 0, 0, 'number', '', 7),
 (13, 'product.price2', 'Biaya Masuk', 'first_cost', 0, 0, 'number', '', 8);
@@ -1998,9 +2031,14 @@ INSERT INTO `oc_filter` (`filter_id`, `filter_group_id`, `sort_order`) VALUES
 (524, 6, 506),
 (523, 6, 505),
 (522, 6, 504),
+(546, 8, 5),
+(545, 8, 4),
 (542, 8, 1),
 (543, 8, 2),
-(544, 8, 3);
+(544, 8, 3),
+(547, 8, 6),
+(548, 8, 7),
+(549, 8, 8);
 
 -- --------------------------------------------------------
 
@@ -3100,12 +3138,14 @@ INSERT INTO `oc_filter_description` (`filter_id`, `language_id`, `filter_group_i
 (540, 1, 7, 'Cristian Preschool'),
 (541, 2, 7, 'Homeschooling Preschool'),
 (541, 1, 7, 'Homeschooling Preschool'),
+(546, 2, 8, 'Kantin'),
+(545, 2, 8, 'Laboratorium Bahasa'),
 (542, 2, 8, 'Gedung Sendiri'),
-(543, 1, 8, 'Masjid'),
 (543, 2, 8, 'Masjid'),
-(544, 1, 8, 'Laboratorium Komputer'),
 (544, 2, 8, 'Laboratorium Komputer'),
-(542, 1, 8, 'Gedung Sendiri');
+(547, 2, 8, 'Lapangan Basket'),
+(548, 2, 8, 'Parkir Mobil'),
+(549, 2, 8, 'Perpustakaan');
 
 -- --------------------------------------------------------
 
@@ -3165,8 +3205,7 @@ INSERT INTO `oc_filter_group_description` (`filter_group_id`, `language_id`, `na
 (3, 1, 'Perpaduan Kurikulum', NULL),
 (7, 2, 'Konsep (Preschool)', NULL),
 (7, 1, 'Concept (Preschool)', NULL),
-(8, 2, 'Fasilitas Sekolah', NULL),
-(8, 1, 'Fasilitas Sekolah', NULL);
+(8, 2, 'Fasilitas Sekolah', NULL);
 
 -- --------------------------------------------------------
 
@@ -4010,8 +4049,8 @@ CREATE TABLE `oc_modification` (
 --
 
 INSERT INTO `oc_modification` (`modification_id`, `name`, `code`, `author`, `version`, `link`, `xml`, `status`, `date_added`) VALUES
-(1, 'Instalador sem FTP', 'instalador-sem-ftp', 'OpenCart Brasil', '1.4.0', 'http://www.opencartbrasil.com.br', '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<modification>\n  <name>Instalador sem FTP</name>\n  <code>instalador-sem-ftp</code>\n  <version>1.4.0</version>\n  <author>OpenCart Brasil</author>\n  <link>http://www.opencartbrasil.com.br</link>\n  <file path=\"admin/controller/extension/installer.php\">\n    <operation>\n      <search><![CDATA[public function ftp() {]]></search>\n      <add position=\"replace\"><![CDATA[public function old_ftp() {]]></add>\n    </operation>\n    <operation>\n      <search><![CDATA[public function sql() {]]></search>\n      <add position=\"before\"><![CDATA[\n        public function ftp() {\n            $this->load->language(\'extension/installer\');\n\n            $json = array();\n\n            if (!$this->user->hasPermission(\'modify\', \'extension/installer\')) {\n                $json[\'error\'] = $this->language->get(\'error_permission\');\n            }\n            \n            if (VERSION == \'2.0.0.0\') {\n                $directory = DIR_DOWNLOAD  . str_replace(array(\'../\', \'..\\\\\', \'..\'), \'\', $this->request->post[\'path\']) . \'/upload/\';\n            } else {\n                $directory = DIR_UPLOAD . str_replace(array(\'../\', \'..\\\\\', \'..\'), \'\', $this->request->post[\'path\']) . \'/upload/\';\n            }\n\n            if (!is_dir($directory)) {\n                $json[\'error\'] = $this->language->get(\'error_directory\');\n            }\n\n            if (!$json) {\n                $files = array();\n\n                $path = array($directory . \'*\');\n\n                while (count($path) != 0) {\n                    $next = array_shift($path);\n\n                    foreach ((array)glob($next) as $file) {\n                        if (is_dir($file)) {\n                            $path[] = $file . \'/*\';\n                        }\n\n                        $files[] = $file;\n                    }\n                }\n\n                if ($this->config->get(\'config_ftp_status\')) {\n                    $connection = ftp_connect($this->config->get(\'config_ftp_hostname\'), $this->config->get(\'config_ftp_port\'));\n\n                    if ($connection) {\n                        $login = ftp_login($connection, $this->config->get(\'config_ftp_username\'), $this->config->get(\'config_ftp_password\'));\n\n                        if ($login) {\n                            if ($this->config->get(\'config_ftp_root\')) {\n                                $root = ftp_chdir($connection, $this->config->get(\'config_ftp_root\'));\n                            } else {\n                                $root = ftp_chdir($connection, \'/\');\n                            }\n\n                            ftp_pasv($connection, true);\n\n                            if ($root) {\n                                foreach ($files as $file) {\n                                    $destination = substr($file, strlen($directory));\n\n                                    if (substr($destination, 0, 5) == \'admin\') {\n                                        $destination = basename(DIR_APPLICATION) . substr($destination, 5);\n                                    }\n\n                                    if (substr($destination, 0, 7) == \'catalog\') {\n                                        $destination = basename(DIR_CATALOG) . substr($destination, 7);\n                                    }\n\n                                    if (substr($destination, 0, 5) == \'image\') {\n                                        $destination = basename(DIR_IMAGE) . substr($destination, 5);\n                                    }\n\n                                    if (substr($destination, 0, 6) == \'system\') {\n                                        $destination = basename(DIR_SYSTEM) . substr($destination, 6);\n                                    }\n\n                                    if (is_dir($file)) {\n                                        $list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, \'/\')));\n\n                                        $list_data = array();\n\n                                        foreach ($list as $list) {\n                                            $list_data[] = basename($list);\n                                        }\n\n                                        if (!in_array(basename($destination), $list_data)) {\n                                            if (!ftp_mkdir($connection, $destination)) {\n                                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_directory\'), $destination);\n                                            }\n                                        }\n                                    }\n\n                                    if (is_file($file)) {\n                                        if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {\n                                            $json[\'error\'] = sprintf($this->language->get(\'error_ftp_file\'), $file);\n                                        }\n                                    }\n                                }\n                            } else {\n                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_root\'), $root);\n                            }\n                        } else {\n                            $json[\'error\'] = sprintf($this->language->get(\'error_ftp_login\'), $this->config->get(\'config_ftp_username\'));\n                        }\n\n                        ftp_close($connection);\n                    } else {\n                        $json[\'error\'] = sprintf($this->language->get(\'error_ftp_connection\'), $this->config->get(\'config_ftp_hostname\'), $this->config->get(\'config_ftp_port\'));\n                    }\n                } else {\n                    $root = dirname(DIR_APPLICATION) . \'/\';\n\n                    foreach ($files as $file) {\n                        $destination = substr($file, strlen($directory));\n\n                        if (substr($destination, 0, 5) == \'admin\') {\n                            $destination = DIR_APPLICATION . substr($destination, 5);\n                        } else if (substr($destination, 0, 7) == \'catalog\') {\n                            $destination = DIR_CATALOG . substr($destination, 7);\n                        } else if (substr($destination, 0, 5) == \'image\') {\n                            $destination = DIR_IMAGE . substr($destination, 5);\n                        } else if (substr($destination, 0, 6) == \'system\') {\n                            $destination = DIR_SYSTEM . substr($destination, 6);\n                        } else {\n                            $destination = $root.$destination;\n                        }\n\n                        if (is_dir($file)) {\n                            if (!file_exists($destination)) {\n                                if (!mkdir($destination)) {\n                                    $json[\'error\'] = sprintf($this->language->get(\'error_ftp_directory\'), $destination);\n                                }\n                            }\n                        }\n\n                        if (is_file($file)) {\n                            if (!copy($file, $destination)) {\n                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_file\'), $file);\n                            }\n                        }\n                    }\n                }\n            }\n\n            $this->response->addHeader(\'Content-Type: application/json\');\n            $this->response->setOutput(json_encode($json));\n        }\n      ]]></add>\n    </operation>\n  </file>\n</modification>\n', 1, '2021-12-24 05:37:29'),
-(2, 'Top Category Menu Clickable', 'top_category_menu_clickable', 'Serium', '1.0', '', '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<modification>\r\n	<name>Top Category Menu Clickable</name>\r\n	<version>1.0</version>\r\n	<author>Serium</author>\r\n	<code>top_category_menu_clickable</code>\r\n	\r\n	<file path=\"catalog/controller/common/header.php\">\r\n		<operation>\r\n			<search><![CDATA[\r\n			public function index() {\r\n			]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			$useragent=$_SERVER[\'HTTP_USER_AGENT\'];\r\n			if(preg_match(\'/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i\',$useragent)||preg_match(\'/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i\',substr($useragent,0,4))) {\r\n				$data[\'disabled\'] = \'\';\r\n			} else {\r\n				$data[\'disabled\'] = \' disabled\';\r\n			}\r\n			]]></add>\r\n        </operation>\r\n	</file>\r\n	<file path=\"catalog/view/theme/*/template/common/header.tpl\">\r\n		<operation>\r\n			<search><![CDATA[\r\n			<li class=\"dropdown\"><a href=\"<?php echo $category[\'href\']; ?>\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><?php echo $category[\'name\']; ?></a>\r\n			]]></search>\r\n			<add position=\"replace\"><![CDATA[\r\n			<li class=\"dropdown\"><a href=\"<?php echo $category[\'href\']; ?>\" class=\"dropdown-toggle<?php echo $disabled; ?>\" data-toggle=\"dropdown\"><?php echo $category[\'name\']; ?></a>\r\n			]]></add>\r\n        </operation>\r\n	</file>\r\n</modification>', 1, '2021-12-24 05:58:02');
+(1, 'Instalador sem FTP', 'instalador-sem-ftp', 'OpenCart Brasil', '1.4.0', 'http://www.opencartbrasil.com.br', '<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<modification>\n  <name>Instalador sem FTP</name>\n  <code>instalador-sem-ftp</code>\n  <version>1.4.0</version>\n  <author>OpenCart Brasil</author>\n  <link>http://www.opencartbrasil.com.br</link>\n  <file path=\"admin/controller/extension/installer.php\">\n    <operation>\n      <search><![CDATA[public function ftp() {]]></search>\n      <add position=\"replace\"><![CDATA[public function old_ftp() {]]></add>\n    </operation>\n    <operation>\n      <search><![CDATA[public function sql() {]]></search>\n      <add position=\"before\"><![CDATA[\n        public function ftp() {\n            $this->load->language(\'extension/installer\');\n\n            $json = array();\n\n            if (!$this->user->hasPermission(\'modify\', \'extension/installer\')) {\n                $json[\'error\'] = $this->language->get(\'error_permission\');\n            }\n            \n            if (VERSION == \'2.0.0.0\') {\n                $directory = DIR_DOWNLOAD  . str_replace(array(\'../\', \'..\\\\\', \'..\'), \'\', $this->request->post[\'path\']) . \'/upload/\';\n            } else {\n                $directory = DIR_UPLOAD . str_replace(array(\'../\', \'..\\\\\', \'..\'), \'\', $this->request->post[\'path\']) . \'/upload/\';\n            }\n\n            if (!is_dir($directory)) {\n                $json[\'error\'] = $this->language->get(\'error_directory\');\n            }\n\n            if (!$json) {\n                $files = array();\n\n                $path = array($directory . \'*\');\n\n                while (count($path) != 0) {\n                    $next = array_shift($path);\n\n                    foreach ((array)glob($next) as $file) {\n                        if (is_dir($file)) {\n                            $path[] = $file . \'/*\';\n                        }\n\n                        $files[] = $file;\n                    }\n                }\n\n                if ($this->config->get(\'config_ftp_status\')) {\n                    $connection = ftp_connect($this->config->get(\'config_ftp_hostname\'), $this->config->get(\'config_ftp_port\'));\n\n                    if ($connection) {\n                        $login = ftp_login($connection, $this->config->get(\'config_ftp_username\'), $this->config->get(\'config_ftp_password\'));\n\n                        if ($login) {\n                            if ($this->config->get(\'config_ftp_root\')) {\n                                $root = ftp_chdir($connection, $this->config->get(\'config_ftp_root\'));\n                            } else {\n                                $root = ftp_chdir($connection, \'/\');\n                            }\n\n                            ftp_pasv($connection, true);\n\n                            if ($root) {\n                                foreach ($files as $file) {\n                                    $destination = substr($file, strlen($directory));\n\n                                    if (substr($destination, 0, 5) == \'admin\') {\n                                        $destination = basename(DIR_APPLICATION) . substr($destination, 5);\n                                    }\n\n                                    if (substr($destination, 0, 7) == \'catalog\') {\n                                        $destination = basename(DIR_CATALOG) . substr($destination, 7);\n                                    }\n\n                                    if (substr($destination, 0, 5) == \'image\') {\n                                        $destination = basename(DIR_IMAGE) . substr($destination, 5);\n                                    }\n\n                                    if (substr($destination, 0, 6) == \'system\') {\n                                        $destination = basename(DIR_SYSTEM) . substr($destination, 6);\n                                    }\n\n                                    if (is_dir($file)) {\n                                        $list = ftp_nlist($connection, substr($destination, 0, strrpos($destination, \'/\')));\n\n                                        $list_data = array();\n\n                                        foreach ($list as $list) {\n                                            $list_data[] = basename($list);\n                                        }\n\n                                        if (!in_array(basename($destination), $list_data)) {\n                                            if (!ftp_mkdir($connection, $destination)) {\n                                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_directory\'), $destination);\n                                            }\n                                        }\n                                    }\n\n                                    if (is_file($file)) {\n                                        if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {\n                                            $json[\'error\'] = sprintf($this->language->get(\'error_ftp_file\'), $file);\n                                        }\n                                    }\n                                }\n                            } else {\n                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_root\'), $root);\n                            }\n                        } else {\n                            $json[\'error\'] = sprintf($this->language->get(\'error_ftp_login\'), $this->config->get(\'config_ftp_username\'));\n                        }\n\n                        ftp_close($connection);\n                    } else {\n                        $json[\'error\'] = sprintf($this->language->get(\'error_ftp_connection\'), $this->config->get(\'config_ftp_hostname\'), $this->config->get(\'config_ftp_port\'));\n                    }\n                } else {\n                    $root = dirname(DIR_APPLICATION) . \'/\';\n\n                    foreach ($files as $file) {\n                        $destination = substr($file, strlen($directory));\n\n                        if (substr($destination, 0, 5) == \'admin\') {\n                            $destination = DIR_APPLICATION . substr($destination, 5);\n                        } else if (substr($destination, 0, 7) == \'catalog\') {\n                            $destination = DIR_CATALOG . substr($destination, 7);\n                        } else if (substr($destination, 0, 5) == \'image\') {\n                            $destination = DIR_IMAGE . substr($destination, 5);\n                        } else if (substr($destination, 0, 6) == \'system\') {\n                            $destination = DIR_SYSTEM . substr($destination, 6);\n                        } else {\n                            $destination = $root.$destination;\n                        }\n\n                        if (is_dir($file)) {\n                            if (!file_exists($destination)) {\n                                if (!mkdir($destination)) {\n                                    $json[\'error\'] = sprintf($this->language->get(\'error_ftp_directory\'), $destination);\n                                }\n                            }\n                        }\n\n                        if (is_file($file)) {\n                            if (!copy($file, $destination)) {\n                                $json[\'error\'] = sprintf($this->language->get(\'error_ftp_file\'), $file);\n                            }\n                        }\n                    }\n                }\n            }\n\n            $this->response->addHeader(\'Content-Type: application/json\');\n            $this->response->setOutput(json_encode($json));\n        }\n      ]]></add>\n    </operation>\n  </file>\n</modification>\n', 0, '2021-12-24 05:37:29'),
+(2, 'Top Category Menu Clickable', 'top_category_menu_clickable', 'Serium', '1.0', '', '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<modification>\r\n	<name>Top Category Menu Clickable</name>\r\n	<version>1.0</version>\r\n	<author>Serium</author>\r\n	<code>top_category_menu_clickable</code>\r\n	\r\n	<file path=\"catalog/controller/common/header.php\">\r\n		<operation>\r\n			<search><![CDATA[\r\n			public function index() {\r\n			]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			$useragent=$_SERVER[\'HTTP_USER_AGENT\'];\r\n			if(preg_match(\'/(android|bb\\d+|meego).+mobile|avantgo|bada\\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i\',$useragent)||preg_match(\'/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\\-(n|u)|c55\\/|capi|ccwa|cdm\\-|cell|chtm|cldc|cmd\\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\\-s|devi|dica|dmob|do(c|p)o|ds(12|\\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\\-|_)|g1 u|g560|gene|gf\\-5|g\\-mo|go(\\.w|od)|gr(ad|un)|haie|hcit|hd\\-(m|p|t)|hei\\-|hi(pt|ta)|hp( i|ip)|hs\\-c|ht(c(\\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\\-(20|go|ma)|i230|iac( |\\-|\\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\\/)|klon|kpt |kwc\\-|kyo(c|k)|le(no|xi)|lg( g|\\/(k|l|u)|50|54|\\-[a-w])|libw|lynx|m1\\-w|m3ga|m50\\/|ma(te|ui|xo)|mc(01|21|ca)|m\\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\\-2|po(ck|rt|se)|prox|psio|pt\\-g|qa\\-a|qc(07|12|21|32|60|\\-[2-7]|i\\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\\-|oo|p\\-)|sdk\\/|se(c(\\-|0|1)|47|mc|nd|ri)|sgh\\-|shar|sie(\\-|m)|sk\\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\\-|v\\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\\-|tdg\\-|tel(i|m)|tim\\-|t\\-mo|to(pl|sh)|ts(70|m\\-|m3|m5)|tx\\-9|up(\\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\\-|your|zeto|zte\\-/i\',substr($useragent,0,4))) {\r\n				$data[\'disabled\'] = \'\';\r\n			} else {\r\n				$data[\'disabled\'] = \' disabled\';\r\n			}\r\n			]]></add>\r\n        </operation>\r\n	</file>\r\n	<file path=\"catalog/view/theme/*/template/common/header.tpl\">\r\n		<operation>\r\n			<search><![CDATA[\r\n			<li class=\"dropdown\"><a href=\"<?php echo $category[\'href\']; ?>\" class=\"dropdown-toggle\" data-toggle=\"dropdown\"><?php echo $category[\'name\']; ?></a>\r\n			]]></search>\r\n			<add position=\"replace\"><![CDATA[\r\n			<li class=\"dropdown\"><a href=\"<?php echo $category[\'href\']; ?>\" class=\"dropdown-toggle<?php echo $disabled; ?>\" data-toggle=\"dropdown\"><?php echo $category[\'name\']; ?></a>\r\n			]]></add>\r\n        </operation>\r\n	</file>\r\n</modification>', 0, '2021-12-24 05:58:02');
 
 -- --------------------------------------------------------
 
@@ -4476,7 +4515,7 @@ CREATE TABLE `oc_product` (
   `price2` decimal(15,4) DEFAULT 0.0000,
   `points` int(8) NOT NULL DEFAULT 0,
   `tax_class_id` int(11) NOT NULL,
-  `date_available` date NOT NULL DEFAULT '0000-00-00',
+  `date_available` date DEFAULT '0000-00-00',
   `weight` decimal(15,8) NOT NULL DEFAULT 0.00000000,
   `weight_class_id` int(11) NOT NULL DEFAULT 0,
   `length` decimal(15,8) NOT NULL DEFAULT 0.00000000,
@@ -4494,29 +4533,19 @@ CREATE TABLE `oc_product` (
   `image_description` text NOT NULL,
   `akreditasi` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) DEFAULT NULL,
+  `image_size_type` tinyint(1) NOT NULL,
+  `date_closed` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `oc_product`
 --
 
-INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `price2`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `image_name`, `image_description`, `akreditasi`, `address`, `user_id`) VALUES
-(57, 'SD NEGERI CIPEDAK 02', '', '', '', '', '', '', 'Jl. Rm. Kahfi I Rt.004/02, CIPEDAK, Kec. Jagakarsa, Kota Jakarta Selatan Prov. D.K.I. Jakarta', 100, 6, 'catalog/sdjkt1.jpg', 0, 1, '0.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-25 02:57:39', '2021-12-25 06:10:34', '', '', '', '', NULL),
-(58, 'SDN Grogol Utara 13 Pg.', '', '', '', '', '', '', 'Jl. Kemandoran VIII, Grogol Utara, Kec. Kebayoran Lama, Kota Jakarta Selatan Prov. D.K.I. Jakarta', 100, 6, 'catalog/sdkkt2.jpg', 0, 1, '100000.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-25 03:01:18', '2021-12-27 08:33:08', '', '', '', '', NULL),
-(53, 'SDN Cilandak Barat 01 Pagi', '', '', '', '', '', '', 'JL. BDN I NO. 72, CILANDAK BARAT', 100, 6, 'catalog/sd-cilandak.jpg', 0, 1, '0.0000', NULL, 0, 0, '2021-12-24', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2021-12-24 10:39:36', '2021-12-26 00:51:26', '', '', '', '', NULL),
-(54, 'SD Internasional Green School', '', '', '', '', '', '', '', 100, 7, 'catalog/sd-greenschool.jpg', 0, 1, '500000.0000', NULL, 0, 0, '2021-12-24', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 5, '2021-12-24 10:47:05', '2021-12-27 08:32:16', '', '', '', '', NULL),
-(55, 'SD MUHAMMADIYAH 4 SURABAYA', '', '', '', '', '', '', 'Jl. Pucang Anom No. 93 Surabaya, Kertajaya, Kec. Gubeng, Kota Surabaya Prov. Jawa Timur', 100, 6, 'catalog/sd-muh-4.jpg', 0, 1, '250000.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-25 02:43:33', '2021-12-26 00:55:37', '', '', '', '', NULL),
-(56, 'SD NEGERI PENJARINGANSARI', '', '', '', '', '', '', 'Jl. Kendalsari Selatan No. 16, Penjaringan Sari, Kec. Rungkut, Kota Surabaya Prov. Jawa Timur', 100, 6, 'catalog/sd-penjaringan.jpg', 0, 1, '50000.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-25 02:50:45', '2021-12-25 06:10:44', '', '', '', '', NULL),
-(60, 'SD NUKILA KOTA TERNATE', '', '', '', '', '', '', 'JLN AKEBOOCA, KEL. SOA, Soa, Kec. Ternate Utara, Kota Ternate Prov. Maluku Utara', 100, 6, 'catalog/sdtte2.jpg', 0, 1, '0.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-25 03:13:12', '2021-12-28 07:45:07', '', '', '', '', NULL),
-(59, 'SD MUHAMMADIYAH 09', '', '', '', '', '', '', 'Jl. SMAN-71 No. 18 Duren Sawit Jakarta Timur, Duren Sawit, Kec. Duren Sawit, Kota Jakarta Timur Prov. D.K.I. Jakarta', 100, 6, 'catalog/sddki3.jpg', 0, 1, '550000.0000', NULL, 0, 0, '2021-12-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2021-12-25 03:05:57', '2021-12-26 00:55:00', '', '', '', '', NULL),
-(50, 'TK Islam Baiturrahim', '', '', '', '', '', '', 'Jl. Pangkalan Jati I/12 RT: 008 RW: 013 Cipinang Melayu, Makasar, Jakarta Timur', 100, 6, 'catalog/tkit-bait.jpg', 0, 1, '0.0000', NULL, 0, 0, '2021-12-24', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2021-12-24 07:36:29', '2021-12-27 08:33:22', '', '', '', '', NULL),
-(51, 'Tkit Al-mughni', '', '', '', '', '', '', 'Jl. Jend. Gatot Subroto Kav. 26 RT: RW: Kuningan Timur, Setia Budi, Jakarta Selatan', 100, 6, 'catalog/tkitalmugni.jpg', 0, 1, '0.0000', NULL, 0, 0, '2021-12-24', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-24 07:40:13', '2021-12-28 07:46:56', '', '', '', '', NULL),
-(52, 'SD Negeri 45 Dampang', '', '', '', '', '', '', 'Baruttungnge, Barombong, Kec. Gantarang, Kab. Bulukumba, Prop. Sulawesi Selatan', 100, 6, 'catalog/sd-dampang.jpg', 0, 1, '100000.0000', '0.0000', 0, 0, '2021-12-24', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 2, '2022-01-03 07:54:02', '2021-12-26 00:50:52', '', '', '', '', 3),
-(61, 'Planet Kidz Preschool', '', '', '', '', '', '', 'Jl. Taman Sunda Kelapa No.3, RT.6/RW.4, Menteng, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310', 100, 6, 'catalog/preschool1.jpg', 0, 1, '1000000.0000', NULL, 0, 0, '2021-12-26', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-26 00:30:30', '0000-00-00 00:00:00', '', '', '', '', NULL),
-(62, 'Bunayya Islamic School', '', '', '', '', '', '', 'Jalan Kebon Nanas 2 Blok Z No.10, RT.3/RW.2, Grogol Utara, Kebayoran Lama, RT.3/RW.2, Grogol Utara, Kec. Kby. Lama, Kota Jakarta', 100, 6, 'catalog/preschool2.jpg', 0, 1, '1100000.0000', NULL, 0, 0, '2021-12-26', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 3, '2021-12-26 00:38:47', '0000-00-00 00:00:00', '', '', '', '', NULL),
-(63, 'Bloom Islamic School', '', '', '', '', '', '', 'Jl. Rasamala Raya No.17, RT.7/RW.2, Menteng Dalam, Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12870', 100, 6, 'catalog/preschool3.jpg', 0, 1, '900000.0000', NULL, 0, 0, '2021-12-26', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-26 00:43:03', '2022-01-02 00:36:01', '', '', '', '', NULL),
-(64, 'Homeschooling International Sinergia Jakarta', '', '', '', '', '', '', 'STC, 1, Jl. Asia Afrika No.54, RT.1/RW.3, Senayan, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 1027', 100, 6, 'catalog/preschool4.jpg', 0, 1, '1200000.0000', NULL, 0, 0, '2021-12-26', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 0, '2021-12-26 00:47:23', '0000-00-00 00:00:00', '', '', '', '', NULL);
+INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `price2`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `image_name`, `image_description`, `akreditasi`, `address`, `user_id`, `image_size_type`, `date_closed`) VALUES
+(81, 'SDIT  AS SA\'ADAH', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo sdit assaadah kalisari png.png', 0, 1, '200000.0000', '2000000.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 257, '2022-01-06 22:57:32', '0000-00-00 00:00:00', '', '', 'A', 'Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten', 3, 0, '2022-02-05'),
+(82, 'Pratiwi School', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo pratiwi school buat vid.jpg', 0, 1, '500000.0000', '1999989.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 48, '2022-01-06 10:58:09', '0000-00-00 00:00:00', '', '', '', 'Jl. Mandor Samin No.99, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16413', 3, 0, '2022-02-05'),
+(83, 'ddd', '', '', '', '', '', '', '', 0, 1, '', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 0, 0, '2022-01-06 12:56:05', '0000-00-00 00:00:00', '', '', '', 'DSDSDDD', 0, 0, '2022-01-06');
 
 -- --------------------------------------------------------
 
@@ -4536,8 +4565,50 @@ CREATE TABLE `oc_product_attribute` (
 --
 
 INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
-(52, 21, 1, 'mmmnn'),
-(52, 21, 2, 'mmmnn');
+(81, 17, 2, 'assadah.com'),
+(81, 17, 1, 'assadah.com'),
+(81, 16, 2, '82393829'),
+(81, 16, 1, '82393829'),
+(81, 15, 2, '0928292822'),
+(81, 15, 1, '0928292822'),
+(81, 18, 2, 'opencartplugin@gmail.com'),
+(81, 18, 1, 'opencartplugin@gmail.com'),
+(81, 38, 2, 'Libur'),
+(81, 38, 1, 'Libur'),
+(81, 37, 2, 'Libur'),
+(81, 37, 1, 'Libur'),
+(81, 36, 2, '7:00 s/d 11:00'),
+(81, 36, 1, '7:00 s/d 11:00'),
+(81, 35, 2, '7:00 s/d 13:00'),
+(81, 35, 1, '7:00 s/d 13:00'),
+(81, 34, 2, '7:00 s/d 13:00'),
+(81, 34, 1, '7:00 s/d 13:00'),
+(81, 33, 2, '7:00 s/d 13:00'),
+(81, 33, 1, '7:00 s/d 13:00'),
+(81, 32, 2, '7:00 s/d 13:00'),
+(81, 22, 1, 'Matematika Club'),
+(81, 22, 2, 'Matematika Club'),
+(81, 32, 1, '7:00 s/d 13:00'),
+(81, 25, 2, 'Pramuka'),
+(81, 25, 1, 'Pramuka'),
+(81, 23, 2, 'Karate'),
+(81, 23, 1, 'Karate'),
+(81, 24, 2, 'Sepakbola'),
+(81, 24, 1, 'Sepakbola'),
+(82, 32, 1, '7:00 s/d 13:00'),
+(82, 32, 2, '7:00 s/d 13:00'),
+(82, 33, 1, '7:00 s/d 13:00'),
+(82, 33, 2, '7:00 s/d 13:00'),
+(82, 34, 1, '7:00 s/d 13:00'),
+(82, 34, 2, '7:00 s/d 13:00'),
+(82, 35, 1, '7:00 s/d 13:00'),
+(82, 35, 2, '7:00 s/d 13:00'),
+(82, 36, 1, '7:00 s/d 11:00'),
+(82, 36, 2, '7:00 s/d 11:00'),
+(82, 37, 1, 'Libur'),
+(82, 37, 2, 'Libur'),
+(82, 38, 1, 'Libur'),
+(82, 38, 2, 'Libur');
 
 -- --------------------------------------------------------
 
@@ -4562,36 +4633,12 @@ CREATE TABLE `oc_product_description` (
 --
 
 INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `faq`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(50, 2, 'TK Islam Baiturrahim', '', NULL, '', 'TK Islam Baiturrahim', '', ''),
-(50, 1, 'TK Islam Baiturrahim', '', NULL, '', 'TK Islam Baiturrahim', '', ''),
-(51, 2, 'Tkit Al-mughni', '', NULL, '', 'Tkit Al-mughni', '', ''),
-(52, 1, 'SD Negeri 45 Dampang', '&lt;p&gt;Profile sekolah&lt;/p&gt;', '', '', 'SD Negeri 45 Dampang', 'SD Negeri 45 Dampang', 'SD Negeri 45 Dampang'),
-(53, 2, 'SDN Cilandak Barat 01 Pagi', '', NULL, '', 'SDN Cilandak Barat 01 Pagi', '', ''),
-(53, 1, 'SDN Cilandak Barat 01 Pagi', '', NULL, '', 'SDN Cilandak Barat 01 Pagi', '', ''),
-(54, 2, 'SD Internasional Green School', '', NULL, '', 'SD Internasional Green School', '', ''),
-(54, 1, 'SD Internasional Green School', '', NULL, '', 'SD Internasional Green School', '', ''),
-(55, 2, 'SD MUHAMMADIYAH 4 SURABAYA', '', NULL, '', 'SD MUHAMMADIYAH 4 SURABAYA', '', ''),
-(55, 1, 'SD MUHAMMADIYAH 4 SURABAYA', '', NULL, '', 'SD MUHAMMADIYAH 4 SURABAYA', '', ''),
-(56, 2, 'SD NEGERI PENJARINGANSARI', '', NULL, '', 'SD NEGERI PENJARINGANSARI', '', ''),
-(56, 1, 'SD NEGERI PENJARINGANSARI', '', NULL, '', 'SD NEGERI PENJARINGANSARI', '', ''),
-(57, 2, 'SD NEGERI CIPEDAK 02', '', NULL, '', 'SD NEGERI CIPEDAK 02', '', ''),
-(57, 1, 'SD NEGERI CIPEDAK 02', '', NULL, '', 'SD NEGERI CIPEDAK 02', '', ''),
-(58, 2, 'SDN Grogol Utara 13 Pg.', '', NULL, '', 'SDN Grogol Utara 13 Pg.', '', ''),
-(58, 1, 'SDN Grogol Utara 13 Pg.', '', NULL, '', 'SDN Grogol Utara 13 Pg.', '', ''),
-(59, 2, 'SD MUHAMMADIYAH 09', '', NULL, '', 'SD MUHAMMADIYAH 09', '', ''),
-(59, 1, 'SD MUHAMMADIYAH 09', '', NULL, '', 'SD MUHAMMADIYAH 09', '', ''),
-(60, 2, 'SD NUKILA KOTA TERNATE', '', NULL, '', 'SD NUKILA KOTA TERNATE', '', ''),
-(60, 1, 'SD NUKILA KOTA TERNATE', '', NULL, '', 'SD NUKILA KOTA TERNATE', '', ''),
-(61, 2, 'Planet Kidz Preschool', '', NULL, '', 'Planet Kidz Preschool', '', ''),
-(61, 1, 'Planet Kidz Preschool', '', NULL, '', 'Planet Kidz Preschool', '', ''),
-(62, 2, 'Bunayya Islamic School', '', NULL, '', 'Bunayya Islamic School', '', ''),
-(62, 1, 'Bunayya Islamic School', '', NULL, '', 'Bunayya Islamic School', '', ''),
-(63, 2, 'Bloom Islamic School', '', NULL, '', 'Bloom Islamic School', '', ''),
-(63, 1, 'Bloom Islamic School', '', NULL, '', 'Bloom Islamic School', '', ''),
-(64, 2, 'Homeschooling International Sinergia Jakarta', '', NULL, '', 'Homeschooling International Sinergia Jakarta', '', ''),
-(64, 1, 'Homeschooling International Sinergia Jakarta', '', NULL, '', 'Homeschooling International Sinergia Jakarta', '', ''),
-(51, 1, 'Tkit Al-mughni', '', NULL, '', 'Tkit Al-mughni', '', ''),
-(52, 2, 'SD Negeri 45 Dampang', '&lt;p&gt;Profile sekolah&lt;/p&gt;', '', '', 'SD Negeri 45 Dampang', 'SD Negeri 45 Dampang', 'SD Negeri 45 Dampang');
+(83, 1, 'ddd', '&lt;p&gt;DDDD&lt;/p&gt;', '', '', 'ddd', 'ddd', 'ddd'),
+(83, 2, 'ddd', '&lt;p&gt;DDDD&lt;/p&gt;', '', '', 'ddd', 'ddd', 'ddd'),
+(82, 2, 'Pratiwi School', '&lt;div class=&quot;container main_title&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;h1 style=&quot;margin-bottom: 0.5rem; padding: 10px 0px 30px; outline: none; line-height: 1.2; letter-spacing: 1px; color: rgb(25, 25, 25); font-weight: bold; font-size: 30px; font-family: Dosis;&quot;&gt;Our Mission&lt;/h1&gt;&lt;/div&gt;&lt;div class=&quot;outer_dpage sidebar_content_page&quot; style=&quot;margin: 0px; padding: 0px; outline: none; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;div class=&quot;container&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px;&quot;&gt;&lt;div class=&quot;middle-content&quot; style=&quot;margin: 0px; padding: 0px 0px 20px; outline: none;&quot;&gt;&lt;ol style=&quot;margin-right: 0px; margin-bottom: 1rem; margin-left: 15px; padding: 0px; outline: none;&quot;&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;Build a foundation of believe, attitude, and behavior by developing consciousness and cognizant of God.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop good characters in daily life as global citizens, problem solver and life long learners.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students academically, physically, socially and emotionally through creative and fun learning experience.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students skill so that they are competitive globally.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;', '', '', 'Pratiwi School', 'Pratiwi School', 'Pratiwi School'),
+(81, 1, 'SDIT  AS SA\'ADAH', '&lt;p style=&quot;background: transparent; border: 0px; margin-bottom: 20px; padding: 0px; vertical-align: baseline; line-height: 22px; color: rgb(119, 119, 119); font-family: Lato, sans-serif; font-size: 14px;&quot;&gt;&lt;b&gt;Assa’adah Global Islamic School&lt;/b&gt; atau disingkat &lt;b&gt;AGIS&lt;/b&gt; adalah lembaga pendidikan Islam di bawah naungan Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang beralamat di &lt;i&gt;Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten&lt;/i&gt;. Assa’adah Global Islamic School (AGIS) merupakan pengembangan dari Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang berlokasi di Desa Banjarsari Kec. Cipocok Kota Serang Provinsi Banten. Berdiri di tanah seluas 8.000 m2, saat ini AGIS menyelenggarakan pendidikan tingkat dasar yang menerapkan proses &amp;nbsp;pendidikan bermakna yang berorientasi kepada kemasyarakat.&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;', '', '', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH'),
+(82, 1, 'Pratiwi School', '&lt;div class=&quot;container main_title&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;h1 style=&quot;margin-bottom: 0.5rem; padding: 10px 0px 30px; outline: none; line-height: 1.2; letter-spacing: 1px; color: rgb(25, 25, 25); font-weight: bold; font-size: 30px; font-family: Dosis;&quot;&gt;Our Mission&lt;/h1&gt;&lt;/div&gt;&lt;div class=&quot;outer_dpage sidebar_content_page&quot; style=&quot;margin: 0px; padding: 0px; outline: none; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;div class=&quot;container&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px;&quot;&gt;&lt;div class=&quot;middle-content&quot; style=&quot;margin: 0px; padding: 0px 0px 20px; outline: none;&quot;&gt;&lt;ol style=&quot;margin-right: 0px; margin-bottom: 1rem; margin-left: 15px; padding: 0px; outline: none;&quot;&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;Build a foundation of believe, attitude, and behavior by developing consciousness and cognizant of God.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop good characters in daily life as global citizens, problem solver and life long learners.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students academically, physically, socially and emotionally through creative and fun learning experience.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students skill so that they are competitive globally.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;', '', '', 'Pratiwi School', 'Pratiwi School', 'Pratiwi School'),
+(81, 2, 'SDIT  AS SA\'ADAH', '&lt;p style=&quot;background: transparent; border: 0px; margin-bottom: 20px; padding: 0px; vertical-align: baseline; line-height: 22px; color: rgb(119, 119, 119); font-family: Lato, sans-serif; font-size: 14px;&quot;&gt;&lt;b&gt;Assa’adah Global Islamic School&lt;/b&gt; atau disingkat &lt;b&gt;AGIS&lt;/b&gt; adalah lembaga pendidikan Islam di bawah naungan Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang beralamat di &lt;i&gt;Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten&lt;/i&gt;. Assa’adah Global Islamic School (AGIS) merupakan pengembangan dari Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang berlokasi di Desa Banjarsari Kec. Cipocok Kota Serang Provinsi Banten. Berdiri di tanah seluas 8.000 m2, saat ini AGIS menyelenggarakan pendidikan tingkat dasar yang menerapkan proses &amp;nbsp;pendidikan bermakna yang berorientasi kepada kemasyarakat.&lt;/p&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;', '', '', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH');
 
 -- --------------------------------------------------------
 
@@ -4626,56 +4673,29 @@ CREATE TABLE `oc_product_filter` (
 --
 
 INSERT INTO `oc_product_filter` (`product_id`, `filter_id`) VALUES
-(50, 7),
-(51, 8),
-(52, 1),
-(52, 3),
-(52, 489),
-(52, 533),
-(53, 1),
-(53, 15),
-(53, 438),
-(53, 533),
-(54, 9),
-(54, 12),
-(54, 17),
-(54, 489),
-(55, 11),
-(55, 12),
-(55, 15),
-(55, 282),
-(56, 1),
-(56, 15),
-(56, 282),
-(56, 533),
-(57, 1),
-(57, 17),
-(57, 177),
-(57, 533),
-(58, 5),
-(58, 13),
-(58, 17),
-(58, 177),
-(59, 11),
-(59, 16),
-(59, 178),
-(59, 533),
-(60, 1),
-(60, 15),
-(60, 489),
-(60, 533),
-(61, 11),
-(61, 178),
-(61, 537),
-(62, 11),
-(62, 176),
-(62, 538),
-(63, 11),
-(63, 176),
-(63, 538),
-(64, 9),
-(64, 177),
-(64, 541);
+(81, 2),
+(81, 13),
+(81, 290),
+(81, 533),
+(81, 542),
+(81, 543),
+(81, 545),
+(81, 546),
+(81, 547),
+(81, 549),
+(82, 11),
+(82, 12),
+(82, 202),
+(82, 538),
+(82, 539),
+(82, 542),
+(82, 543),
+(82, 544),
+(82, 546),
+(82, 547),
+(82, 548),
+(82, 549),
+(83, 0);
 
 -- --------------------------------------------------------
 
@@ -4697,47 +4717,29 @@ CREATE TABLE `oc_product_image` (
 --
 
 INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `image_name`, `image_description`, `sort_order`) VALUES
-(3253, 52, 'catalog/tkitalmugni.jpg', 'nn', 'iooo', 41),
-(3252, 52, '', '', '', 40),
-(3250, 52, '', '', '', 38),
-(3251, 52, '', '', '', 39),
-(3249, 52, '', '', '', 37),
-(3248, 52, '', '', '', 36),
-(3247, 52, '', '', '', 35),
-(3246, 52, '', '', '', 34),
-(3245, 52, '', '', '', 33),
-(3244, 52, '', '', '', 32),
-(3243, 52, '', '', '', 31),
-(3242, 52, '', '', '', 30),
-(3241, 52, '', '', '', 29),
-(3240, 52, '', '', '', 28),
-(3239, 52, '', '', '', 27),
-(3238, 52, '', '', '', 26),
-(3237, 52, '', '', '', 25),
-(3236, 52, '', '', '', 24),
-(3235, 52, '', '', '', 23),
-(3234, 52, '', '', '', 22),
-(3233, 52, '', '', '', 21),
-(3232, 52, '', '', '', 20),
-(3231, 52, '', '', '', 19),
-(3230, 52, '', '', '', 18),
-(3229, 52, '', '', '', 17),
-(3228, 52, '', '', '', 16),
-(3227, 52, '', '', '', 15),
-(3226, 52, '', '', '', 14),
-(3225, 52, '', '', '', 13),
-(3224, 52, '', '', '', 12),
-(3223, 52, '', '', '', 11),
-(3222, 52, '', '', '', 10),
-(3221, 52, '', '', '', 9),
-(3220, 52, '', '', '', 8),
-(3219, 52, '', '', '', 7),
-(3218, 52, '', '', '', 6),
-(3217, 52, '', '', '', 5),
-(3216, 52, '', '', '', 4),
-(3215, 52, '', '', '', 3),
-(3214, 52, '', '', '', 2),
-(3213, 52, 'catalog/sddki3.jpg', 'sdlls', 'sdsds', 1);
+(3543, 81, 'catalog/photo_profile3.jpg', 'Ali', 'Guru4', 36),
+(3542, 81, 'catalog/photo_profile2.jpg', 'Eko', 'Guru3', 35),
+(3528, 82, 'catalog/pratiwi/2-1-1024x1024.jpg', '', '', 32),
+(3529, 82, 'catalog/pratiwi/3-1024x1024.jpg', '', '', 33),
+(3524, 82, 'catalog/pratiwi/IMG_20200206_085745-1536x1152.jpg', '', '', 4),
+(3525, 82, 'catalog/pratiwi/IMG_20200217_085637-1152x1536.jpg', '', '', 5),
+(3526, 82, 'catalog/pratiwi/IMG_20200217_085859-1536x1152.jpg', '', '', 6),
+(3527, 82, 'catalog/pratiwi/1-1-768x768.jpg', '', '', 31),
+(3523, 82, 'catalog/pratiwi/IMG_20200203_105127-1536x1152.jpg', '', '', 3),
+(3522, 82, 'catalog/pratiwi/IMG_20200124_095139-1536x1152.jpg', '', '', 2),
+(3521, 82, 'catalog/pratiwi/IMG_20200108_105542-1536x1536.jpg', '', '', 1),
+(3541, 81, 'catalog/photo_profile8.jpg', 'Amin', 'Guru2', 34),
+(3540, 81, 'catalog/photo_profile6.jpg', 'Ahsan', 'Guru1', 33),
+(3539, 81, 'catalog/photo_profile4.jpg', 'Andi S.Pd', 'Wakil Kepala Sekolah', 32),
+(3537, 81, 'catalog/sd-cilandak.jpg', '', '', 8),
+(3538, 81, 'catalog/photo_profile5.jpg', 'Ahmad, M.Pd', 'Kepala Sekolah', 31),
+(3535, 81, 'catalog/preschool1.jpg', '', '', 6),
+(3536, 81, 'catalog/preschool4.jpg', '', '', 7),
+(3534, 81, 'catalog/assaadah/WhatsApp-Image-2020-10-05-at-15.37.58.jpeg', 'title4', 'desc5', 5),
+(3533, 81, 'catalog/assaadah/IMG-20160525-WA0004.jpg', 'title3', 'desc4', 4),
+(3532, 81, 'catalog/assaadah/DSC_1091.jpg', 'title3', 'desc3', 3),
+(3531, 81, 'catalog/assaadah/13876543_137069596735568_5551423219638815175_n.jpg', 'title2', 'desc2', 2),
+(3530, 81, 'catalog/assaadah/13238979_1293189567376446_3452575133637010496_n.jpg', 'title1', 'desc1', 1);
 
 -- --------------------------------------------------------
 
@@ -4843,21 +4845,9 @@ CREATE TABLE `oc_product_to_category` (
 --
 
 INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(50, 68),
-(51, 68),
-(52, 70),
-(53, 70),
-(54, 71),
-(55, 71),
-(56, 70),
-(57, 70),
-(58, 68),
-(59, 71),
-(60, 70),
-(61, 67),
-(62, 67),
-(63, 67),
-(64, 67);
+(81, 70),
+(82, 67),
+(83, 70);
 
 -- --------------------------------------------------------
 
@@ -4882,27 +4872,6 @@ CREATE TABLE `oc_product_to_layout` (
   `layout_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `oc_product_to_layout`
---
-
-INSERT INTO `oc_product_to_layout` (`product_id`, `store_id`, `layout_id`) VALUES
-(50, 0, 0),
-(51, 0, 0),
-(52, 0, 0),
-(53, 0, 0),
-(54, 0, 0),
-(55, 0, 0),
-(56, 0, 0),
-(57, 0, 0),
-(58, 0, 0),
-(59, 0, 0),
-(60, 0, 0),
-(61, 0, 0),
-(62, 0, 0),
-(63, 0, 0),
-(64, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -4919,21 +4888,9 @@ CREATE TABLE `oc_product_to_store` (
 --
 
 INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
-(50, 0),
-(51, 0),
-(52, 0),
-(53, 0),
-(54, 0),
-(55, 0),
-(56, 0),
-(57, 0),
-(58, 0),
-(59, 0),
-(60, 0),
-(61, 0),
-(62, 0),
-(63, 0),
-(64, 0);
+(81, 0),
+(82, 0),
+(83, 0);
 
 -- --------------------------------------------------------
 
@@ -5125,36 +5082,21 @@ CREATE TABLE `oc_setting` (
 --
 
 INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serialized`) VALUES
+(2072, 0, 'theme_default', 'theme_default_image_location_width', '268', 0),
+(2073, 0, 'theme_default', 'theme_default_image_location_height', '50', 0),
 (4, 0, 'voucher', 'voucher_sort_order', '8', 0),
 (5, 0, 'voucher', 'voucher_status', '1', 0),
-(1089, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(1100, 0, 'config', 'config_error_filename', 'error.log', 0),
-(1095, 0, 'config', 'config_file_max_size', '300000', 0),
-(1096, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(1097, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(1098, 0, 'config', 'config_error_display', '1', 0),
-(1099, 0, 'config', 'config_error_log', '1', 0),
-(1090, 0, 'config', 'config_compression', '0', 0),
-(1091, 0, 'config', 'config_secure', '0', 0),
-(1092, 0, 'config', 'config_password', '1', 0),
-(1093, 0, 'config', 'config_shared', '0', 0),
-(1094, 0, 'config', 'config_encryption', 'W962p7BFdaPvOCtHDGqbKa30smDHZcFj9KDOEmqXvjpQoZFsVdxpb72WN26lW3KHbBNjYiHqQcXclvcFne1XRKueVBQGLwWsiRMl6uYmyVB6lxB9rsb12AA3NCmppDsnVdtxUHaoxaecX6fEP1Y4VvXu8B57cZoVAGRUsnEV59CiLLttKvIey0B2vSZiYg3XtvrJOjwJ8JZ3C9qlyeJOMl9HqghE5jdqbJ4zzM8lAKxsMEK2fkkhwW1kaeXOOTW88YpmDI708PUndfLfXmXFi9CYARrrsSTFDbRs7t37qXS8COjV0QyFSRStsMw70JxASwsZt50PtNOnJEdoozOfNj5iznIklmvOIF7beNxpnmrcKS3xtBbtvtEaiYcgr9kvQYyFLF40FrAe4ZcqXW50dG0jxenAGiGVGItkAMh3EMCDaCl9RlILnrjba5p7KqIh9r0kTcD7IbCQAX4RWcEUaDDSKeSaOXJHlJOvSU11aHZWBIX9GFlhcnsD7iwYLOZCgQQLEe5lehtHUeDtxCKQcmPRHca203Dt6WWnQxtI4PtTPfboUuEgksiaFxnOy2xkviTWwDNZjhvvO7CqlOcNQYT6JtamG3Zj4D1voSOafwm0zf5xj1KfR7dAMM04XGhvGwRBvR9Bi0plMoOQOuU0r2bZC7BctqXcTdyg1MieJElsU4h9fzLuOtxvJ7lhIdpQqs2DWgovPmmf4QyOBrlmWoIiXdwgioj0bPN2P4m2A4X9zQr6nK89gzizwys2dYuWd325uYnyPobE9acsaYlQ8MUTSCfGge3bB0zUnfOFeohSVeY9kQ0qNEN1ZQLVcgMz0VyC1onjZNn1ti0b7G3OXobRMKymOWVH4mI9GLN35aC3Gqp8yEn0x8RHvd71xqujIvQi0DgZgUGy1L8JQ5NjN8xfdyDGqtcZPj9s5Ivyu0w2fHprUW9BORq9nt9NDICSDIoPBKWJJFLd71axzxDPCXo3j3bSwtVCtwqi3PnIOgfdzOJOcYvpydoe9oPmIPY6', 0),
-(1088, 0, 'config', 'config_seo_url', '1', 0),
-(1087, 0, 'config', 'config_maintenance', '0', 0),
-(1086, 0, 'config', 'config_mail_alert_email', '', 0),
-(1084, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(1085, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
-(1083, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(1081, 0, 'config', 'config_mail_smtp_username', '', 0),
-(1082, 0, 'config', 'config_mail_smtp_password', '', 0),
-(1079, 0, 'config', 'config_mail_parameter', '', 0),
-(1080, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(1078, 0, 'config', 'config_mail_protocol', 'mail', 0),
-(1077, 0, 'config', 'config_ftp_status', '0', 0),
-(1076, 0, 'config', 'config_ftp_root', '', 0),
-(1075, 0, 'config', 'config_ftp_password', '', 0),
-(1073, 0, 'config', 'config_ftp_port', '21', 0),
-(1074, 0, 'config', 'config_ftp_username', '', 0),
+(2039, 0, 'config', 'config_compression', '0', 0),
+(2040, 0, 'config', 'config_secure', '0', 0),
+(2041, 0, 'config', 'config_password', '1', 0),
+(2042, 0, 'config', 'config_shared', '0', 0),
+(2043, 0, 'config', 'config_encryption', 'W962p7BFdaPvOCtHDGqbKa30smDHZcFj9KDOEmqXvjpQoZFsVdxpb72WN26lW3KHbBNjYiHqQcXclvcFne1XRKueVBQGLwWsiRMl6uYmyVB6lxB9rsb12AA3NCmppDsnVdtxUHaoxaecX6fEP1Y4VvXu8B57cZoVAGRUsnEV59CiLLttKvIey0B2vSZiYg3XtvrJOjwJ8JZ3C9qlyeJOMl9HqghE5jdqbJ4zzM8lAKxsMEK2fkkhwW1kaeXOOTW88YpmDI708PUndfLfXmXFi9CYARrrsSTFDbRs7t37qXS8COjV0QyFSRStsMw70JxASwsZt50PtNOnJEdoozOfNj5iznIklmvOIF7beNxpnmrcKS3xtBbtvtEaiYcgr9kvQYyFLF40FrAe4ZcqXW50dG0jxenAGiGVGItkAMh3EMCDaCl9RlILnrjba5p7KqIh9r0kTcD7IbCQAX4RWcEUaDDSKeSaOXJHlJOvSU11aHZWBIX9GFlhcnsD7iwYLOZCgQQLEe5lehtHUeDtxCKQcmPRHca203Dt6WWnQxtI4PtTPfboUuEgksiaFxnOy2xkviTWwDNZjhvvO7CqlOcNQYT6JtamG3Zj4D1voSOafwm0zf5xj1KfR7dAMM04XGhvGwRBvR9Bi0plMoOQOuU0r2bZC7BctqXcTdyg1MieJElsU4h9fzLuOtxvJ7lhIdpQqs2DWgovPmmf4QyOBrlmWoIiXdwgioj0bPN2P4m2A4X9zQr6nK89gzizwys2dYuWd325uYnyPobE9acsaYlQ8MUTSCfGge3bB0zUnfOFeohSVeY9kQ0qNEN1ZQLVcgMz0VyC1onjZNn1ti0b7G3OXobRMKymOWVH4mI9GLN35aC3Gqp8yEn0x8RHvd71xqujIvQi0DgZgUGy1L8JQ5NjN8xfdyDGqtcZPj9s5Ivyu0w2fHprUW9BORq9nt9NDICSDIoPBKWJJFLd71axzxDPCXo3j3bSwtVCtwqi3PnIOgfdzOJOcYvpydoe9oPmIPY6', 0),
+(2049, 0, 'config', 'config_error_filename', 'error.log', 0),
+(2044, 0, 'config', 'config_file_max_size', '300000', 0),
+(2045, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(2046, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(2047, 0, 'config', 'config_error_display', '1', 0),
+(2048, 0, 'config', 'config_error_log', '1', 0),
 (95, 0, 'free_checkout', 'free_checkout_status', '1', 0),
 (96, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
 (97, 0, 'shipping', 'shipping_sort_order', '3', 0),
@@ -5186,30 +5128,26 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (123, 0, 'category', 'category_status', '1', 0),
 (124, 0, 'account', 'account_status', '1', 0),
 (125, 0, 'affiliate', 'affiliate_status', '1', 0),
-(126, 0, 'theme_default', 'theme_default_product_limit', '15', 0),
-(127, 0, 'theme_default', 'theme_default_product_description_length', '100', 0),
-(128, 0, 'theme_default', 'theme_default_image_thumb_width', '228', 0),
-(129, 0, 'theme_default', 'theme_default_image_thumb_height', '228', 0),
-(130, 0, 'theme_default', 'theme_default_image_popup_width', '500', 0),
-(131, 0, 'theme_default', 'theme_default_image_popup_height', '500', 0),
-(132, 0, 'theme_default', 'theme_default_image_category_width', '80', 0),
-(133, 0, 'theme_default', 'theme_default_image_category_height', '80', 0),
-(134, 0, 'theme_default', 'theme_default_image_product_width', '228', 0),
-(135, 0, 'theme_default', 'theme_default_image_product_height', '228', 0),
-(136, 0, 'theme_default', 'theme_default_image_additional_width', '74', 0),
-(137, 0, 'theme_default', 'theme_default_image_additional_height', '74', 0),
-(138, 0, 'theme_default', 'theme_default_image_related_width', '200', 0),
-(139, 0, 'theme_default', 'theme_default_image_related_height', '200', 0),
-(140, 0, 'theme_default', 'theme_default_image_compare_width', '90', 0),
-(141, 0, 'theme_default', 'theme_default_image_compare_height', '90', 0),
-(142, 0, 'theme_default', 'theme_default_image_wishlist_width', '47', 0),
-(143, 0, 'theme_default', 'theme_default_image_wishlist_height', '47', 0),
-(144, 0, 'theme_default', 'theme_default_image_cart_height', '47', 0),
-(145, 0, 'theme_default', 'theme_default_image_cart_width', '47', 0),
-(146, 0, 'theme_default', 'theme_default_image_location_height', '50', 0),
-(147, 0, 'theme_default', 'theme_default_image_location_width', '268', 0),
-(148, 0, 'theme_default', 'theme_default_directory', 'default', 0),
-(149, 0, 'theme_default', 'theme_default_status', '1', 0),
+(2071, 0, 'theme_default', 'theme_default_image_cart_height', '47', 0),
+(2070, 0, 'theme_default', 'theme_default_image_cart_width', '47', 0),
+(2069, 0, 'theme_default', 'theme_default_image_wishlist_height', '47', 0),
+(2068, 0, 'theme_default', 'theme_default_image_wishlist_width', '47', 0),
+(2067, 0, 'theme_default', 'theme_default_image_compare_height', '90', 0),
+(2066, 0, 'theme_default', 'theme_default_image_compare_width', '90', 0),
+(2065, 0, 'theme_default', 'theme_default_image_related_height', '200', 0),
+(2064, 0, 'theme_default', 'theme_default_image_related_width', '200', 0),
+(2063, 0, 'theme_default', 'theme_default_image_additional_height', '98', 0),
+(2062, 0, 'theme_default', 'theme_default_image_additional_width', '98', 0),
+(2061, 0, 'theme_default', 'theme_default_image_product_height', '228', 0),
+(2060, 0, 'theme_default', 'theme_default_image_product_width', '228', 0),
+(2059, 0, 'theme_default', 'theme_default_image_popup_height', '768', 0),
+(2058, 0, 'theme_default', 'theme_default_image_popup_width', '1200', 0),
+(2057, 0, 'theme_default', 'theme_default_image_thumb_height', '228', 0),
+(2056, 0, 'theme_default', 'theme_default_image_thumb_width', '228', 0),
+(2055, 0, 'theme_default', 'theme_default_image_category_height', '80', 0),
+(2054, 0, 'theme_default', 'theme_default_image_category_width', '80', 0),
+(2053, 0, 'theme_default', 'theme_default_product_description_length', '100', 0),
+(2052, 0, 'theme_default', 'theme_default_product_limit', '15', 0),
 (150, 0, 'dashboard_activity', 'dashboard_activity_status', '1', 0),
 (151, 0, 'dashboard_activity', 'dashboard_activity_sort_order', '7', 0),
 (152, 0, 'dashboard_sale', 'dashboard_sale_status', '1', 0),
@@ -5242,69 +5180,88 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (181, 0, 'mega_filter_status', 'mega_filter_status', '1', 0),
 (182, 0, 'mega_filter_themes', 'mega_filter_themes', '{\".mfilter-light-theme\":{\"code\":\"\\/* \\/\\/ HORIZONTAL TOP \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/*\\/\\r\\n\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li {\\r\\n\\tborder-top: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-heading {\\r\\n\\tborder-left: 1px solid #dbdee1;\\r\\n}\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-content-opts {\\r\\n\\tborder-right: 1px solid #dbdee1;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-heading .mfilter-heading-content{\\r\\n\\tmargin-left: 10px;\\r\\n\\tborder: none;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-cat_checkbox .mfilter-tb \\u003E .mfilter-tb-as-tr, \\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb {\\r\\n\\tbackground: #f5f5f5;\\r\\n\\tbackground-image: -moz-linear-gradient(center top , #f5f5f5, #f1f1f1);\\r\\n\\tborder: 1px solid #dedede;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:first-child .mfilter-heading,\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:first-child .mfilter-content-opts {\\r\\n\\tborder-top: 1px solid #dbdee1;\\r\\n}\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:last-child .mfilter-heading,\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:last-child .mfilter-content-opts {\\r\\n\\tborder-bottom: 1px solid #dbdee1;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb-as-tr .mfilter-tb-as-td{\\r\\n\\tborder-top: none;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-cat_checkbox .mfilter-tb \\u003E .mfilter-tb-as-tr:hover, \\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb:hover {\\r\\n\\tbackground-color: #f8f8f8;\\r\\n    background-image: -moz-linear-gradient(center top , #f8f8f8, #f1f1f1);\\r\\n    border: 1px solid #c6c6c6;\\r\\n    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-inputs{\\r\\n\\tmargin-left: 5px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-inputs input{\\r\\n\\tmargin: 2px 0;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-slider {\\r\\n\\tmargin: 6px 0 0 10px;\\r\\n}\\r\\n\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-search{\\r\\n\\tmargin: 0 16px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-search #mfilter-opts-search{\\r\\n\\tmargin-top: 2px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-tree{\\r\\n\\tmargin: 6px 0 0 10px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content .mfilter-button-top {\\r\\n\\tborder-bottom: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content .mfilter-button-bottom {\\r\\n\\tborder-top: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-button-top.mfilter-light-theme {\\r\\n\\tborder-bottom: 1px solid #EEEEEE;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-slider-inputs .mfilter-opts-slider-min{\\r\\n\\tmargin-left: 13px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-text .mfilter-slider-inputs input{\\r\\n\\tmargin-left: 13px;\\r\\n\\twidth: 96%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-inline-horizontal .mfilter-scroll-left,\\r\\n.mfilter-light-theme .mfilter-inline-horizontal .mfilter-scroll-right {\\r\\n\\tvertical-align: middle;\\r\\n}\\r\\n\\r\\n\\/* \\/\\/ VERTICAL \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/*\\/\\r\\n\\r\\n.mfilter-light-theme .mfilter-content {\\r\\n\\tborder: none;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading {\\r\\n\\tfont-weight: bold;\\r\\n\\tcolor: black;\\r\\n\\tbackground: none;\\r\\n}\\r\\n\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-text \\u003E i {\\r\\n\\tbackground: #ecd8d8;\\r\\n\\tmargin-bottom: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-content {\\r\\n\\tpadding: 16px 8px 1px 8px;\\r\\n\\tborder-bottom: 1px solid #c1c6c6;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-category a{\\r\\n\\tcolor: black;\\r\\n\\tmargin-left: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-tb-as-tr:hover{\\r\\n\\tbackground-color: #f8f8f8;\\r\\n\\tbackground-image: -moz-linear-gradient(center top , #f8f8f8, #f1f1f1);\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-tb-as-td {\\r\\n\\tborder-top: 1px solid #dcdcdc;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme label.mfilter-tb-as-td {\\r\\n\\tcolor: black;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-disabled label.mfilter-tb-as-td {\\r\\n\\tcolor: gray;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-text \\u003E span {\\r\\n\\tpadding-left: 12px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-button-more {\\r\\n\\tcolor: black;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-opts-container {\\r\\n\\tborder:none;\\r\\n}\\r\\n \\r\\n.mfilter-light-theme .mfilter-price-slider {\\r\\n\\tpadding: 0 0 5px 4px !important;\\r\\n\\tmargin-right: 0px !important;\\r\\n\\tbackground: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider .ui-slider-handle,\\r\\n.mfilter-light-theme #mfilter-price-slider .ui-slider-handle {\\r\\n\\twidth: 18px !important;\\r\\n\\theight: 12px !important;\\r\\n\\tbackground: white !important;\\r\\n\\tmargin-top: -1px;\\r\\n\\tbackground-size: cover;\\r\\n\\tbackground-repeat: no-repeat;\\r\\n\\tbackground-position: center center;\\r\\n\\t-webkit-border-radius: 99em;\\r\\n\\t-moz-border-radius: 99em;\\r\\n\\tborder-radius: 99em;\\r\\n\\tborder: 1px solid #eee;\\r\\n\\tbox-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4); \\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider,\\r\\n.mfilter-light-theme #mfilter-price-slider {\\r\\n\\tbackground: lightgrey !important;\\r\\n\\theight: 3px !important;\\r\\n\\tmargin: 10px 6px 0 12px !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider .ui-slider-range,\\r\\n.mfilter-light-theme #mfilter-price-slider .ui-slider-range {\\r\\n\\tbackground: #428bca !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-search{\\r\\n\\tmargin: 0 5px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-search #mfilter-opts-search {\\r\\n\\tmargin-top: 2px;\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n          -webkit-box-shadow: none !important;\\r\\n          -moz-box-shadow: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-col-input {\\r\\n\\tpadding-right: 4px !important;\\r\\n\\tpadding-left: 2px !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-category-tree ul li.mfilter-to-parent {\\r\\n\\tmargin-top: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-selected-filters-cnt {\\r\\n\\tmargin-bottom: 20px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-content .mfilter-selected-filters .mfilter-selected-filters-cnt a \\u003E span {\\r\\n\\tborder-bottom: 1px dotted #c1c6c6;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-select select {\\r\\n\\twidth: 96%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-text .mfilter-slider-inputs input{\\r\\n\\twidth: 94%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-price-inputs \\u003E input{\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tpadding: 0 0 0 10px;\\r\\n\\tmargin: 8px 0 8px 0;\\r\\n\\theight: 30px;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n}\\r\\n \\r\\n.mfilter-light-theme .mfilter-slider-inputs input{\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\theight: 30px;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n }\\r\\n.mfilter-light-theme .mfilter-col-count{\\r\\n\\t padding-right: 2px;\\r\\n }\",\"name\":\"Light Theme\"}}', 1),
 (645, 0, 'mfilter_latest_ver', 'mfilter_latest_ver', '{\"time\":1640831009,\"ver\":\"2.0.5.6.8\",\"ignore\":\"2.0.5.6.8\"}', 1),
-(1072, 0, 'config', 'config_ftp_hostname', 'carisekolah.loc', 0),
-(1071, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(1069, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
-(1070, 0, 'config', 'config_logo', 'catalog/logo.jpeg', 0),
-(1068, 0, 'config', 'config_captcha', '', 0),
-(1067, 0, 'config', 'config_return_status_id', '2', 0),
-(1066, 0, 'config', 'config_return_id', '0', 0),
-(1065, 0, 'config', 'config_affiliate_id', '4', 0),
-(1064, 0, 'config', 'config_affiliate_commission', '5', 0),
-(1063, 0, 'config', 'config_affiliate_auto', '0', 0),
-(1062, 0, 'config', 'config_affiliate_approval', '0', 0),
-(1061, 0, 'config', 'config_stock_checkout', '0', 0),
-(1060, 0, 'config', 'config_stock_warning', '0', 0),
-(1058, 0, 'config', 'config_api_id', '1', 0),
-(1059, 0, 'config', 'config_stock_display', '0', 0),
-(1057, 0, 'config', 'config_fraud_status_id', '7', 0),
-(1056, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
-(1055, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
-(1054, 0, 'config', 'config_order_status_id', '1', 0),
-(1053, 0, 'config', 'config_checkout_id', '5', 0),
-(1052, 0, 'config', 'config_checkout_guest', '1', 0),
-(1051, 0, 'config', 'config_cart_weight', '1', 0),
-(1050, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(1049, 0, 'config', 'config_account_id', '3', 0),
-(1048, 0, 'config', 'config_login_attempts', '5', 0),
-(1047, 0, 'config', 'config_customer_price', '0', 0),
-(1046, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
-(1045, 0, 'config', 'config_customer_group_id', '1', 0),
-(1044, 0, 'config', 'config_customer_search', '0', 0),
-(1043, 0, 'config', 'config_customer_activity', '0', 0),
-(1042, 0, 'config', 'config_customer_online', '0', 0),
-(1041, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(1040, 0, 'config', 'config_tax_default', 'shipping', 0),
-(1039, 0, 'config', 'config_tax', '1', 0),
-(1038, 0, 'config', 'config_voucher_max', '1000', 0),
-(1037, 0, 'config', 'config_voucher_min', '1', 0),
-(1036, 0, 'config', 'config_review_guest', '1', 0),
-(1035, 0, 'config', 'config_review_status', '1', 0),
-(1034, 0, 'config', 'config_limit_admin', '20', 0),
-(1033, 0, 'config', 'config_product_count', '1', 0),
-(1032, 0, 'config', 'config_weight_class_id', '1', 0),
-(1031, 0, 'config', 'config_length_class_id', '1', 0),
-(1030, 0, 'config', 'config_currency_auto', '1', 0),
-(1029, 0, 'config', 'config_currency', 'IDR', 0),
-(1028, 0, 'config', 'config_admin_language', 'id-id', 0),
-(1027, 0, 'config', 'config_language', 'id-id', 0),
-(1026, 0, 'config', 'config_zone_id', '1513', 0),
-(1025, 0, 'config', 'config_country_id', '100', 0),
-(1024, 0, 'config', 'config_comment', '', 0),
-(1023, 0, 'config', 'config_open', '', 0),
-(1022, 0, 'config', 'config_image', '', 0),
-(1021, 0, 'config', 'config_fax', '', 0),
-(1020, 0, 'config', 'config_telephone', '123456789', 0),
-(1018, 0, 'config', 'config_geocode', '', 0),
-(1019, 0, 'config', 'config_email', 'esmsgatewaycom@gmail.com', 0),
-(1017, 0, 'config', 'config_address', 'Address 1', 0),
-(1016, 0, 'config', 'config_owner', 'Your Name', 0),
-(1015, 0, 'config', 'config_name', 'Your Store', 0),
-(1014, 0, 'config', 'config_layout_id', '4', 0),
-(1013, 0, 'config', 'config_theme', 'theme_default', 0),
-(1012, 0, 'config', 'config_meta_keyword', '', 0),
-(1011, 0, 'config', 'config_meta_description', 'Cari Sekolah', 0),
-(1010, 0, 'config', 'config_meta_title', 'Cari Sekolah', 0);
+(2038, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(2037, 0, 'config', 'config_seo_url', '0', 0),
+(2035, 0, 'config', 'config_mail_alert_email', '', 0),
+(2036, 0, 'config', 'config_maintenance', '0', 0),
+(2034, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
+(2033, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(2032, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(2031, 0, 'config', 'config_mail_smtp_password', '', 0),
+(2030, 0, 'config', 'config_mail_smtp_username', '', 0),
+(2029, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(2028, 0, 'config', 'config_mail_parameter', '', 0),
+(2026, 0, 'config', 'config_ftp_status', '0', 0),
+(2027, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(2025, 0, 'config', 'config_ftp_root', '', 0),
+(2024, 0, 'config', 'config_ftp_password', '', 0),
+(2023, 0, 'config', 'config_ftp_username', '', 0),
+(2022, 0, 'config', 'config_ftp_port', '21', 0),
+(2021, 0, 'config', 'config_ftp_hostname', 'carisekolah.loc', 0),
+(2020, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
+(2019, 0, 'config', 'config_logo', 'catalog/logo-cs.png', 0),
+(2018, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
+(2017, 0, 'config', 'config_captcha', '', 0),
+(2016, 0, 'config', 'config_return_status_id', '2', 0),
+(2015, 0, 'config', 'config_return_id', '0', 0),
+(2014, 0, 'config', 'config_affiliate_id', '4', 0),
+(2013, 0, 'config', 'config_affiliate_commission', '5', 0),
+(2012, 0, 'config', 'config_affiliate_auto', '0', 0),
+(2011, 0, 'config', 'config_affiliate_approval', '0', 0),
+(2010, 0, 'config', 'config_stock_checkout', '0', 0),
+(2009, 0, 'config', 'config_stock_warning', '0', 0),
+(2008, 0, 'config', 'config_stock_display', '0', 0),
+(2007, 0, 'config', 'config_api_id', '1', 0),
+(2006, 0, 'config', 'config_fraud_status_id', '7', 0),
+(2005, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
+(2004, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
+(2003, 0, 'config', 'config_order_status_id', '1', 0),
+(2002, 0, 'config', 'config_checkout_id', '5', 0),
+(2001, 0, 'config', 'config_checkout_guest', '1', 0),
+(2000, 0, 'config', 'config_cart_weight', '1', 0),
+(1999, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(1998, 0, 'config', 'config_account_id', '3', 0),
+(1997, 0, 'config', 'config_login_attempts', '5', 0),
+(1996, 0, 'config', 'config_customer_price', '0', 0),
+(1995, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
+(1994, 0, 'config', 'config_customer_group_id', '1', 0),
+(1992, 0, 'config', 'config_customer_activity', '0', 0),
+(1993, 0, 'config', 'config_customer_search', '0', 0),
+(1991, 0, 'config', 'config_customer_online', '0', 0),
+(1990, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(1989, 0, 'config', 'config_tax_default', 'shipping', 0),
+(1988, 0, 'config', 'config_tax', '1', 0),
+(1987, 0, 'config', 'config_voucher_max', '1000', 0),
+(1986, 0, 'config', 'config_voucher_min', '1', 0),
+(1985, 0, 'config', 'config_review_guest', '1', 0),
+(2051, 0, 'theme_default', 'theme_default_status', '1', 0),
+(1960, 0, 'config', 'config_meta_description', 'Cari Sekolah', 0),
+(1961, 0, 'config', 'config_meta_keyword', '', 0),
+(1962, 0, 'config', 'config_theme', 'theme_default', 0),
+(1963, 0, 'config', 'config_layout_id', '4', 0),
+(1964, 0, 'config', 'config_name', 'Your Store', 0),
+(1965, 0, 'config', 'config_owner', 'Your Name', 0),
+(1966, 0, 'config', 'config_address', 'Address 1', 0),
+(1967, 0, 'config', 'config_geocode', '', 0),
+(1968, 0, 'config', 'config_email', 'esmsgatewaycom@gmail.com', 0),
+(1969, 0, 'config', 'config_telephone', '123456789', 0),
+(1970, 0, 'config', 'config_fax', '', 0),
+(1971, 0, 'config', 'config_image', '', 0),
+(1972, 0, 'config', 'config_open', '', 0),
+(1973, 0, 'config', 'config_comment', '', 0),
+(1974, 0, 'config', 'config_country_id', '100', 0),
+(1975, 0, 'config', 'config_zone_id', '1513', 0),
+(1976, 0, 'config', 'config_language', 'id-id', 0),
+(1977, 0, 'config', 'config_admin_language', 'id-id', 0),
+(1978, 0, 'config', 'config_currency', 'IDR', 0),
+(1979, 0, 'config', 'config_currency_auto', '1', 0),
+(1980, 0, 'config', 'config_length_class_id', '1', 0),
+(1981, 0, 'config', 'config_weight_class_id', '1', 0),
+(1982, 0, 'config', 'config_product_count', '1', 0),
+(1983, 0, 'config', 'config_limit_admin', '20', 0),
+(1984, 0, 'config', 'config_review_status', '1', 0),
+(2050, 0, 'theme_default', 'theme_default_directory', 'skolin', 0),
+(1959, 0, 'config', 'config_meta_title', 'Cari Sekolah', 0);
 
 -- --------------------------------------------------------
 
@@ -5323,14 +5280,12 @@ CREATE TABLE `oc_stock_status` (
 --
 
 INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
-(7, 1, 'In Stock'),
-(8, 1, 'Pre-Order'),
-(5, 1, 'Out Of Stock'),
-(6, 1, '2-3 Days'),
-(7, 2, 'In Stock'),
-(8, 2, 'Pre-Order'),
-(5, 2, 'Out Of Stock'),
-(6, 2, '2-3 Days');
+(1, 1, 'Open Registration'),
+(3, 1, 'Closed'),
+(2, 1, 'Full'),
+(1, 2, 'Buka Pendaftatan'),
+(3, 2, 'Tutup'),
+(2, 2, 'Penuh');
 
 -- --------------------------------------------------------
 
@@ -5496,7 +5451,7 @@ CREATE TABLE `oc_url_alias` (
 INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (730, 'manufacturer_id=8', 'apple'),
 (772, 'information_id=4', 'about_us'),
-(862, 'product_id=63', 'tes-seo'),
+(921, 'product_id=83', 'ddd'),
 (860, 'category_id=75', ''),
 (828, 'manufacturer_id=9', 'canon'),
 (829, 'manufacturer_id=5', 'htc'),
@@ -5515,7 +5470,8 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (852, 'category_id=67', ''),
 (853, 'category_id=68', ''),
 (854, 'category_id=69', ''),
-(884, 'product_id=52', 'sd-negeri-45-dampang');
+(920, 'product_id=82', 'pratiwi-school'),
+(928, 'product_id=81', 'sdit-as-sa-adah');
 
 -- --------------------------------------------------------
 
@@ -5565,7 +5521,7 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}'),
+(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/theme\\/theme_skolin\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/theme\\/theme_skolin\"]}'),
 (10, 'Demonstration', ''),
 (11, 'Moderator', '{\"access\":[\"catalog\\/education_category\",\"catalog\\/school\"],\"modify\":[\"catalog\\/education_category\",\"catalog\\/school\"]}'),
 (12, 'Admin Sekolah', '');
@@ -10855,7 +10811,7 @@ ALTER TABLE `oc_api_session`
 -- AUTO_INCREMENT for table `oc_attribute`
 --
 ALTER TABLE `oc_attribute`
-  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `oc_attribute_group`
@@ -11005,13 +10961,13 @@ ALTER TABLE `oc_event`
 -- AUTO_INCREMENT for table `oc_extension`
 --
 ALTER TABLE `oc_extension`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `oc_filter`
 --
 ALTER TABLE `oc_filter`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=545;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550;
 
 --
 -- AUTO_INCREMENT for table `oc_filter_group`
@@ -11185,7 +11141,7 @@ ALTER TABLE `oc_order_voucher`
 -- AUTO_INCREMENT for table `oc_product`
 --
 ALTER TABLE `oc_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `oc_product_discount`
@@ -11197,7 +11153,7 @@ ALTER TABLE `oc_product_discount`
 -- AUTO_INCREMENT for table `oc_product_image`
 --
 ALTER TABLE `oc_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3254;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3544;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option`
@@ -11269,7 +11225,7 @@ ALTER TABLE `oc_review`
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1101;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2074;
 
 --
 -- AUTO_INCREMENT for table `oc_stock_status`
@@ -11323,7 +11279,7 @@ ALTER TABLE `oc_upload`
 -- AUTO_INCREMENT for table `oc_url_alias`
 --
 ALTER TABLE `oc_url_alias`
-  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=885;
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=929;
 
 --
 -- AUTO_INCREMENT for table `oc_user`
