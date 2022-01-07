@@ -1,0 +1,40 @@
+<?php
+// HTTP
+define('HTTP_SERVER', 'http://carisekolah.loc/');
+
+// HTTPS
+define('HTTPS_SERVER', 'http://carisekolah.loc/');
+
+// DIR
+define('DIR_APPLICATION', '/shared/httpd/carisekolah/htdocs/catalog/');
+define('DIR_SYSTEM', '/shared/httpd/carisekolah/htdocs/system/');
+define('DIR_IMAGE', '/shared/httpd/carisekolah/htdocs/image/');
+define('DIR_LANGUAGE', '/shared/httpd/carisekolah/htdocs/catalog/language/');
+define('DIR_TEMPLATE', '/shared/httpd/carisekolah/htdocs/catalog/view/theme/');
+define('DIR_CONFIG', '/shared/httpd/carisekolah/htdocs/system/config/');
+define('DIR_CACHE', '/shared/httpd/carisekolah/htdocs/system/storage/cache/');
+define('DIR_DOWNLOAD', '/shared/httpd/carisekolah/htdocs/system/storage/download/');
+define('DIR_LOGS', '/shared/httpd/carisekolah/htdocs/system/storage/logs/');
+define('DIR_MODIFICATION', '/shared/httpd/carisekolah/htdocs/system/storage/modification/');
+define('DIR_UPLOAD', '/shared/httpd/carisekolah/htdocs/system/storage/upload/');
+
+// DB
+define('DB_DRIVER', 'mysqli');
+define('DB_HOSTNAME', '172.16.238.12');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'carisekolahdb');
+define('DB_PORT', '3306');
+define('DB_PREFIX', 'oc_');
+//-------------//
+DEFINE('PARENT_CATEGORY_PATH_ID', 59);
+
+DEFINE('PHOTO_GALLERY_ID', 10);
+DEFINE('PHOTO_PROGRAM_ID', 7);
+DEFINE('PHOTO_PROMO_ID', 3);
+DEFINE('PHOTO_PENGAJAR_ID', 8);
+//-------------//
+DEFINE('FILTER_FASILITAS_SEKOLAH_ID', 8);
+//--------------//
+DEFINE('ATTRIBUTE_EKSTRAKURIKULER_ID', 9);
+DEFINE('ATTRIBUTE_JAM_ID', 10);
