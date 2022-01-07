@@ -5,7 +5,7 @@ class ControllerProductSearch extends Controller {
 
 		$this->load->model('catalog/category');
 
-		$this->load->model('catalog/product');
+		$this->load->model('catalog/school');
 
 		$this->load->model('tool/image');
 
@@ -209,9 +209,9 @@ class ControllerProductSearch extends Controller {
 				'limit'               => $limit
 			);
 
-			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+			$product_total = $this->model_catalog_school->getTotalProducts($filter_data);
 
-			$results = $this->model_catalog_product->getProducts($filter_data);
+			$results = $this->model_catalog_school->getProducts($filter_data);
 
 			foreach ($results as $result) {
 				if ($result['image']) {

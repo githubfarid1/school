@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>Mega Filter PRO for School</name>
+    <version>1.0</version>
+    <author>opencartplugin@ocdemo.eu</author>
+    <link>mailto:opencartplugin@ocdemo.eu</link>
+	<code>Mega Filter PRO for school</code>
+
+	<!--frd-->
+	<file path="catalog/model/catalog/school.php">
+		<operation>
+			<search><![CDATA[$query = $this->db->query("]]></search>
+			<add position="replace"><![CDATA[$sql = ("]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$sql = ("]]></search>
+			<add position="after"><![CDATA[$query = $this->db->query($sql);]]></add>
+		</operation>
+		<operation>
+			<search><![CDATA[$query = $this->db->query($sql);]]></search>
+			<add position="before"><![CDATA[
+				if( in_array( __FUNCTION__, array( 'getProducts', 'getTotalProducts', 'getProductSpecials', 'getTotalProductSpecials' ) ) ) {
+					if( isset( $this->request->get[$this->config->get('mfilter_url_param')?$this->config->get('mfilter_url_param'):'mfp'] ) || isset( $this->request->post[$this->config->get('mfilter_url_param')?$this->config->get('mfilter_url_param'):'mfp'] ) || ( NULL != ( $mfSettings = $this->config->get('mega_filter_settings') ) && ! empty( $mfSettings['in_stock_default_selected'] ) ) ) {
+						if( empty( $data['mfp_disabled'] ) ) {
+							$this->load->model( 'module/mega_filter' );
+
+							if( class_exists( 'MegaFilterCore' ) ) {
+								$sql = MegaFilterCore::newInstance( $this, $sql, isset( $data ) ? $data : array() )->getSQL( __FUNCTION__ );
+							}
+						}
+					}
+				}
+			]]></add>
+		</operation>
+	</file>
+
+</modification>
+

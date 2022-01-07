@@ -1,18 +1,29 @@
 <?php
 class ModelCatalogSchool extends Model {
 	public function addProduct($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['school_name']) . "', address = '" . $this->db->escape($data['address']) . "', price = '" . (float)$data['monthly_cost'] . "', price2 = '" . (float)$data['first_cost'] . "', akreditasi = '" . $this->db->escape($data['akreditasi']) . "', status = '" . (int)$data['status'] . "', user_id = '" . (int)$data['user_id'] . "',  date_added = NOW()");
+		$data['address'] = isset($data['address']) ? $data['address'] : '';
+		$data['monthly_cost'] = isset($data['monthly_cost']) ? $data['monthly_cost'] : '';
+		$data['first_cost'] = isset($data['first_cost']) ? $data['first_cost'] : '';
+		$data['akreditasi'] = isset($data['akreditasi']) ? $data['akreditasi'] : '';
+		$data['faq'] = isset($data['faq']) ? $data['faq'] : '';
+
+		$this->db->query("INSERT INTO " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['school_name']) . "', address = '" . $this->db->escape($data['address']) . "', price = '" . (float)$data['monthly_cost'] . "', price2 = '" . (float)$data['first_cost'] . "', akreditasi = '" . $this->db->escape($data['akreditasi']) . "', status = '" . (int)$data['status'] . "', user_id = '" . (int)$data['user_id'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_closed = '" . $this->db->escape($data['date_closed']) . "',  date_added = NOW()");
 
 		$product_id = $this->db->getLastId();
 
 		if (isset($data['photo_main']['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['photo_main']['image']) . "', image_name = '" . $this->db->escape($data['photo_main']['name']) . "', image_description = '" . $this->db->escape($data['photo_main']['description']) . "' WHERE product_id = '" . (int)$product_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['photo_main']['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		if (isset($data['photo_secondary'])) {
 			foreach ($data['photo_secondary'] as $key => $product_image) {
-				if (isset($product_image['image']))
+				if (isset($product_image['image']) && $product_image['image'] <> '')
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', image_name = '" . $this->db->escape($product_image['name']) . "', image_description = '" . $this->db->escape($product_image['description']) . "', sort_order = '" . (int)$key . "'");
+			}
+		}
+		if (isset($data['product_store'])) {
+			foreach ($data['product_store'] as $store_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "'");
 			}
 		}
 
@@ -64,16 +75,22 @@ class ModelCatalogSchool extends Model {
 		return $product_id;
 	}
 	public function editProduct($product_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['school_name']) . "', address = '" . $this->db->escape($data['address']) . "', price = '" . (float)$data['monthly_cost'] . "', price2 = '" . (float)$data['first_cost'] . "', akreditasi = '" . $this->db->escape($data['akreditasi']) . "', status = '" . (int)$data['status'] . "', user_id = '" . (int)$data['user_id'] . "',  date_added = NOW()  WHERE product_id = '" . (int)$product_id . "'");
+		$data['address'] = isset($data['address']) ? $data['address'] : '';
+		$data['monthly_cost'] = isset($data['monthly_cost']) ? $data['monthly_cost'] : '';
+		$data['first_cost'] = isset($data['first_cost']) ? $data['first_cost'] : '';
+		$data['akreditasi'] = isset($data['akreditasi']) ? $data['akreditasi'] : '';
+		$data['faq'] = isset($data['faq']) ? $data['faq'] : '';
+
+		$this->db->query("UPDATE " . DB_PREFIX . "product SET model = '" . $this->db->escape($data['school_name']) . "', address = '" . $this->db->escape($data['address']) . "', price = '" . (float)$data['monthly_cost'] . "', price2 = '" . (float)$data['first_cost'] . "', akreditasi = '" . $this->db->escape($data['akreditasi']) . "', status = '" . (int)$data['status'] . "', user_id = '" . (int)$data['user_id'] . "', stock_status_id = '" . (int)$data['stock_status_id'] . "', date_closed = '" . $this->db->escape($data['date_closed']) . "',  date_added = NOW()  WHERE product_id = '" . (int)$product_id . "'");
 
 		if (isset($data['photo_main']['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['photo_main']['image']) . "', image_name = '" . $this->db->escape($data['photo_main']['name']) . "', image_description = '" . $this->db->escape($data['photo_main']['description']) . "' WHERE product_id = '" . (int)$product_id . "'");
+			$this->db->query("UPDATE " . DB_PREFIX . "product SET image = '" . $this->db->escape($data['photo_main']['image']) . "' WHERE product_id = '" . (int)$product_id . "'");
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_image WHERE product_id = '" . (int)$product_id . "'");
 		if (isset($data['photo_secondary'])) {
 			foreach ($data['photo_secondary'] as $key => $product_image) {
-				if (isset($product_image['image']))
+				if (isset($product_image['image']) && $product_image['image'] <> '')
 				$this->db->query("INSERT INTO " . DB_PREFIX . "product_image SET product_id = '" . (int)$product_id . "', image = '" . $this->db->escape($product_image['image']) . "', image_name = '" . $this->db->escape($product_image['name']) . "', image_description = '" . $this->db->escape($product_image['description']) . "', sort_order = '" . (int)$key . "'");
 			}
 		}
@@ -83,6 +100,13 @@ class ModelCatalogSchool extends Model {
 		foreach ($langs->rows as $lang) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "product_description SET product_id = '" . (int)$product_id . "', language_id = '" . (int)$lang['language_id'] . "', name = '" . $this->db->escape($data['school_name']) . "', description = '" . $this->db->escape($data['school_profile']) . "', meta_title = '" . $this->db->escape($data['school_name']) . "', meta_description = '" . $this->db->escape($data['school_name']) . "', meta_keyword = '" . $this->db->escape($data['school_name']) . "', faq = '" . $this->db->escape($data['faq']) . "'");
 
+		}
+		$this->db->query("DELETE FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
+
+		if (isset($data['product_store'])) {
+			foreach ($data['product_store'] as $store_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_store SET product_id = '" . (int)$product_id . "', store_id = '" . (int)$store_id . "'");
+			}
 		}
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'product_id=" . (int)$product_id . "'");
@@ -241,6 +265,8 @@ class ModelCatalogSchool extends Model {
 			'photo_description' => $query->row['image_description'],
 			'user_id' => $query->row['user_id'],
 			'status' => $query->row['status'],
+			'stock_status_id' => $query->row['stock_status_id'],
+			'date_closed' => $query->row['date_closed'],
 
 		);
 	}
@@ -279,6 +305,18 @@ class ModelCatalogSchool extends Model {
 
 		}
 
+	}
+
+	public function getProductStores($product_id) {
+		$product_store_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_store WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$product_store_data[] = $result['store_id'];
+		}
+
+		return $product_store_data;
 	}
 
 }

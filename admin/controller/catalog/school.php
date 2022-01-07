@@ -346,9 +346,9 @@ class ControllerCatalogSchool extends Controller
 
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
             $this->request->post['category_id'] = $this->request->get['category_id'];
+            // echo "<pre>" . print_r($this->request->post, true) . "</pre>";
+            // die;
             $this->model_catalog_school->addProduct($this->request->post);
-            echo "<pre>" . print_r($this->request->post, true) . "</pre>";
-            die;
             $this->session->data['success'] = $this->language->get('text_success');
 
             $url = '';
@@ -383,49 +383,50 @@ class ControllerCatalogSchool extends Controller
 
         $this->getForm();
     }
-	public function edit() {
+    public function edit()
+    {
         $this->load->language('catalog/school');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+        $this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('catalog/school');
+        $this->load->model('catalog/school');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_catalog_school->editProduct($this->request->get['product_id'], $this->request->post);
-			$this->session->data['success'] = $this->language->get('text_success');
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+            $this->model_catalog_school->editProduct($this->request->get['product_id'], $this->request->post);
+            $this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
+            $url = '';
 
             if (isset($this->request->get['category_id'])) {
                 $url .= '&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8'));
             }
 
-			if (isset($this->request->get['filter_name'])) {
-				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-			}
+            if (isset($this->request->get['filter_name'])) {
+                $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+            }
 
 
-			if (isset($this->request->get['filter_status'])) {
-				$url .= '&filter_status=' . $this->request->get['filter_status'];
-			}
+            if (isset($this->request->get['filter_status'])) {
+                $url .= '&filter_status=' . $this->request->get['filter_status'];
+            }
 
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
 
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
 
-			$this->response->redirect($this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true));
-		}
+            $this->response->redirect($this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true));
+        }
 
-		$this->getForm();
-	}
+        $this->getForm();
+    }
 
     public function validateForm()
     {
@@ -433,112 +434,112 @@ class ControllerCatalogSchool extends Controller
     }
     public function getForm()
     {
-		$data['heading_title'] = $this->language->get('heading_title');
-		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
-		$data['text_enabled'] = $this->language->get('text_enabled');
-		$data['text_disabled'] = $this->language->get('text_disabled');
-		$data['text_none'] = $this->language->get('text_none');
-		$data['text_yes'] = $this->language->get('text_yes');
-		$data['text_no'] = $this->language->get('text_no');
-		$data['text_plus'] = $this->language->get('text_plus');
+        $data['heading_title'] = $this->language->get('heading_title');
+        $data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
+        $data['text_enabled'] = $this->language->get('text_enabled');
+        $data['text_disabled'] = $this->language->get('text_disabled');
+        $data['text_none'] = $this->language->get('text_none');
+        $data['text_yes'] = $this->language->get('text_yes');
+        $data['text_no'] = $this->language->get('text_no');
+        $data['text_plus'] = $this->language->get('text_plus');
         $data['entry_status'] = $this->language->get('entry_status');
-		$data['button_save'] = $this->language->get('button_save');
-		$data['button_cancel'] = $this->language->get('button_cancel');
+        $data['button_save'] = $this->language->get('button_save');
+        $data['button_cancel'] = $this->language->get('button_cancel');
 
-		$data['text_minus'] = $this->language->get('text_minus');
-		$data['tab_general'] = $this->language->get('tab_general');
+        $data['text_minus'] = $this->language->get('text_minus');
+        $data['tab_general'] = $this->language->get('tab_general');
         $data['tab_image'] = $this->language->get('tab_image');
-		$data['tab_filter'] = 'Filter';
-		$data['tab_attribute'] = $this->language->get('tab_attribute');
-		$data['tab_authorization'] = 'Authorization';
+        $data['tab_filter'] = 'Filter';
+        $data['tab_attribute'] = $this->language->get('tab_attribute');
+        $data['tab_authorization'] = 'Authorization';
 
-		if (isset($this->error['warning'])) {
-			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
-		}
+        if (isset($this->error['warning'])) {
+            $data['error_warning'] = $this->error['warning'];
+        } else {
+            $data['error_warning'] = '';
+        }
 
-		if (isset($this->error['name'])) {
-			$data['error_name'] = $this->error['name'];
-		} else {
-			$data['error_name'] = array();
-		}
+        if (isset($this->error['name'])) {
+            $data['error_name'] = $this->error['name'];
+        } else {
+            $data['error_name'] = array();
+        }
 
-		if (isset($this->error['meta_title'])) {
-			$data['error_meta_title'] = $this->error['meta_title'];
-		} else {
-			$data['error_meta_title'] = array();
-		}
+        if (isset($this->error['meta_title'])) {
+            $data['error_meta_title'] = $this->error['meta_title'];
+        } else {
+            $data['error_meta_title'] = array();
+        }
 
-		if (isset($this->error['model'])) {
-			$data['error_model'] = $this->error['model'];
-		} else {
-			$data['error_model'] = '';
-		}
+        if (isset($this->error['model'])) {
+            $data['error_model'] = $this->error['model'];
+        } else {
+            $data['error_model'] = '';
+        }
 
-		if (isset($this->error['keyword'])) {
-			$data['error_keyword'] = $this->error['keyword'];
-		} else {
-			$data['error_keyword'] = '';
-		}
+        if (isset($this->error['keyword'])) {
+            $data['error_keyword'] = $this->error['keyword'];
+        } else {
+            $data['error_keyword'] = '';
+        }
 
-		$url = '';
+        $url = '';
 
-		if (isset($this->request->get['category_id'])) {
-			$url .= '&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8'));
-		}
+        if (isset($this->request->get['category_id'])) {
+            $url .= '&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8'));
+        }
 
-		if (isset($this->request->get['filter_name'])) {
-			$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-		}
+        if (isset($this->request->get['filter_name'])) {
+            $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+        }
 
-		if (isset($this->request->get['filter_status'])) {
-			$url .= '&filter_status=' . $this->request->get['filter_status'];
-		}
+        if (isset($this->request->get['filter_status'])) {
+            $url .= '&filter_status=' . $this->request->get['filter_status'];
+        }
 
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
 
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}
+        if (isset($this->request->get['page'])) {
+            $url .= '&page=' . $this->request->get['page'];
+        }
 
-		$data['breadcrumbs'] = array();
+        $data['breadcrumbs'] = array();
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
-		);
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true)
+        );
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true)
-		);
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true)
+        );
 
-		if (!isset($this->request->get['product_id'])) {
-			$data['action'] = $this->url->link('catalog/school/add&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true);
-		} else {
-			$data['action'] = $this->url->link('catalog/school/edit&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, true);
-		}
+        if (!isset($this->request->get['product_id'])) {
+            $data['action'] = $this->url->link('catalog/school/add&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true);
+        } else {
+            $data['action'] = $this->url->link('catalog/school/edit&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, true);
+        }
 
-		$data['cancel'] = $this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true);
-		$this->load->model('tool/image');
+        $data['cancel'] = $this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true);
+        $this->load->model('tool/image');
 
-		if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
-			$product_info = $this->model_catalog_school->getSchool($this->request->get['product_id']);
+        if (isset($this->request->get['product_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+            $product_info = $this->model_catalog_school->getSchool($this->request->get['product_id']);
             //echo "<pre>" . print_r($product_info, true) . "</pre>";
             //die;
-		}
+        }
         $this->load->model('tool/image');
-        $edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_category WHERE category_id = '" . (int)$this->request->get['category_id'] . "' LIMIT 1" );
+        $edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_category WHERE category_id = '" . (int)$this->request->get['category_id'] . "' LIMIT 1");
         $colIds = json_decode($edu->row['column_ids']);
         if (!empty($colIds)) {
-            $strIds = implode (", ", $colIds);
+            $strIds = implode(", ", $colIds);
             $educols = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id IN (" . $strIds . ") ORDER BY sort_order");
             foreach ($educols->rows as $col) {
                 if ($col['coltype'] <> 'images') {
@@ -551,9 +552,8 @@ class ControllerCatalogSchool extends Controller
                     } else {
                         if (isset($this->request->post[$col['colname']]['image'])) {
                             $col['value'] = $this->request->post[$col['colname']]['image'];
-                        } elseif(isset($this->request->get['product_id'])) {
+                        } elseif (isset($this->request->get['product_id'])) {
                             $col['value'] = isset($product_info[$col['colname']]) ? $product_info[$col['colname']] : null;
-
                         } else {
                             $col['value'] = null;
                         }
@@ -565,7 +565,6 @@ class ControllerCatalogSchool extends Controller
                         $col['photo_name'] = isset($this->request->post[$col['colname']]['name']) ? $this->request->post[$col['colname']]['name'] : (isset($product_info['photo_name']) ? $product_info['photo_name'] : null);
 
                         $col['photo_description'] = isset($this->request->post[$col['colname']]['description']) ? $this->request->post[$col['colname']]['description'] : (isset($product_info['photo_description']) ? $product_info['photo_description'] : null);
-
                     }
                 } else {
                     $col['value'] = array();
@@ -592,7 +591,7 @@ class ControllerCatalogSchool extends Controller
 
                             $start++;
                         }
-                    } elseif(isset($this->request->get['product_id'])) {
+                    } elseif (isset($this->request->get['product_id'])) {
                         while ($start <= $end) {
                             $product_image = $this->model_catalog_school->getProductImage($this->request->get['product_id'], $start);
                             if ($product_image) {
@@ -609,7 +608,6 @@ class ControllerCatalogSchool extends Controller
                                     'name' => $product_image['image_name'],
                                     'description' => $product_image['image_description'],
                                 );
-
                             } else {
                                 $col['value'][$start] = array(
                                     'image' => '',
@@ -617,11 +615,9 @@ class ControllerCatalogSchool extends Controller
                                     'name' => '',
                                     'description' => '',
                                 );
-
                             }
                             $start++;
                         }
-
                     } else {
                         $col['value'] = null;
                     }
@@ -631,8 +627,13 @@ class ControllerCatalogSchool extends Controller
         } else {
             $data['columns'] = array();
         }
-        //echo "<pre>" . print_r($data['columns'],true) . "</pre>";
-        //die;
+
+
+
+
+
+        // echo "<pre>" . print_r($data['columns'],true) . "</pre>";
+        $data['empty_image'] = $this->model_tool_image->resize('no_image.png', 100, 100);
         $filterIds = json_decode($edu->row['filter_ids']);
         $attributeIds = json_decode($edu->row['attribute_ids']);
 
@@ -641,10 +642,10 @@ class ControllerCatalogSchool extends Controller
         $lang = $this->model_localisation_language->getLanguageByCode($langCode);
         if (!empty($filterIds)) {
             $filters = [];
-            if(isset($this->request->get['product_id'])) {
+            if (isset($this->request->get['product_id'])) {
                 $filters = $this->model_catalog_school->getProductFilters($this->request->get['product_id']);
             }
-            $strIds = implode (", ", $filterIds);
+            $strIds = implode(", ", $filterIds);
             $educols = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group WHERE filter_group_id IN (" . $strIds . ") ORDER BY sort_order");
             $data['filters'] = array();
             $ke = 0;
@@ -667,13 +668,10 @@ class ControllerCatalogSchool extends Controller
                         if ($col['checktype'] == 'select') {
                             $data['filters'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['filter_id'], 'selected' => $this->request->post['filter'][$col['filter_group_id']][0] == $fd->row['filter_id']  ? true : false);
                         }
-
                     } elseif (isset($this->request->get['product_id'])) {
                         $data['filters'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['filter_id'], 'selected' => in_array($fd->row['filter_id'], $filters) ? true : false);
-
                     } else {
                         $data['filters'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['filter_id'], 'selected' => false);
-
                     }
                     //print_r($fd->row['name'] . "<br/>");
 
@@ -686,7 +684,7 @@ class ControllerCatalogSchool extends Controller
         // echo "<pre>" . print_r($data['filters'], true) . "</pre>";
         // die;
         if (!empty($attributeIds)) {
-            $strIds = implode (", ", $attributeIds);
+            $strIds = implode(", ", $attributeIds);
             $educols = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_group WHERE attribute_group_id IN (" . $strIds . ") ORDER BY sort_order");
             $data['attributes'] = array();
             $ke = 0;
@@ -700,117 +698,139 @@ class ControllerCatalogSchool extends Controller
                 foreach ($fl->rows as $val) {
                     $fd = $this->db->query("SELECT * FROM " . DB_PREFIX . "attribute_description WHERE attribute_id ='" . (int)$val['attribute_id'] . "' AND language_id ='" . (int)$lang['language_id'] . "' LIMIT 1");
                     if (isset($this->request->post['attribute'])) {
-                        $data['attributes'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['attribute_id'], 'value' => $this->request->post['attribute'][$fg->row['attribute_group_id']][$fd->row['attribute_id']] );
-
+                        $data['attributes'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['attribute_id'], 'value' => $this->request->post['attribute'][$fg->row['attribute_group_id']][$fd->row['attribute_id']]);
                     } elseif (isset($this->request->get['product_id'])) {
                         $product_attribute = $this->model_catalog_school->getProductAttribute($this->request->get['product_id'], (int)$val['attribute_id']);
 
                         $data['attributes'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['attribute_id'], 'value' => $product_attribute['product_attribute_description']);
-
                     } else {
                         $data['attributes'][$ke]['items'][] = array('name' => $fd->row['name'], 'id' => $fd->row['attribute_id'], 'value' => null);
-
                     }
                 }
                 $ke++;
             }
         } else {
             $data['attributes'] = array();
-
         }
         //echo "<pre>" . print_r($data['attributes'], true) . "</pre>";
         $users = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE user_group_id = 12");
         $data['users'] = $users->rows;
-		if (isset($this->request->post['status'])) {
-			$data['status'] = $this->request->post['status'];
-		} elseif (!empty($product_info)) {
-			$data['status'] = $product_info['status'];
-		} else {
-			$data['status'] = '';
-		}
-		if (isset($this->request->post['user_id'])) {
-			$data['user_id'] = $this->request->post['user_id'];
-		} elseif (!empty($product_info)) {
-			$data['user_id'] = $product_info['user_id'];
-		} else {
-			$data['user_id'] = '';
-		}
+        if (isset($this->request->post['status'])) {
+            $data['status'] = $this->request->post['status'];
+        } elseif (!empty($product_info)) {
+            $data['status'] = $product_info['status'];
+        } else {
+            $data['status'] = '';
+        }
+        if (isset($this->request->post['user_id'])) {
+            $data['user_id'] = $this->request->post['user_id'];
+        } elseif (!empty($product_info)) {
+            $data['user_id'] = $product_info['user_id'];
+        } else {
+            $data['user_id'] = '';
+        }
+        $stock_statuses = $this->db->query("SELECT * FROM " . DB_PREFIX . "stock_status WHERE language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $data['stock_statuses'] = $stock_statuses->rows;
+        if (isset($this->request->post['stock_status_id'])) {
+            $data['stock_status_id'] = $this->request->post['stock_status_id'];
+        } elseif (!empty($product_info)) {
+            $data['stock_status_id'] = $product_info['stock_status_id'];
+        } else {
+            $data['stock_status_id'] = '';
+        }
+
+        if (isset($this->request->post['date_closed'])) {
+            $data['date_closed'] = $this->request->post['date_closed'];
+        } elseif (!empty($product_info)) {
+            $data['date_closed'] = ($product_info['date_closed'] != '0000-00-00') ? $product_info['date_closed'] : '';
+        } else {
+            $data['date_closed'] = date('Y-m-d');
+        }
+        $this->load->model('setting/store');
+        $data['stores'] = $this->model_setting_store->getStores();
+
+        if (isset($this->request->post['product_store'])) {
+            $data['product_store'] = $this->request->post['product_store'];
+        } elseif (isset($this->request->get['product_id'])) {
+            $data['product_store'] = $this->model_catalog_school->getProductStores($this->request->get['product_id']);
+        } else {
+            $data['product_store'] = array(0);
+        }
 
         $data['token'] = $this->session->data['token'];
 
-		$this->load->model('localisation/language');
+        $this->load->model('localisation/language');
 
-		$data['languages'] = $this->model_localisation_language->getLanguages();
+        $data['languages'] = $this->model_localisation_language->getLanguages();
         $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
-		$data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+        $data['placeholder'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 
 
-		$this->load->model('design/layout');
+        $this->load->model('design/layout');
 
-		$data['layouts'] = $this->model_design_layout->getLayouts();
+        $data['layouts'] = $this->model_design_layout->getLayouts();
 
-		$data['header'] = $this->load->controller('common/header');
-		$data['column_left'] = $this->load->controller('common/column_left');
-		$data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+        $data['column_left'] = $this->load->controller('common/column_left');
+        $data['footer'] = $this->load->controller('common/footer');
         // echo "<pre>" . print_r($data, true) . "</pre>";
         // die;
-		$this->response->setOutput($this->load->view('catalog/school_form', $data));
-
-
+        $this->response->setOutput($this->load->view('catalog/school_form', $data));
     }
-	public function delete() {
-		$this->load->language('catalog/school');
 
-		$this->document->setTitle($this->language->get('heading_title'));
+    public function delete()
+    {
+        $this->load->language('catalog/school');
 
-		$this->load->model('catalog/school');
+        $this->document->setTitle($this->language->get('heading_title'));
 
-		if (isset($this->request->post['selected']) && $this->validateDelete()) {
-			foreach ($this->request->post['selected'] as $product_id) {
-				$this->model_catalog_school->deleteSchool($product_id);
-			}
+        $this->load->model('catalog/school');
 
-			$this->session->data['success'] = $this->language->get('text_success');
+        if (isset($this->request->post['selected']) && $this->validateDelete()) {
+            foreach ($this->request->post['selected'] as $product_id) {
+                $this->model_catalog_school->deleteSchool($product_id);
+            }
 
-			$url = '';
+            $this->session->data['success'] = $this->language->get('text_success');
 
-			if (isset($this->request->get['filter_name'])) {
-				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
-			}
+            $url = '';
+
+            if (isset($this->request->get['filter_name'])) {
+                $url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+            }
 
             if (isset($this->request->get['category_id'])) {
                 $url .= '&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8'));
             }
 
-			if (isset($this->request->get['filter_status'])) {
-				$url .= '&filter_status=' . $this->request->get['filter_status'];
-			}
+            if (isset($this->request->get['filter_status'])) {
+                $url .= '&filter_status=' . $this->request->get['filter_status'];
+            }
 
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
+            if (isset($this->request->get['sort'])) {
+                $url .= '&sort=' . $this->request->get['sort'];
+            }
 
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
+            if (isset($this->request->get['order'])) {
+                $url .= '&order=' . $this->request->get['order'];
+            }
 
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
+            if (isset($this->request->get['page'])) {
+                $url .= '&page=' . $this->request->get['page'];
+            }
 
-			$this->response->redirect($this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true));
-		}
+            $this->response->redirect($this->url->link('catalog/school&category_id=' . urlencode(html_entity_decode($this->request->get['category_id'], ENT_QUOTES, 'UTF-8')), 'token=' . $this->session->data['token'] . $url, true));
+        }
 
-		$this->getList();
-	}
-	protected function validateDelete() {
-		// if (!$this->user->hasPermission('modify', 'catalog/product')) {
-		// 	$this->error['warning'] = $this->language->get('error_permission');
-		// }
+        $this->getList();
+    }
+    protected function validateDelete()
+    {
+        // if (!$this->user->hasPermission('modify', 'catalog/product')) {
+        // 	$this->error['warning'] = $this->language->get('error_permission');
+        // }
 
-		// return !$this->error;
+        // return !$this->error;
         return true;
-	}
-
-
+    }
 }
