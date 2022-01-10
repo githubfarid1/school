@@ -194,7 +194,9 @@ class ControllerProductSearch extends Controller {
 			);
 		}
 
-		$data['products'] = array();
+		//$data['products'] = array();
+		$products['products'] = array();
+		$data['products'] = '';
 
 		if (isset($this->request->get['search']) || isset($this->request->get['tag'])) {
 			$filter_data = array(
@@ -214,37 +216,41 @@ class ControllerProductSearch extends Controller {
 			$results = $this->model_catalog_school->getProducts($filter_data);
 
 			foreach ($results as $result) {
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
+				if ($result['photo_main']) {
+					$image = $this->model_tool_image->resize($result['photo_main'], $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get($this->config->get('config_theme') . '_image_product_width'), $this->config->get($this->config->get('config_theme') . '_image_product_height'));
 				}
 
 				if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+					$price = $this->currency->format($result['monthly_cost'], $this->session->data['currency']);
 				} else {
 					$price = false;
 				}
-
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-				} else {
-					$special = false;
+				$regstatus = 'Tutup';
+				$regStatusId = 3;
+				if (isset($result['reg_status_id'])) {
+					$regStatusId = $result['reg_status_id'];
+					if ($result['reg_status_id'] == 1 && $result['date_closed'] && $result['date_closed'] <> '0000-00-00') {
+						$now = time();
+						$closeddate = strtotime($result['date_closed']);
+						$datediff = $closeddate - $now;
+						$datediff = round($datediff / (60 * 60 * 24));
+						if ($datediff <= 0) {
+							$regStatusId = 3;
+						} elseif ($datediff <= 30) {
+							$regstatus = "Tutup " . $datediff . " Hari Lagi";
+							$regStatusId = 4;
+						}
+					}
+					if ($regStatusId <> 4) {
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "stock_status WHERE stock_status_id ='" . (int)$regStatusId . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+						$regstatus = $query->row['name'];
+					}
 				}
 
-				if ($this->config->get('config_tax')) {
-					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price'], $this->session->data['currency']);
-				} else {
-					$tax = false;
-				}
 
-				if ($this->config->get('config_review_status')) {
-					$rating = (int)$result['rating'];
-				} else {
-					$rating = false;
-				}
-
-				$data['products'][] = array(
+				/*$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
@@ -255,7 +261,22 @@ class ControllerProductSearch extends Controller {
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+				);*/
+				$products['products'][] = array(
+					'product_id'  => $result['product_id'],
+					'thumb'       => $image,
+					'address' => $result['address'],
+					'name'        => $result['school_name'],
+					'description' => utf8_substr(strip_tags(html_entity_decode($result['school_profile'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+					'price'       => $price,
+					'href'        => $this->url->link('product/school', 'product_id=' . $result['product_id'] . $url),
+					'regstatus_name' => $regstatus,
+					'regstatus_id' => $regStatusId
+
 				);
+				$data['products'] = $this->load->view('product/card_product', $products);
+
+
 			}
 
 			$url = '';

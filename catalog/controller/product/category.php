@@ -169,7 +169,9 @@ class ControllerProductCategory extends Controller
 				);
 			}
 
-			$data['products'] = array();
+			// $data['products'] = array();
+			$products['products'] = array();
+			$data['products'] = '';
 
 			$filter_data = array(
 				'filter_category_id' => $category_id,
@@ -218,7 +220,19 @@ class ControllerProductCategory extends Controller
 						$regstatus = $query->row['name'];
 					}
 				}
-				$data['products'][] = array(
+				/*$data['products'][] = array(
+					'product_id'  => $result['product_id'],
+					'thumb'       => $image,
+					'address' => $result['address'],
+					'name'        => $result['school_name'],
+					'description' => utf8_substr(strip_tags(html_entity_decode($result['school_profile'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+					'price'       => $price,
+					'href'        => $this->url->link('product/school', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
+					'regstatus_name' => $regstatus,
+					'regstatus_id' => $regStatusId
+
+				);*/
+				$products['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'address' => $result['address'],
@@ -230,6 +244,9 @@ class ControllerProductCategory extends Controller
 					'regstatus_id' => $regStatusId
 
 				);
+
+				$data['products'] = $this->load->view('product/card_product', $products);
+
 			}
 
 			$url = '';

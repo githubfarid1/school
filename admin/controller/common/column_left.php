@@ -1,33 +1,35 @@
 <?php
-class ControllerCommonColumnLeft extends Controller {
+class ControllerCommonColumnLeft extends Controller
+{
 	//frd
-    public function educationList()
-    {
-        $categories = $this->db->query("SELECT * FROM " . DB_PREFIX . "category");
-        $categoryIds = [];
-        foreach ($categories->rows as $c) {
-            $checkparent = $this->db->query("SELECT count(*) AS jml FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$c['category_id'] . "'");
-            if ($checkparent->row['jml'] == 0) {
-                $categoryIds[] = $c['category_id'];
-            }
-        }
-        $this->load->model('catalog/category');
-        $list = [];
-        foreach ($categoryIds as $category_id) {
-            $category_info = $this->model_catalog_category->getCategory($category_id);
+	public function educationList()
+	{
+		$categories = $this->db->query("SELECT * FROM " . DB_PREFIX . "category ORDER BY sort_order");
+		$categoryIds = [];
+		foreach ($categories->rows as $c) {
+			$checkparent = $this->db->query("SELECT count(*) AS jml FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$c['category_id'] . "'");
+			if ($checkparent->row['jml'] == 0) {
+				$categoryIds[] = $c['category_id'];
+			}
+		}
+		$this->load->model('catalog/category');
+		$list = [];
+		foreach ($categoryIds as $category_id) {
+			$category_info = $this->model_catalog_category->getCategory($category_id);
 			$name = ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name'];
-            $name = str_replace('Cari Sekolah','', $name);
+			$name = str_replace('Cari Sekolah', '', $name);
 			if ($category_info) {
-                $list[] = array(
-                    'category_id' => $category_info['category_id'],
-                    'name'        =>  $name
-                );
-            }
-        }
-        return $list;
-    }
+				$list[] = array(
+					'category_id' => $category_info['category_id'],
+					'name'        =>  $name
+				);
+			}
+		}
+		return $list;
+	}
 
-	public function index() {
+	public function index()
+	{
 		if (isset($this->request->get['token']) && isset($this->session->data['token']) && ($this->request->get['token'] == $this->session->data['token'])) {
 			$this->load->language('common/column_left');
 
@@ -66,7 +68,6 @@ class ControllerCommonColumnLeft extends Controller {
 				'href'     => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], true),
 				'children' => array()
 			);
-
 			// Catalog
 			$catalog = array();
 
@@ -89,12 +90,19 @@ class ControllerCommonColumnLeft extends Controller {
 						'children' => array()
 					);
 				}
-				}
+			}
 			if ($this->user->hasPermission('access', 'catalog/school')) {
 				$catalog[] = array(
 					'name'	   => 'Daftar Sekolah',
 					'href'     => '',
 					'children' => $edumenu
+				);
+			}
+			if ($this->user->hasPermission('access', 'catalog/schooluser')) {
+				$catalog[] = array(
+					'name'	   => 'Daftar Sekolah',
+					'href'     => $this->url->link('catalog/schooluser', 'token=' . $this->session->data['token'], true),
+					'children' => array()
 				);
 			}
 
@@ -888,6 +896,28 @@ class ControllerCommonColumnLeft extends Controller {
 					'href'     => '',
 					'children' => $report
 				);
+			}
+			//frd
+			//mega filter
+			if ($this->user->user_group_id == MODERATOR_USER_GROUP_ID) {
+				$data['menus'][] = array(
+					'id'       => 'menu-megafilter',
+					'icon'	   => 'fa-filter',
+					'name'	   => 'Mega Filter',
+					'href'     => $this->url->link('module/mega_filter', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+
+			}
+			if ($this->user->hasPermission('access', 'user/userschool')) {
+				$data['menus'][] = array(
+					'id'       => 'menu-useradmin',
+					'icon'	   => 'fa-user',
+					'name'	   => 'User Administrator',
+					'href'     => $this->url->link('user/userschool', 'token=' . $this->session->data['token'], true),
+					'children' => array()
+				);
+
 			}
 
 			// Stats

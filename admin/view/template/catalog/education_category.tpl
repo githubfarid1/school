@@ -42,12 +42,22 @@
           <div class="col-md-2">
             <h4><strong>
                 <?= $text_education; ?>
-              </strong></h3>
+              </strong></h4>
           </div>
-          <div class="col-md-9">
+          <div class="col-md-3">
             <h4><strong>
-                <?= $text_main_field; ?>
-              </strong></h3>
+                General
+              </strong></h4>
+          </div>
+          <div class="col-md-3">
+            <h4><strong>
+                Filter
+              </strong></h4>
+          </div>
+          <div class="col-md-3">
+            <h4><strong>
+                Attribute
+              </strong></h4>
           </div>
 
         </div>

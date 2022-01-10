@@ -168,6 +168,9 @@ class ModelCatalogSchool extends Model {
 		if (!empty($data['filter_category'])) {
 			$sql .= " AND pc.category_id = '" . (int)$data['filter_category'] . "'";
 		}
+		if (!empty($data['filter_user'])) {
+			$sql .= " AND p.user_id = '" . (int)$data['filter_user'] . "'";
+		}
         //print_r($sql);
 		$query = $this->db->query($sql);
 
@@ -210,6 +213,9 @@ class ModelCatalogSchool extends Model {
 		}
 		if (!empty($data['filter_category'])) {
 			$sql .= " AND pc.category_id = '" . (int)$data['filter_category'] . "'";
+		}
+		if (!empty($data['filter_user'])) {
+			$sql .= " AND p.user_id = '" . (int)$data['filter_user'] . "'";
 		}
 
 		$sql .= " GROUP BY p.product_id";
@@ -317,6 +323,18 @@ class ModelCatalogSchool extends Model {
 		}
 
 		return $product_store_data;
+	}
+
+	public function getProductCategories($product_id) {
+		$product_category_data = array();
+
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . (int)$product_id . "'");
+
+		foreach ($query->rows as $result) {
+			$product_category_data[] = $result['category_id'];
+		}
+
+		return $product_category_data;
 	}
 
 }

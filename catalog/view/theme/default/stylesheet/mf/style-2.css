@@ -1,13 +1,13 @@
-.mfilter-box-1 .mfilter-counter {
+.mfilter-box-6 .mfilter-counter {
 	background: #428bca;
 	color: #ffffff;
 
 }
-.mfilter-box-1 .mfilter-counter:after {
+.mfilter-box-6 .mfilter-counter:after {
 	border-right-color: #428bca;
 
 }
-.mfilter-box-1.mfilter-direction-rtl .mfilter-counter:after {
+.mfilter-box-6.mfilter-direction-rtl .mfilter-counter:after {
 	left: 100%;
 	right: auto;
 	border-right-color: none;
@@ -15,7 +15,70 @@
 
 }
 
-				.mfilter-box-1 .mfilter-search #mfilter-opts-search_button {
+				.mfilter-box-6 .mfilter-search #mfilter-opts-search_button {
+					background-color: #428bca;
+				}
+			
+.mfilter-box-5 .mfilter-counter {
+	background: #428bca;
+	color: #ffffff;
+
+}
+.mfilter-box-5 .mfilter-counter:after {
+	border-right-color: #428bca;
+
+}
+.mfilter-box-5.mfilter-direction-rtl .mfilter-counter:after {
+	left: 100%;
+	right: auto;
+	border-right-color: none;
+	border-left-color: #428bca;
+
+}
+
+				.mfilter-box-5 .mfilter-search #mfilter-opts-search_button {
+					background-color: #428bca;
+				}
+			
+.mfilter-box-4 .mfilter-counter {
+	background: #428bca;
+	color: #ffffff;
+
+}
+.mfilter-box-4 .mfilter-counter:after {
+	border-right-color: #428bca;
+
+}
+.mfilter-box-4.mfilter-direction-rtl .mfilter-counter:after {
+	left: 100%;
+	right: auto;
+	border-right-color: none;
+	border-left-color: #428bca;
+
+}
+
+				.mfilter-box-4 .mfilter-search #mfilter-opts-search_button {
+					background-color: #428bca;
+				}
+			
+.mfilter-box-3 .mfilter-counter {
+	background: #428bca;
+	color: #ffffff;
+
+}
+.mfilter-box-3 .mfilter-counter:after {
+	border-right-color: #428bca;
+
+}
+.mfilter-box-3.mfilter-direction-rtl .mfilter-counter:after {
+	left: 100%;
+	right: auto;
+	border-right-color: none;
+	border-left-color: #428bca;
+
+}
+
+				.mfilter-box-3 .mfilter-search #mfilter-opts-search_button {
 					background-color: #428bca;
 				}
 			
@@ -37,6 +100,27 @@
 }
 
 				.mfilter-box-2 .mfilter-search #mfilter-opts-search_button {
+					background-color: #428bca;
+				}
+			
+.mfilter-box-1 .mfilter-counter {
+	background: #428bca;
+	color: #ffffff;
+
+}
+.mfilter-box-1 .mfilter-counter:after {
+	border-right-color: #428bca;
+
+}
+.mfilter-box-1.mfilter-direction-rtl .mfilter-counter:after {
+	left: 100%;
+	right: auto;
+	border-right-color: none;
+	border-left-color: #428bca;
+
+}
+
+				.mfilter-box-1 .mfilter-search #mfilter-opts-search_button {
 					background-color: #428bca;
 				}
 			

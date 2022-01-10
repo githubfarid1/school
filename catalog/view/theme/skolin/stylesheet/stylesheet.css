@@ -187,5 +187,13 @@ footer h5 {
 	font-weight: bold;
 	color: #fff;
 }
+.input-group .input-group-addon {
+	font-size: 12px;
+	height: 30px;
+}
+/* Fix some bootstrap issues */
+span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
+	display: inline;
+}
 
 

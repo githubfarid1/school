@@ -119,7 +119,7 @@ class ControllerCatalogEducationCategory extends Controller
     }
     public function educationList()
     {
-        $categories = $this->db->query("SELECT * FROM " . DB_PREFIX . "category");
+        $categories = $this->db->query("SELECT * FROM " . DB_PREFIX . "category ORDER BY sort_order");
         $categoryIds = [];
         foreach ($categories->rows as $c) {
             $checkparent = $this->db->query("SELECT count(*) AS jml FROM " . DB_PREFIX . "category WHERE parent_id = '" . (int)$c['category_id'] . "'");

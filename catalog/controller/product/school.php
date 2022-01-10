@@ -6,13 +6,13 @@ class ControllerProductSchool extends Controller
 	public function index()
 	{
 		$this->load->language('product/school');
-        $device = new Mobile();
+		$device = new Mobile();
 		if ($device->isMobile()) {
 			$data['mobile'] = true;
 		} else {
 			$data['mobile'] = false;
 		}
-        $this->load->language('catalog/school');
+		$this->load->language('catalog/school');
 
 
 		$data['breadcrumbs'] = array();
@@ -275,26 +275,30 @@ class ControllerProductSchool extends Controller
 			$data['tab_attribute'] = $this->language->get('tab_attribute');
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
+
+
 			$data['school_profile'] = html_entity_decode($product_info['school_profile'], ENT_QUOTES, 'UTF-8');
 
-			$data['school_name'] = $product_info['school_name'];
-			$data['address'] = $product_info['address'];
-			$data['akreditasi'] = $product_info['akreditasi'];
+
+			$identity['school_name'] = $product_info['school_name'];
+			$identity['address'] = $product_info['address'];
+			$identity['akreditasi'] = $product_info['akreditasi'];
+			$identity['likes'] = '210';
+			$identity['review'] = '4.0';
 			$this->load->model('tool/image');
+			if ($product_info['photo_main']) {
+				$identity['logo'] = $this->model_tool_image->resize($product_info['photo_main'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
+			} else {
+				$identity['logo'] = '';
+			}
 
-			// if ($product_info['photo_main']) {
-			// 	$data['popup'] = $this->model_tool_image->resize($product_info['photo_main'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
-			// } else {
-			// 	$data['popup'] = '';
-			// }
+			$identity['qrcode'] = $this->model_tool_image->resize('catalog/qrcode.png', $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
+			$data['identity_view'] = $this->load->view('common/school_identity_view', $identity);
 
-			// if ($product_info['photo_main']) {
-			// 	$data['thumb'] = $this->model_tool_image->resize($product_info['photo_main'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
-			// } else {
-			// 	$data['thumb'] = '';
-			// }
 
-			$data['images'] = array();
+
+			//Image gallery
+			$gallery['images'] = array();
 			$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)PHOTO_GALLERY_ID . "' LIMIT 1");
 			$index = $edu->row['length'];
 			$ar = explode("-", $index);
@@ -303,16 +307,20 @@ class ControllerProductSchool extends Controller
 			$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
 
 			foreach ($results as $result) {
-				$data['images'][] = array(
+				$gallery['images'][] = array(
 					//'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height')),
 					'popup' => $this->model_tool_image->resize($result['image'], 1300, 700),
-					'thumb' => $this->model_tool_image->resize($result['image'], 256,192),
+					'thumb' => $this->model_tool_image->resize($result['image'], 256, 192),
 					'image_name' => $result['image_name'],
 					'image_description' => html_entity_decode($result['image_description'], ENT_QUOTES, 'UTF-8'),
 				);
 			}
+			$gallery['isMobile'] = $data['mobile'];
+			$data['gallery_view'] = $this->load->view('common/carousel1_view', $gallery);
 
-			$data['photo_promos'] = array();
+
+			$promo['images'] = array();
+
 			$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)PHOTO_PROMO_ID . "' LIMIT 1");
 			$index = $edu->row['length'];
 			$ar = explode("-", $index);
@@ -321,14 +329,17 @@ class ControllerProductSchool extends Controller
 			$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
 
 			foreach ($results as $result) {
-				$data['photo_promos'][] = array(
-					'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height')),
+				$promo['images'][] = array(
+					'thumb' => $this->model_tool_image->resize($result['image'], 240, 278),
 					'image_name' => $result['image_name'],
 					'image_description' => html_entity_decode($result['image_description'], ENT_QUOTES, 'UTF-8'),
 				);
 			}
+			$promo['div_id'] = 'promoCarousel';
+			$promo['text_header'] = 'Foto Promo';
+			$data['promo_view'] = $this->load->view('common/carousel2_view', $promo);
 
-			$data['photo_teachers'] = array();
+			$teacher['images'] = array();
 			$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)PHOTO_PENGAJAR_ID . "' LIMIT 1");
 			$index = $edu->row['length'];
 			$ar = explode("-", $index);
@@ -337,31 +348,38 @@ class ControllerProductSchool extends Controller
 			$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
 
 			foreach ($results as $result) {
-				$data['photo_teachers'][] = array(
+				$teacher['images'][] = array(
 					'thumb' => $this->model_tool_image->resize($result['image'], 240, 278),
 					'image_name' => $result['image_name'],
 					'image_description' => html_entity_decode($result['image_description'], ENT_QUOTES, 'UTF-8'),
 				);
 			}
+			$teacher['div_id'] = 'teacherCarousel';
+			$teacher['text_header'] = 'Pengajar';
+			$data['teacher_view'] = $this->load->view('common/carousel2_view', $teacher);
 
-			if ($product_info['photo_main']) {
-				$data['logo'] = $this->model_tool_image->resize($product_info['photo_main'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
-			} else {
-				$data['logo'] = '';
+
+
+
+			$itemFilters[] =
+				array(
+					'id' => FILTER_FASILITAS_SEKOLAH_ID,
+					'icon' => 'fas fa-landmark',
+					'items' => []
+				);
+			foreach ($itemFilters as $key => $itemFilter) {
+				$filters = $this->model_catalog_school->getProductFilters($this->request->get['product_id']);
+				$strIds = implode(", ", $filters);
+				$fg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id ='" . (int)$itemFilter['id'] . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+				$lg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_group_id ='" . (int)$itemFilter['id'] . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' AND filter_id IN (" . $strIds . ")");
+				$itemFilters[$key]['text_header'] = $fg->row['name'];
+				$itemFilters[$key]['items'] = [];
+				foreach ($lg->rows as $r) {
+					$itemFilters[$key]['items'][] = $r['name'];
+				}
 			}
+			$data['fasilitas_view'] = $this->load->view('common/filter_view', $itemFilters[0]);
 
-
-			//FILTER FASILITAS SEKOLAH
-			$filters = $this->model_catalog_school->getProductFilters($this->request->get['product_id']);
-			$strIds = implode(", ", $filters);
-			$fg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id ='" . (int)FILTER_FASILITAS_SEKOLAH_ID . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
-			$lg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_group_id ='" . (int)FILTER_FASILITAS_SEKOLAH_ID . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' AND filter_id IN (" . $strIds . ")");
-			$data['fasilitas'] = array('name' => $fg->row['name']);
-			$data['fasilitas']['items'] = [];
-			foreach ($lg->rows as $r) {
-				$data['fasilitas']['items'][] = $r['name'];
-			}
-			//echo '<pre>' . print_r($data['fasilitas'],true) . '</pre>';
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['monthly_cost'] = $this->currency->format($product_info['monthly_cost'], $this->session->data['currency']);
 			} else {
@@ -376,41 +394,46 @@ class ControllerProductSchool extends Controller
 			}
 
 
+			$itemAttributes[] =
+				array(
+					'id' => ATTRIBUTE_EKSTRAKURIKULER_ID,
+					'icon' => 'fas fa-history',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+				$itemAttributes[] =
+				array(
+					'id' => ATTRIBUTE_JAM_ID,
+					'icon' => 'fas fa-history',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => [],
+					'header_itemlabel' => 'Jam',
+					'header_itemtext' => 'Hari'
+				);
+
 			$attributes = $this->model_catalog_school->getProductAttributes($this->request->get['product_id']);
-
-			$data['ekstra'] = [];
-			$data['jam'] = [];
 			foreach ($attributes as $atg) {
-				//ATTRIBUTE EKSTRAKURIKULER
-				if ($atg['attribute_group_id'] == ATTRIBUTE_EKSTRAKURIKULER_ID) {
-					$data['ekstra'] = array('name' => $atg['name'], 'showlabel' => $atg['showlabel']);
-					$data['ekstra']['items'] = [];
-					if (!empty($atg['attribute'])) {
-						foreach ($atg['attribute'] as $att) {
-
-							$data['ekstra']['items'][] = array('name' => $att['name'], 'text' => $att['text']);
+				foreach ($itemAttributes as $key => $iatt) {
+					if ($atg['attribute_group_id'] == $iatt['id']) {
+						$itemAttributes[$key]['text_header'] = $atg['name'];
+						$itemAttributes[$key]['showlabel'] = $atg['showlabel'];
+						$itemAttributes[$key]['items'] = [];
+						if (!empty($atg['attribute'])) {
+							foreach ($atg['attribute'] as $att) {
+								$itemAttributes[$key]['items'][] = array('label' => $att['name'], 'text' => $att['text']);
+							}
 						}
 					}
 				}
-				//ATTRIBUTE EKSTRAKURIKULER
-				if ($atg['attribute_group_id'] == ATTRIBUTE_JAM_ID) {
-					$data['jam'] = array('name' => $atg['name'], 'showlabel' => $atg['showlabel']);
-					$data['jam']['items'] = [];
-					if (!empty($atg['attribute'])) {
-						foreach ($atg['attribute'] as $att) {
-
-							$data['jam']['items'][] = array('name' => $att['name'], 'text' => $att['text']);
-						}
-					}
-				}
-
 			}
+			$data['ekstrakur_view'] = $this->load->view('common/attribute_view', $itemAttributes[0]);
+			$data['jambelajar_view'] = $this->load->view('common/attribute_table_view', $itemAttributes[1]);
+
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['monthly_cost'] = $this->currency->format($product_info['monthly_cost'], $this->session->data['currency']);
 			} else {
 				$data['monthly_cost'] = false;
 			}
-			$data['qrcode'] = $this->model_tool_image->resize('catalog/qrcode.png', $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
 
 			if ($this->customer->isLogged()) {
 				$data['customer_name'] = $this->customer->getFirstName() . '&nbsp;' . $this->customer->getLastName();

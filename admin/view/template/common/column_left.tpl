@@ -55,7 +55,7 @@
     </li>
     <?php } ?>
   </ul>
-  <div id="stats">
+  <!-- <div id="stats">
     <ul>
       <li>
         <div><?php echo $text_complete_status; ?> <span class="pull-right"><?php echo $complete_status; ?>%</span></div>
@@ -76,5 +76,5 @@
         </div>
       </li>
     </ul>
-  </div>
+  </div> -->
 </nav>
