@@ -56,8 +56,11 @@ class ControllerAccountRegister extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_register'),
-			'href' => $this->url->link('account/register', '', true)
+			'href' => $this->url->link('account/register', '', true),
+			'active' => true
 		);
+		$breadcrumb['breadcrumbs'] = $data['breadcrumbs'];
+		$data['breadcrumbs'] = $this->load->view('common/breadcrumb', $breadcrumb);
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -357,9 +360,6 @@ class ControllerAccountRegister extends Controller {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-			$this->error['lastname'] = $this->language->get('error_lastname');
-		}
 
 		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
@@ -373,49 +373,6 @@ class ControllerAccountRegister extends Controller {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
-			$this->error['address_1'] = $this->language->get('error_address_1');
-		}
-
-		if ((utf8_strlen(trim($this->request->post['city'])) < 2) || (utf8_strlen(trim($this->request->post['city'])) > 128)) {
-			$this->error['city'] = $this->language->get('error_city');
-		}
-
-		$this->load->model('localisation/country');
-
-		$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
-
-		if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
-			$this->error['postcode'] = $this->language->get('error_postcode');
-		}
-
-		if ($this->request->post['country_id'] == '') {
-			$this->error['country'] = $this->language->get('error_country');
-		}
-
-		if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '' || !is_numeric($this->request->post['zone_id'])) {
-			$this->error['zone'] = $this->language->get('error_zone');
-		}
-
-		// Customer Group
-		if (isset($this->request->post['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->post['customer_group_id'], $this->config->get('config_customer_group_display'))) {
-			$customer_group_id = $this->request->post['customer_group_id'];
-		} else {
-			$customer_group_id = $this->config->get('config_customer_group_id');
-		}
-
-		// Custom field validation
-		$this->load->model('account/custom_field');
-
-		$custom_fields = $this->model_account_custom_field->getCustomFields($customer_group_id);
-
-		foreach ($custom_fields as $custom_field) {
-            if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
-				$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-			} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-            	$this->error['custom_field'][$custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-            }
-		}
 
 		if ((utf8_strlen($this->request->post['password']) < 4) || (utf8_strlen($this->request->post['password']) > 20)) {
 			$this->error['password'] = $this->language->get('error_password');
@@ -448,28 +405,4 @@ class ControllerAccountRegister extends Controller {
 		return !$this->error;
 	}
 
-	public function customfield() {
-		$json = array();
-
-		$this->load->model('account/custom_field');
-
-		// Customer Group
-		if (isset($this->request->get['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($this->request->get['customer_group_id'], $this->config->get('config_customer_group_display'))) {
-			$customer_group_id = $this->request->get['customer_group_id'];
-		} else {
-			$customer_group_id = $this->config->get('config_customer_group_id');
-		}
-
-		$custom_fields = $this->model_account_custom_field->getCustomFields($customer_group_id);
-
-		foreach ($custom_fields as $custom_field) {
-			$json[] = array(
-				'custom_field_id' => $custom_field['custom_field_id'],
-				'required'        => $custom_field['required']
-			);
-		}
-
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
 }

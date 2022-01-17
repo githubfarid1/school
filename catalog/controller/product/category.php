@@ -235,7 +235,7 @@ class ControllerProductCategory extends Controller
 				$products['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
-					'address' => $result['address'],
+					'address' => strlen($result['address']) > 50 ? (substr($result['address'], 0, 50) . '..') : ($result['address'])  ,
 					'name'        => $result['school_name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['school_profile'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
 					'price'       => $price,

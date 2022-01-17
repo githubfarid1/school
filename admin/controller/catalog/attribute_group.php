@@ -340,6 +340,14 @@ class ControllerCatalogAttributeGroup extends Controller {
 			$data['sort_order'] = '';
 		}
 
+		if (isset($this->request->post['attribute_showlabel'])) {
+			$data['attribute_showlabel'] = $this->request->post['attribute_showlabel'];
+		} elseif (!empty($attribute_group_info)) {
+			$data['attribute_showlabel'] = $attribute_group_info['showlabel'];
+		} else {
+			$data['attribute_showlabel'] = '';
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

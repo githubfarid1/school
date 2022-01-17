@@ -5,6 +5,12 @@ class ControllerProductSchool extends Controller
 
 	public function index()
 	{
+		if (!$this->customer->isLogged()) {
+			$this->session->data['redirect'] = $this->url->link('product/school&product_id=' . $this->request->get['product_id'], '', true);
+
+			$this->response->redirect($this->url->link('account/login', '', true));
+		}
+
 		$this->load->language('product/school');
 		$device = new Mobile();
 		if ($device->isMobile()) {
@@ -337,6 +343,7 @@ class ControllerProductSchool extends Controller
 			}
 			$promo['div_id'] = 'promoCarousel';
 			$promo['text_header'] = 'Foto Promo';
+			$promo['isMobile'] = $data['mobile'];
 			$data['promo_view'] = $this->load->view('common/carousel2_view', $promo);
 
 			$teacher['images'] = array();
@@ -356,6 +363,7 @@ class ControllerProductSchool extends Controller
 			}
 			$teacher['div_id'] = 'teacherCarousel';
 			$teacher['text_header'] = 'Pengajar';
+			$teacher['isMobile'] = $data['mobile'];
 			$data['teacher_view'] = $this->load->view('common/carousel2_view', $teacher);
 
 
@@ -401,7 +409,7 @@ class ControllerProductSchool extends Controller
 					'iconstyle' => 'font-size: 24px;',
 					'items' => []
 				);
-				$itemAttributes[] =
+			$itemAttributes[] =
 				array(
 					'id' => ATTRIBUTE_JAM_ID,
 					'icon' => 'fas fa-history',
@@ -409,6 +417,20 @@ class ControllerProductSchool extends Controller
 					'items' => [],
 					'header_itemlabel' => 'Jam',
 					'header_itemtext' => 'Hari'
+				);
+			$itemAttributes[] =
+				array(
+					'id' => ATTRIBUTE_INFO_ID,
+					'icon' => 'fas fa-history',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+				$itemAttributes[] =
+				array(
+					'id' => 18,
+					'icon' => 'fas fa-university',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
 				);
 
 			$attributes = $this->model_catalog_school->getProductAttributes($this->request->get['product_id']);
@@ -428,6 +450,8 @@ class ControllerProductSchool extends Controller
 			}
 			$data['ekstrakur_view'] = $this->load->view('common/attribute_view', $itemAttributes[0]);
 			$data['jambelajar_view'] = $this->load->view('common/attribute_table_view', $itemAttributes[1]);
+			$data['info_view'] = $this->load->view('common/marquee_view', $itemAttributes[2]);
+			$data['fasilitas_view'] = $this->load->view('common/attribute_view', $itemAttributes[3]);
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['monthly_cost'] = $this->currency->format($product_info['monthly_cost'], $this->session->data['currency']);

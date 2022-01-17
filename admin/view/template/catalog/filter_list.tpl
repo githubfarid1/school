@@ -35,6 +35,7 @@
               <thead>
                 <tr>
                   <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                  <td class="text-left">ID</td>
                   <td class="text-left"><?php if ($sort == 'fgd.name') { ?>
                     <a href="<?php echo $sort_name; ?>" class="<?php echo strtolower($order); ?>"><?php echo $column_group; ?></a>
                     <?php } else { ?>
@@ -57,6 +58,7 @@
                     <?php } else { ?>
                     <input type="checkbox" name="selected[]" value="<?php echo $filter['filter_group_id']; ?>" />
                     <?php } ?></td>
+                    <td class="text-left"><?php echo $filter['filter_group_id']; ?></td>
                   <td class="text-left"><?php echo $filter['name']; ?></td>
                   <td class="text-right"><?php echo $filter['sort_order']; ?></td>
                   <td class="text-right"><a href="<?php echo $filter['edit']; ?>" data-toggle="tooltip" title="<?php echo $button_edit; ?>" class="btn btn-primary"><i class="fa fa-pencil"></i></a></td>

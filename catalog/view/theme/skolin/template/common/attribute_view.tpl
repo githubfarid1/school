@@ -3,7 +3,7 @@
     <div class="row">
         <?php foreach ($items as $item) { ?>
             <div class="col-md-6">
-                <p><i class="<?=$icon;?>" style="<?=$iconstyle;?>"></i>&nbsp;<?= $item['text']; ?></p>
+                <p class="mb-2"><i class="<?=$icon;?>" style="<?=$iconstyle;?>"></i>&nbsp;<?= $item['text']; ?></p>
             </div>
         <?php } ?>
     </div>

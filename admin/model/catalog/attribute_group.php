@@ -1,7 +1,7 @@
 <?php
 class ModelCatalogAttributeGroup extends Model {
 	public function addAttributeGroup($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_group SET sort_order = '" . (int)$data['sort_order'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "attribute_group SET sort_order = '" . (int)$data['sort_order'] . "', showlabel='" . $this->db->escape($data['attribute_showlabel']) . "'");
 
 		$attribute_group_id = $this->db->getLastId();
 
@@ -13,7 +13,7 @@ class ModelCatalogAttributeGroup extends Model {
 	}
 
 	public function editAttributeGroup($attribute_group_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "attribute_group SET sort_order = '" . (int)$data['sort_order'] . "' WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+		$this->db->query("UPDATE " . DB_PREFIX . "attribute_group SET sort_order = '" . (int)$data['sort_order'] . "', showlabel='" . $this->db->escape($data['attribute_showlabel']) . "' WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
 

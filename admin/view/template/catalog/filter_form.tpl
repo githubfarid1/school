@@ -39,11 +39,27 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-type">Jenis</label>
+            <div class="col-sm-10">
+              <select name="filter_type" id="input-type" class="form-control">
+                <?php if ($filter_type == 'select') { ?>
+                <option value="select" selected="selected">Single Select</option>
+                <option value="checkbox">Multi Select</option>
+                <?php } else { ?>
+                <option value="select">Single Select</option>
+                <option value="checkbox" selected="selected">Multi Select</option>
+                <?php } ?>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label class="col-sm-2 control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
             <div class="col-sm-10">
               <input type="text" name="sort_order" value="<?php echo $sort_order; ?>" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control" />
             </div>
           </div>
+
           <table id="filter" class="table table-striped table-bordered table-hover">
             <thead>
               <tr>
@@ -86,7 +102,7 @@
 var filter_row = <?php echo $filter_row; ?>;
 
 function addFilterRow() {
-	html  = '<tr id="filter-row' + filter_row + '">';	
+	html  = '<tr id="filter-row' + filter_row + '">';
     html += '  <td class="text-left" style="width: 70%;"><input type="hidden" name="filter[' + filter_row + '][filter_id]" value="" />';
 	<?php foreach ($languages as $language) { ?>
 	html += '  <div class="input-group">';
@@ -96,11 +112,11 @@ function addFilterRow() {
 	html += '  </td>';
 	html += '  <td class="text-right"><input type="text" name="filter[' + filter_row + '][sort_order]" value="" placeholder="<?php echo $entry_sort_order; ?>" id="input-sort-order" class="form-control" /></td>';
 	html += '  <td class="text-left"><button type="button" onclick="$(\'#filter-row' + filter_row + '\').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-	html += '</tr>';	
-	
+	html += '</tr>';
+
 	$('#filter tbody').append(html);
-	
+
 	filter_row++;
 }
 //--></script></div>
-<?php echo $footer; ?> 
+<?php echo $footer; ?>

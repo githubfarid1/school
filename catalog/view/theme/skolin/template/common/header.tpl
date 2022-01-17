@@ -41,7 +41,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script> -->
-
+  <script defer src="catalog/view/javascript/font-awesome/js/all.js"></script>
   <link href="catalog/view/javascript/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
   <link href="catalog/view/theme/skolin/stylesheet/stylesheet.css" rel="stylesheet">
@@ -62,56 +62,42 @@
 </head>
 
 <body class="<?php echo $class; ?>">
-  <!-- <nav id="top">
-    <div class="container">
-      <?php echo $currency; ?>
-      <?php echo $language; ?>
-      <div id="top-links" class="nav pull-right">
-        <ul class="list-inline">
-          <li><a href="<?php echo $contact; ?>"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md"><?php echo $telephone; ?></span></li>
-          <li class="dropdown"><a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_account; ?></span> <span class="caret"></span></a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              <?php if ($logged) { ?>
-                <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-                <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-                <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-                <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-                <li><a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a></li>
-              <?php } else { ?>
-                <li><a href="<?php echo $register; ?>"><?php echo $text_register; ?></a></li>
-                <li><a href="<?php echo $login; ?>"><?php echo $text_login; ?></a></li>
-              <?php } ?>
-            </ul>
-          </li>
-          <li><a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>"><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_wishlist; ?></span></a></li>
-          <li><a href="<?php echo $shopping_cart; ?>" title="<?php echo $text_shopping_cart; ?>"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_shopping_cart; ?></span></a></li>
-          <li><a href="<?php echo $checkout; ?>" title="<?php echo $text_checkout; ?>"><i class="fa fa-share"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $text_checkout; ?></span></a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <br /> -->
   <header>
     <nav class="navbar navbar-expand-lg  navbar-dark fixed-top bg-dark">
-      <a class="navbar-brand" href="#"><img src="<?php //$logo;?>" alt=""> </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="#">
+        <img src="<?php //$logo;
+                  ?>" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="<?= HTTPS_SERVER . 'index.php?route=product/category&path=' . PARENT_CATEGORY_PATH_ID; ?>">
               Cari Sekolah
             </a>
           </li>
+          <li class="nav-item dropdown">
+            <a href="#" title="<?php echo $text_account; ?>" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false"><?php echo $text_account; ?></a>
+            <?php if ($logged) { ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?php echo $account; ?>"><?php echo $text_account; ?></a>
+                <a class="dropdown-item" href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a>
+              </div>
+            <?php } else { ?>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="<?php echo $register; ?>"><?php echo $text_register; ?></a>
+                <a class="dropdown-item" href="<?php echo $login; ?>"><?php echo $text_login; ?></a>
+              </div>
+            <?php } ?>
+          </li>
+          <li>
+            <div class="d-flex"><?php echo $search; ?></div>
+          </li>
         </ul>
-        <div class="d-flex">
-          <?php echo $search; ?>
-        </div>
       </div>
     </nav>
-
   </header>
   <br /><br />
 

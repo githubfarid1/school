@@ -60,19 +60,6 @@
             <?php } ?>
             <?php if ($products) { ?>
                 <div class="row">
-                    <!-- <div class="col-md-5 col-sm-12 hidden-xs">
-                        <div class="btn-group btn-group-sm">
-                            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_list; ?>"><i class="fa fa-th-list"></i></button>
-                            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_grid; ?>"><i class="fa fa-th"></i></button>
-                        </div>
-                    </div> -->
-                    <!-- <div class="col-md-3 col-sm-6">
-                        <div class="form-group">
-                            <a href="<?php echo $compare; ?>" id="compare-total" class="btn btn-link">
-                                <?php echo $text_compare; ?>
-                            </a>
-                        </div>
-                    </div> -->
                     <div class="col-md-5 col-sm-12 hidden-xs">
                     </div>
                     <div class="col-md-4 col-xs-6">
@@ -117,20 +104,6 @@
                     </div>
                 </div>
                 <div class="container">
-                    <!-- <div class="row">
-                        <?php foreach ($products as $product) { ?>
-                            <div class="col-sm-3 mb-2">
-                                <div class="card bg-light">
-                                    <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" class="card-img-top px-5 pt-3" alt="<?php echo $product['name']; ?>"></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title fw-bold text-center"><strong><?php echo $product['name']; ?></strong></h4>
-                                        <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i>&nbsp;<?= $product['address']; ?></small></p>
-                                        <div class="text-center"><a href="#" class="btn <?= $product['regstatus_id'] == 1 ? 'btn-info' : ($product['regstatus_id'] == 2 ? 'btn-danger' : ($product['regstatus_id'] == 3 ? 'btn-secondary' : 'btn-warning')); ?>"><?= $product['regstatus_name']; ?></a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                    </div> -->
                     <?= $products; ?>
                 </div>
                 <div class="row">

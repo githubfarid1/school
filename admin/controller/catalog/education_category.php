@@ -105,7 +105,7 @@ class ControllerCatalogEducationCategory extends Controller
         $lang = $this->model_localisation_language->getLanguageByCode($langCode);
         $this->load->model('catalog/filter');
 
-        $data['column_list'] = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column")->rows;
+        $data['column_list'] = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column ORDER BY sort_order")->rows;
         $data['filter_list'] = $this->model_catalog_filter->getFilterGroups(array('language_id' => $lang['language_id']));
         $this->load->model('catalog/attribute_group');
         $data['attribute_list'] = $this->model_catalog_attribute_group->getAttributeGroups(array('language_id' => $lang['language_id']));

@@ -1,8 +1,9 @@
 <?php
-class ControllerCommonFileManager extends Controller {
-	public function index() {
+class ControllerCommonFileManager extends Controller
+{
+	public function index()
+	{
 		$this->load->language('common/filemanager');
-
 		// Find which protocol to use to pass the full image link back
 		if ($this->request->server['HTTPS']) {
 			$server = HTTPS_CATALOG;
@@ -18,9 +19,17 @@ class ControllerCommonFileManager extends Controller {
 
 		// Make sure we have the correct directory
 		if (isset($this->request->get['directory'])) {
-			$directory = rtrim(DIR_IMAGE . 'catalog/' . str_replace('*', '', $this->request->get['directory']), '/');
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->user->folder_image . '/' . str_replace('*', '', $this->request->get['directory']), '/');
+			} else {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' . str_replace('*', '', $this->request->get['directory']), '/');
+			}
 		} else {
-			$directory = DIR_IMAGE . 'catalog';
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = DIR_IMAGE . 'catalog/' . $this->user->folder_image;
+			} else {
+				$directory = DIR_IMAGE . 'catalog';
+			}
 		}
 
 		if (isset($this->request->get['page'])) {
@@ -35,20 +44,37 @@ class ControllerCommonFileManager extends Controller {
 		$data['images'] = array();
 
 		$this->load->model('tool/image');
+		if ($this->user->user_group_id <> ADMSEKOLAH_USER_GROUP_ID) {
+			if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(DIR_IMAGE . 'catalog')) == DIR_IMAGE . 'catalog') {
+				// Get directories
+				$directories = glob($directory . '/' . $filter_name . '*', GLOB_ONLYDIR);
 
-		if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(DIR_IMAGE . 'catalog')) == DIR_IMAGE . 'catalog') {
-			// Get directories
-			$directories = glob($directory . '/' . $filter_name . '*', GLOB_ONLYDIR);
+				if (!$directories) {
+					$directories = array();
+				}
 
-			if (!$directories) {
-				$directories = array();
+				// Get files
+				$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+
+				if (!$files) {
+					$files = array();
+				}
 			}
+		} else {
+			if (substr(str_replace('\\', '/', realpath($directory . '/' . $filter_name)), 0, strlen(DIR_IMAGE . 'catalog/' . $this->user->folder_image)) == DIR_IMAGE . 'catalog/' . $this->user->folder_image) {
+				// Get directories
+				$directories = glob($directory . '/' . $filter_name . '*', GLOB_ONLYDIR);
 
-			// Get files
-			$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+				if (!$directories) {
+					$directories = array();
+				}
 
-			if (!$files) {
-				$files = array();
+				// Get files
+				$files = glob($directory . '/' . $filter_name . '*.{jpg,jpeg,png,gif,JPG,JPEG,PNG,GIF}', GLOB_BRACE);
+
+				if (!$files) {
+					$files = array();
+				}
 			}
 		}
 
@@ -74,14 +100,23 @@ class ControllerCommonFileManager extends Controller {
 				if (isset($this->request->get['thumb'])) {
 					$url .= '&thumb=' . $this->request->get['thumb'];
 				}
-
-				$data['images'][] = array(
-					'thumb' => '',
-					'name'  => implode(' ', $name),
-					'type'  => 'directory',
-					'path'  => utf8_substr($image, utf8_strlen(DIR_IMAGE)),
-					'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode(utf8_substr($image, utf8_strlen(DIR_IMAGE . 'catalog/'))) . $url, true)
-				);
+				if ($this->user->user_group_id <> ADMSEKOLAH_USER_GROUP_ID) {
+					$data['images'][] = array(
+						'thumb' => '',
+						'name'  => implode(' ', $name),
+						'type'  => 'directory',
+						'path'  => utf8_substr($image, utf8_strlen(DIR_IMAGE)),
+						'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode(utf8_substr($image, utf8_strlen(DIR_IMAGE . 'catalog/'))) . $url, true)
+					);
+				} else {
+					$data['images'][] = array(
+						'thumb' => '',
+						'name'  => implode(' ', $name),
+						'type'  => 'directory',
+						'path'  => utf8_substr($image, utf8_strlen(DIR_IMAGE)),
+						'href'  => $this->url->link('common/filemanager', 'token=' . $this->session->data['token'] . '&directory=' . urlencode(utf8_substr($image, utf8_strlen(DIR_IMAGE . 'catalog/' . $this->user->folder_image . '/'))) . $url, true)
+					);
+				}
 			} elseif (is_file($image)) {
 				$data['images'][] = array(
 					'thumb' => $this->model_tool_image->resize(utf8_substr($image, utf8_strlen(DIR_IMAGE)), 100, 100),
@@ -203,7 +238,8 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput($this->load->view('common/filemanager', $data));
 	}
 
-	public function upload() {
+	public function upload()
+	{
 		$this->load->language('common/filemanager');
 
 		$json = array();
@@ -215,9 +251,17 @@ class ControllerCommonFileManager extends Controller {
 
 		// Make sure we have the correct directory
 		if (isset($this->request->get['directory'])) {
-			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->request->get['directory'], '/');
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' .  $this->user->folder_image . '/' . $this->request->get['directory'], '/');
+			} else {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->request->get['directory'], '/');
+			}
 		} else {
-			$directory = DIR_IMAGE . 'catalog';
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = DIR_IMAGE . 'catalog/' . $this->user->folder_image;
+			} else {
+				$directory = DIR_IMAGE . 'catalog';
+			}
 		}
 
 		// Check its a directory
@@ -250,7 +294,7 @@ class ControllerCommonFileManager extends Controller {
 					if ((utf8_strlen($filename) < 3) || (utf8_strlen($filename) > 255)) {
 						$json['error'] = $this->language->get('error_filename');
 					}
-					
+
 					// Allowed file extension types
 					$allowed = array(
 						'jpg',
@@ -258,11 +302,11 @@ class ControllerCommonFileManager extends Controller {
 						'gif',
 						'png'
 					);
-	
+
 					if (!in_array(utf8_strtolower(utf8_substr(strrchr($filename, '.'), 1)), $allowed)) {
 						$json['error'] = $this->language->get('error_filetype');
 					}
-					
+
 					// Allowed file mime types
 					$allowed = array(
 						'image/jpeg',
@@ -271,7 +315,7 @@ class ControllerCommonFileManager extends Controller {
 						'image/x-png',
 						'image/gif'
 					);
-	
+
 					if (!in_array($file['type'], $allowed)) {
 						$json['error'] = $this->language->get('error_filetype');
 					}
@@ -298,7 +342,8 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function folder() {
+	public function folder()
+	{
 		$this->load->language('common/filemanager');
 
 		$json = array();
@@ -310,10 +355,19 @@ class ControllerCommonFileManager extends Controller {
 
 		// Make sure we have the correct directory
 		if (isset($this->request->get['directory'])) {
-			$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->request->get['directory'], '/');
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' .  $this->user->folder_image . '/' . $this->request->get['directory'], '/');
+			} else {
+				$directory = rtrim(DIR_IMAGE . 'catalog/' . $this->request->get['directory'], '/');
+			}
 		} else {
-			$directory = DIR_IMAGE . 'catalog';
+			if ($this->user->user_group_id == ADMSEKOLAH_USER_GROUP_ID) {
+				$directory = DIR_IMAGE . 'catalog/' . $this->user->folder_image;
+			} else {
+				$directory = DIR_IMAGE . 'catalog';
+			}
 		}
+
 
 		// Check its a directory
 		if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(DIR_IMAGE . 'catalog')) != DIR_IMAGE . 'catalog') {
@@ -348,7 +402,8 @@ class ControllerCommonFileManager extends Controller {
 		$this->response->setOutput(json_encode($json));
 	}
 
-	public function delete() {
+	public function delete()
+	{
 		$this->load->language('common/filemanager');
 
 		$json = array();
@@ -383,7 +438,7 @@ class ControllerCommonFileManager extends Controller {
 				if (is_file($path)) {
 					unlink($path);
 
-				// If path is a directory beging deleting each file and sub folder
+					// If path is a directory beging deleting each file and sub folder
 				} elseif (is_dir($path)) {
 					$files = array();
 
@@ -413,7 +468,7 @@ class ControllerCommonFileManager extends Controller {
 						if (is_file($file)) {
 							unlink($file);
 
-						// If directory use the remove directory function
+							// If directory use the remove directory function
 						} elseif (is_dir($file)) {
 							rmdir($file);
 						}

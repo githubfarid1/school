@@ -35,8 +35,11 @@ class ControllerAccountNewsletter extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_newsletter'),
-			'href' => $this->url->link('account/newsletter', '', true)
+			'href' => $this->url->link('account/newsletter', '', true),
+			'active' => true
 		);
+		$breadcrumb['breadcrumbs'] = $data['breadcrumbs'];
+		$data['breadcrumbs'] = $this->load->view('common/breadcrumb', $breadcrumb);
 
 		$data['heading_title'] = $this->language->get('heading_title');
 

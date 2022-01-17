@@ -1,7 +1,7 @@
 <?php
 class ModelCatalogFilter extends Model {
 	public function addFilter($data) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "filter_group` SET sort_order = '" . (int)$data['sort_order'] . "'");
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "filter_group` SET sort_order = '" . (int)$data['sort_order'] . "', checktype='" . $this->db->escape($data['filter_type']) . "'");
 
 		$filter_group_id = $this->db->getLastId();
 
@@ -25,7 +25,7 @@ class ModelCatalogFilter extends Model {
 	}
 
 	public function editFilter($filter_group_id, $data) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "filter_group` SET sort_order = '" . (int)$data['sort_order'] . "' WHERE filter_group_id = '" . (int)$filter_group_id . "'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "filter_group` SET sort_order = '" . (int)$data['sort_order'] . "', checktype='" . $this->db->escape($data['filter_type']) . "' WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id = '" . (int)$filter_group_id . "'");
 

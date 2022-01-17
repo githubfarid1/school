@@ -26,7 +26,7 @@
             </div>
             <div class="panel-body">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-product" class="form-horizontal">
-                <input type="hidden" name="product_store[]" value="0">
+                    <input type="hidden" name="product_store[]" value="0">
 
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
@@ -144,64 +144,68 @@
                         </div>
                         <div class="tab-pane" id="tab-filter">
                             <div class="tab-content">
-                                <?php foreach ($filters as $col) { ?>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-sm-2 control-label">
-                                                <h4><strong>
-                                                        <?= $col['name']; ?>
-                                                </h4></strong>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <?php if ($col['checktype'] == 'checkbox') { ?>
-                                                    <?php foreach ($col['items'] as $item) { ?>
-                                                        <input type="checkbox" name="filter[<?= $col['id']; ?>][<?= $item['id']; ?>]" <?= $item['selected'] ? 'checked' : ''; ?>>
-                                                        <label for="filter[<?= $col['id']; ?>][<?= $item['id']; ?>]"><?= $item['name']; ?></label><br />
-                                                    <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($col['checktype'] == 'select') { ?>
-                                                    <select name="filter[<?= $col['id']; ?>][]" class="select2" style="width: 100%;">
-                                                        <option value="">--- Pilih ---</option>
+                                <?php if (!empty($filters)) { ?>
+                                    <?php foreach ($filters as $col) { ?>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-2 control-label">
+                                                    <h4><strong>
+                                                            <?= $col['name']; ?>
+                                                    </h4></strong>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <?php if ($col['checktype'] == 'checkbox') { ?>
                                                         <?php foreach ($col['items'] as $item) { ?>
-                                                            <option value="<?= $item['id']; ?>" <?= $item['selected'] ? 'selected' : ''; ?>><?= $item['name']; ?></option>
+                                                            <input type="checkbox" name="filter[<?= $col['id']; ?>][<?= $item['id']; ?>]" <?= $item['selected'] ? 'checked' : ''; ?>>
+                                                            <label for="filter[<?= $col['id']; ?>][<?= $item['id']; ?>]"><?= $item['name']; ?></label><br />
                                                         <?php } ?>
-                                                    </select>
-                                                <?php } ?>
+                                                    <?php } ?>
+                                                    <?php if ($col['checktype'] == 'select') { ?>
+                                                        <select name="filter[<?= $col['id']; ?>][]" class="select2" style="width: 100%;">
+                                                            <option value="">--- Pilih ---</option>
+                                                            <?php foreach ($col['items'] as $item) { ?>
+                                                                <option value="<?= $item['id']; ?>" <?= $item['selected'] ? 'selected' : ''; ?>><?= $item['name']; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
 
+                                    <?php } ?>
                                 <?php } ?>
 
                             </div>
                         </div>
                         <div class="tab-pane" id="tab-attribute">
                             <div class="tab-content">
-                                <?php foreach ($attributes as $col) { ?>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-2 control-label">
-                                                <h4><strong>
-                                                        <?= $col['name']; ?>
-                                                </h4></strong>
-                                            </div>
-                                            <div class="col-md-10">
-                                                <?php if ($col['showlabel'] == 0) { ?>
-                                                    <?php foreach ($col['items'] as $item) { ?>
-                                                        <input type="text" name="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]" id="" placeholder="<?= $item['name']; ?>" class="form-control" value="<?= $item['value']; ?>">
-                                                        <br />
+                                <?php if (!empty($attributes)) { ?>
+                                    <?php foreach ($attributes as $col) { ?>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2 control-label">
+                                                    <h4><strong>
+                                                            <?= $col['name']; ?>
+                                                    </h4></strong>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <?php if ($col['showlabel'] == 0) { ?>
+                                                        <?php foreach ($col['items'] as $item) { ?>
+                                                            <input type="text" name="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]" id="" placeholder="<?= $item['name']; ?>" class="form-control" value="<?= $item['value']; ?>">
+                                                            <br />
+                                                        <?php } ?>
                                                     <?php } ?>
-                                                <?php } ?>
-                                                <?php if ($col['showlabel'] == 1) { ?>
-                                                    <?php foreach ($col['items'] as $item) { ?>
-                                                        <label for="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]"><?= $item['name']; ?></label><br />
-                                                        <input type="text" name="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]" id="" placeholder="" class="form-control" value="<?= $item['value']; ?>">
-                                                        <br />
+                                                    <?php if ($col['showlabel'] == 1) { ?>
+                                                        <?php foreach ($col['items'] as $item) { ?>
+                                                            <label for="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]"><?= $item['name']; ?></label><br />
+                                                            <input type="text" name="attribute[<?= $col['id']; ?>][<?= $item['id']; ?>]" id="" placeholder="" class="form-control" value="<?= $item['value']; ?>">
+                                                            <br />
+                                                        <?php } ?>
                                                     <?php } ?>
-                                                <?php } ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php } ?>
                                 <?php } ?>
                             </div>
 

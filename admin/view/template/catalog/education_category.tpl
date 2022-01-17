@@ -73,7 +73,7 @@
 
               <div class="col-md-3">
                 <?php foreach ($column_list as $key => $cl) { ?>
-                  <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]" <?php echo isset($education_category[$ed['category_id']]['column'][$cl['education_column_id']]) ? 'checked' : ''; ?> id="">
+                  <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]" <?=$cl['required'] == '2' ? 'checked onclick="return false;"':'';?> <?php echo isset($education_category[$ed['category_id']]['column'][$cl['education_column_id']]) ? 'checked' : ''; ?>>
                   <label for="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]"><?= $cl['name']; ?></label><br />
                 <?php }  ?>
               </div>

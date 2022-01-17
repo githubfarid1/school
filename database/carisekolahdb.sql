@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 10, 2022 at 04:31 AM
+-- Generation Time: Jan 11, 2022 at 12:25 PM
 -- Server version: 10.5.8-MariaDB-1:10.5.8+maria~focal
 -- PHP Version: 7.4.13
 
@@ -218,7 +218,10 @@ INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 (35, 10, 4),
 (36, 10, 5),
 (37, 10, 6),
-(38, 10, 7);
+(38, 10, 7),
+(39, 17, 1),
+(40, 17, 2),
+(41, 17, 3);
 
 -- --------------------------------------------------------
 
@@ -268,7 +271,10 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`, `
 (35, 2, 'Kamis', NULL),
 (36, 2, 'Jum\'at', NULL),
 (37, 2, 'Sabtu', NULL),
-(38, 2, 'Ahad', NULL);
+(38, 2, 'Ahad', NULL),
+(39, 2, '#info1', NULL),
+(40, 2, '#info2', NULL),
+(41, 2, '#info3', NULL);
 
 -- --------------------------------------------------------
 
@@ -288,6 +294,7 @@ CREATE TABLE `oc_attribute_group` (
 
 INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`, `showlabel`) VALUES
 (11, 4, 0),
+(17, 5, 0),
 (10, 3, 1),
 (9, 2, 0),
 (12, 5, 0),
@@ -315,6 +322,7 @@ CREATE TABLE `oc_attribute_group_description` (
 INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
 (10, 2, 'Jam Belajar'),
 (9, 1, 'Extracurriculars'),
+(17, 2, 'Info'),
 (9, 2, 'Ekstrakurikuler'),
 (10, 1, 'Study Time'),
 (11, 2, 'Prestasi'),
@@ -1048,7 +1056,7 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 0, '2021-12-26 08:32:50'),
 (2, 'US Dollar', 'USD', '$', '', '2', 0.00007000, 0, '2022-01-03 13:39:14'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 0, '2021-12-26 08:32:34'),
-(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-01-10 02:57:00');
+(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-01-11 12:15:11');
 
 -- --------------------------------------------------------
 
@@ -1362,13 +1370,19 @@ CREATE TABLE `oc_education_category` (
 --
 
 INSERT INTO `oc_education_category` (`category_id`, `column_ids`, `filter_ids`, `attribute_ids`) VALUES
-(66, '[1,2]', '[4,8]', '[13,9]'),
-(67, '[1,2,5,8,9,10,12,13]', '[4,8,7,6,3]', '[10,15,14]'),
-(70, '[1,2,3,5,6,7,8,9,10,11,12,13]', '[4,8,1,6,3]', '[13,9,10,15]'),
-(71, '[1,2]', '[4]', '[]'),
-(72, '[1,11]', '[]', '[13]'),
-(73, '[]', '[4,3]', '[]'),
-(74, '[]', '[]', '[13,16]');
+(64, '[1,5,9]', '[]', '[]'),
+(65, '[1,5,9]', '[]', '[]'),
+(66, '[1,5,9]', '[]', '[]'),
+(67, '[1,5,9]', '[]', '[]'),
+(68, '[1,5,9]', '[]', '[]'),
+(69, '[1,5,9]', '[]', '[]'),
+(70, '[1,5,9]', '[]', '[]'),
+(71, '[1,5,9]', '[]', '[]'),
+(72, '[1,5,9]', '[]', '[]'),
+(73, '[1,5,9]', '[]', '[]'),
+(74, '[1,5,9]', '[]', '[]'),
+(75, '[1,5,9]', '[]', '[]'),
+(76, '[1,5,9]', '[]', '[]');
 
 -- --------------------------------------------------------
 
@@ -1394,14 +1408,14 @@ CREATE TABLE `oc_education_column` (
 
 INSERT INTO `oc_education_column` (`education_column_id`, `description`, `name`, `colname`, `required`, `multilang`, `coltype`, `length`, `sort_order`) VALUES
 (1, 'product_description.name', 'Nama Sekolah', 'school_name', 2, 1, 'text', '', 1),
-(2, 'product_description.description', 'Profil Sekolah', 'school_profile', 1, 1, 'textarea', '', 2),
-(3, 'product_image:12-21', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '11-20', 9),
-(5, 'product.address', 'Alamat', 'address', 2, 0, 'text', '', 3),
+(2, 'product_description.description', 'Profil Sekolah', 'school_profile', 1, 1, 'textarea', '', 4),
+(3, 'product_image:41-45', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '41-45', 9),
+(5, 'product.address', 'Alamat', 'address', 2, 0, 'text', '', 2),
 (6, 'product.akreditasi', 'Status Akreditasi', 'akreditasi', 0, 0, 'text', '', 12),
-(7, 'product_image:22-31', 'Foto Program', 'photo_secondary', 0, 0, 'images', '21-30', 10),
-(8, 'product_image:32-41', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '31-40', 11),
-(9, 'product.image', 'Logo', 'photo_main', 1, 0, 'image', '', 5),
-(10, 'product_image:2-11', 'Foto Gallery', 'photo_secondary', 0, 0, 'images', '1-10', 6),
+(7, 'product_image:46-50', 'Foto Program', 'photo_secondary', 0, 0, 'images', '46-50', 10),
+(8, 'product_image:21-40', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '21-40', 11),
+(9, 'product.image', 'Logo', 'photo_main', 2, 0, 'image', '', 3),
+(10, 'product_image:1-20', 'Foto Gallery', 'photo_secondary', 0, 0, 'images', '1-20', 6),
 (11, 'product_description.faq', 'FAQ', 'faq', 0, 1, 'textarea', '', 13),
 (12, 'product.price', 'SPP Bulanan', 'monthly_cost', 0, 0, 'number', '', 7),
 (13, 'product.price2', 'Biaya Masuk', 'first_cost', 0, 0, 'number', '', 8);
@@ -3400,17 +3414,17 @@ INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 (67, 1, 'carousel.29', 'content_top', 3),
 (66, 1, 'slideshow.27', 'content_top', 1),
 (65, 1, 'featured.28', 'content_top', 2),
-(323, 13, 'mega_filter.6', 'column_left', 0),
-(349, 13, 'mega_filter.5', 'column_left', 0),
-(348, 3, 'mega_filter.5', 'column_left', 0),
-(345, 13, 'mega_filter.4', 'column_left', 0),
-(344, 3, 'mega_filter.4', 'column_left', 0),
-(317, 13, 'mega_filter.3', 'column_left', 0),
-(316, 3, 'mega_filter.3', 'column_left', 0),
-(315, 13, 'mega_filter.2', 'column_left', 0),
-(314, 3, 'mega_filter.2', 'column_left', 0),
-(347, 13, 'mega_filter.1', 'column_left', 0),
-(346, 3, 'mega_filter.1', 'column_left', 0),
+(365, 13, 'mega_filter.6', 'column_left', 0),
+(367, 13, 'mega_filter.5', 'column_left', 0),
+(366, 3, 'mega_filter.5', 'column_left', 0),
+(369, 13, 'mega_filter.4', 'column_left', 0),
+(368, 3, 'mega_filter.4', 'column_left', 0),
+(371, 13, 'mega_filter.3', 'column_left', 0),
+(370, 3, 'mega_filter.3', 'column_left', 0),
+(373, 13, 'mega_filter.2', 'column_left', 0),
+(372, 3, 'mega_filter.2', 'column_left', 0),
+(375, 13, 'mega_filter.1', 'column_left', 0),
+(374, 3, 'mega_filter.1', 'column_left', 0),
 (259, 13, 'mega_filter.7', 'column_left', 0),
 (258, 3, 'mega_filter.7', 'column_left', 0),
 (261, 13, 'mega_filter.8', 'column_left', 0),
@@ -3423,7 +3437,7 @@ INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 (266, 3, 'mega_filter.11', 'column_left', 0),
 (269, 13, 'mega_filter.12', 'column_left', 0),
 (268, 3, 'mega_filter.12', 'column_left', 0),
-(322, 3, 'mega_filter.6', 'column_left', 0);
+(364, 3, 'mega_filter.6', 'column_left', 0);
 
 -- --------------------------------------------------------
 
@@ -3641,12 +3655,12 @@ CREATE TABLE `oc_mfilter_settings` (
 --
 
 INSERT INTO `oc_mfilter_settings` (`idx`, `settings`) VALUES
-(6, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Sekolah Dasar - Primary\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"71\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(5, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"100\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"1\"},\"display_live_filter\":{\"enabled\":\"1\",\"items\":\"10\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"6\":{\"enabled\":\"1\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\",\"sort_order\":\"1\"},\"1\":{\"enabled\":\"1\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\",\"sort_order\":\"2\"}},\"name\":\"Sekolah Dasar - SD\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"70\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(4, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - PAUD\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"69\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(3, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - preschool\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"67\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(2, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - TK\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"68\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(1, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - daycare\",\"title\":{\"2\":\"Pencarian\",\"1\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"66\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}');
+(6, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Sekolah Dasar - Primary\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"71\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(5, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"100\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"1\"},\"display_live_filter\":{\"enabled\":\"1\",\"items\":\"10\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Sekolah Dasar - SD\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"70\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(4, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - PAUD\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"69\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(3, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - preschool\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"67\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(2, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - TK\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"68\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(1, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - daycare\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"66\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}');
 
 -- --------------------------------------------------------
 
@@ -4564,19 +4578,6 @@ CREATE TABLE `oc_product` (
   `date_closed` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `oc_product`
---
-
-INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `price2`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `image_name`, `image_description`, `akreditasi`, `address`, `user_id`, `image_size_type`, `date_closed`) VALUES
-(81, 'SDIT  AS SA\'ADAH', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo sdit assaadah kalisari png.png', 0, 1, '200000.0000', '2000000.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 534, '2022-01-10 02:57:33', '0000-00-00 00:00:00', '', '', 'A', 'Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten', 0, 0, '2022-02-02'),
-(82, 'Pratiwi School', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo pratiwi school buat vid.jpg', 0, 1, '500000.0000', '1999989.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 74, '2022-01-08 09:27:58', '0000-00-00 00:00:00', '', '', '', 'Jl. Mandor Samin No.99, Kalibaru, Kec. Cilodong, Kota Depok, Jawa Barat 16413', 0, 0, '2022-02-05'),
-(83, 'Sekolah Alam Indonesia', '', '', '', '', '', '', '', 0, 3, 'catalog/logo/log studal.jpg', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 0, 0, '2022-01-08 09:37:19', '0000-00-00 00:00:00', '', '', '', 'Jl. Jendral Sudirman Depok', 3, 0, '2022-02-05'),
-(89, 'Mts Al hidayah', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/Logo mts al hidayah rawadenok.png', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 0, '2022-01-08 03:27:48', '0000-00-00 00:00:00', '', '', '', 'Jl. Akebooca 358, Kelurahan Soa', 0, 0, '0000-00-00'),
-(90, 'SD Alkautsar Depok', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo mts al kautsar depok.png', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 7, '2022-01-09 08:57:40', '0000-00-00 00:00:00', '', '', '', 'Jl. Akebooca 358, Kelurahan Soa', 3, 0, '0000-00-00'),
-(91, 'Mts Al Husnah', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo mts al husna.png', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 23, '2022-01-10 00:11:57', '0000-00-00 00:00:00', '', '', '', 'jl. abc dekat sana sini okay xxxxxxxxxxxx', 3, 0, '2022-01-20'),
-(92, 'SMA Al azhar', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/logo sma al azhar 19.jpg', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 0, '2022-01-09 08:56:23', '0000-00-00 00:00:00', '', '', '', 'Jl. merdeka barat 1 jakarta', 4, 0, '0000-00-00');
-
 -- --------------------------------------------------------
 
 --
@@ -4589,56 +4590,6 @@ CREATE TABLE `oc_product_attribute` (
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oc_product_attribute`
---
-
-INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
-(82, 38, 2, 'Libur'),
-(81, 17, 2, 'assadah.com'),
-(81, 17, 1, 'assadah.com'),
-(81, 16, 2, '82393829'),
-(81, 16, 1, '82393829'),
-(81, 15, 2, '0928292822'),
-(81, 15, 1, '0928292822'),
-(81, 18, 2, 'opencartplugin@gmail.com'),
-(81, 18, 1, 'opencartplugin@gmail.com'),
-(81, 38, 2, 'Libur'),
-(81, 38, 1, 'Libur'),
-(81, 37, 2, 'Libur'),
-(81, 37, 1, 'Libur'),
-(81, 36, 2, '7:00 s/d 11:00'),
-(81, 36, 1, '7:00 s/d 11:00'),
-(81, 35, 2, '7:00 s/d 13:00'),
-(81, 35, 1, '7:00 s/d 13:00'),
-(81, 34, 2, '7:00 s/d 13:00'),
-(81, 34, 1, '7:00 s/d 13:00'),
-(81, 33, 2, '7:00 s/d 13:00'),
-(81, 33, 1, '7:00 s/d 13:00'),
-(81, 32, 2, '7:00 s/d 13:00'),
-(81, 32, 1, '7:00 s/d 13:00'),
-(81, 22, 2, 'Matematika Club'),
-(81, 22, 1, 'Matematika Club'),
-(81, 25, 2, 'Pramuka'),
-(81, 25, 1, 'Pramuka'),
-(81, 23, 2, 'Karate'),
-(81, 23, 1, 'Karate'),
-(81, 24, 2, 'Sepakbola'),
-(81, 24, 1, 'Sepakbola'),
-(82, 38, 1, 'Libur'),
-(82, 37, 2, 'Libur'),
-(82, 37, 1, 'Libur'),
-(82, 36, 2, '7:00 s/d 11:00'),
-(82, 36, 1, '7:00 s/d 11:00'),
-(82, 35, 2, '7:00 s/d 13:00'),
-(82, 35, 1, '7:00 s/d 13:00'),
-(82, 34, 2, '7:00 s/d 13:00'),
-(82, 34, 1, '7:00 s/d 13:00'),
-(82, 33, 2, '7:00 s/d 13:00'),
-(82, 32, 2, '7:00 s/d 13:00'),
-(82, 33, 1, '7:00 s/d 13:00'),
-(82, 32, 1, '7:00 s/d 13:00');
 
 -- --------------------------------------------------------
 
@@ -4657,26 +4608,6 @@ CREATE TABLE `oc_product_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oc_product_description`
---
-
-INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `faq`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(89, 2, 'Mts Al hidayah', '', '', '', 'Mts Al hidayah', 'Mts Al hidayah', 'Mts Al hidayah'),
-(89, 1, 'Mts Al hidayah', '', '', '', 'Mts Al hidayah', 'Mts Al hidayah', 'Mts Al hidayah'),
-(90, 1, 'SD Alkautsar Depok', '', '', '', 'SD Alkautsar Depok', 'SD Alkautsar Depok', 'SD Alkautsar Depok'),
-(90, 2, 'SD Alkautsar Depok', '', '', '', 'SD Alkautsar Depok', 'SD Alkautsar Depok', 'SD Alkautsar Depok'),
-(92, 2, 'SMA Al azhar', '', '', '', 'SMA Al azhar', 'SMA Al azhar', 'SMA Al azhar'),
-(91, 2, 'Mts Al Husnah', '', '', '', 'Mts Al Husnah', 'Mts Al Husnah', 'Mts Al Husnah'),
-(91, 1, 'Mts Al Husnah', '', '', '', 'Mts Al Husnah', 'Mts Al Husnah', 'Mts Al Husnah'),
-(82, 1, 'Pratiwi School', '&lt;div class=&quot;container main_title&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;h1 style=&quot;margin-bottom: 0.5rem; padding: 10px 0px 30px; outline: none; line-height: 1.2; letter-spacing: 1px; color: rgb(25, 25, 25); font-weight: bold; font-size: 30px; font-family: Dosis;&quot;&gt;Our Mission&lt;/h1&gt;&lt;/div&gt;&lt;div class=&quot;outer_dpage sidebar_content_page&quot; style=&quot;margin: 0px; padding: 0px; outline: none; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;div class=&quot;container&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px;&quot;&gt;&lt;div class=&quot;middle-content&quot; style=&quot;margin: 0px; padding: 0px 0px 20px; outline: none;&quot;&gt;&lt;ol style=&quot;margin-right: 0px; margin-bottom: 1rem; margin-left: 15px; padding: 0px; outline: none;&quot;&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;Build a foundation of believe, attitude, and behavior by developing consciousness and cognizant of God.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop good characters in daily life as global citizens, problem solver and life long learners.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students academically, physically, socially and emotionally through creative and fun learning experience.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students skill so that they are competitive globally.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;', '', '', 'Pratiwi School', 'Pratiwi School', 'Pratiwi School'),
-(92, 1, 'SMA Al azhar', '', '', '', 'SMA Al azhar', 'SMA Al azhar', 'SMA Al azhar'),
-(83, 1, 'Sekolah Alam Indonesia', '', '', '', 'Sekolah Alam Indonesia', 'Sekolah Alam Indonesia', 'Sekolah Alam Indonesia'),
-(83, 2, 'Sekolah Alam Indonesia', '', '', '', 'Sekolah Alam Indonesia', 'Sekolah Alam Indonesia', 'Sekolah Alam Indonesia'),
-(82, 2, 'Pratiwi School', '&lt;div class=&quot;container main_title&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;h1 style=&quot;margin-bottom: 0.5rem; padding: 10px 0px 30px; outline: none; line-height: 1.2; letter-spacing: 1px; color: rgb(25, 25, 25); font-weight: bold; font-size: 30px; font-family: Dosis;&quot;&gt;Our Mission&lt;/h1&gt;&lt;/div&gt;&lt;div class=&quot;outer_dpage sidebar_content_page&quot; style=&quot;margin: 0px; padding: 0px; outline: none; color: rgb(91, 91, 91); font-family: Lato; font-size: 14px;&quot;&gt;&lt;div class=&quot;container&quot; style=&quot;margin-top: 0px; margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; outline: none; width: 1140px; max-width: 1140px;&quot;&gt;&lt;div class=&quot;middle-content&quot; style=&quot;margin: 0px; padding: 0px 0px 20px; outline: none;&quot;&gt;&lt;ol style=&quot;margin-right: 0px; margin-bottom: 1rem; margin-left: 15px; padding: 0px; outline: none;&quot;&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;Build a foundation of believe, attitude, and behavior by developing consciousness and cognizant of God.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop good characters in daily life as global citizens, problem solver and life long learners.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students academically, physically, socially and emotionally through creative and fun learning experience.&lt;/li&gt;&lt;li style=&quot;margin: 0px; padding: 0px; outline: none; font-size: 16px;&quot;&gt;To develop students skill so that they are competitive globally.&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;', '', '', 'Pratiwi School', 'Pratiwi School', 'Pratiwi School'),
-(81, 1, 'SDIT  AS SA\'ADAH', '&lt;p style=&quot;background: transparent; border: 0px; margin-bottom: 20px; padding: 0px; vertical-align: baseline; line-height: 22px; color: rgb(119, 119, 119); font-family: Lato, sans-serif; font-size: 14px;&quot;&gt;&lt;b&gt;Assa’adah Global Islamic School&lt;/b&gt; atau disingkat &lt;b&gt;AGIS&lt;/b&gt; adalah lembaga pendidikan Islam di bawah naungan Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang beralamat di &lt;i&gt;Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten&lt;/i&gt;. Assa’adah Global Islamic School (AGIS) merupakan pengembangan dari Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang berlokasi di Desa Banjarsari Kec. Cipocok Kota Serang Provinsi Banten. Berdiri di tanah seluas 8.000 m2, saat ini AGIS menyelenggarakan pendidikan tingkat dasar yang menerapkan proses &amp;nbsp;pendidikan bermakna yang berorientasi kepada kemasyarakat&lt;/p&gt;', '', '', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH'),
-(81, 2, 'SDIT  AS SA\'ADAH', '&lt;p style=&quot;background: transparent; border: 0px; margin-bottom: 20px; padding: 0px; vertical-align: baseline; line-height: 22px; color: rgb(119, 119, 119); font-family: Lato, sans-serif; font-size: 14px;&quot;&gt;&lt;b&gt;Assa’adah Global Islamic School&lt;/b&gt; atau disingkat &lt;b&gt;AGIS&lt;/b&gt; adalah lembaga pendidikan Islam di bawah naungan Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang beralamat di &lt;i&gt;Jl. Raya Serang Pamarayan Km. 25 Cikeusal Kab. Serang Provinsi Banten&lt;/i&gt;. Assa’adah Global Islamic School (AGIS) merupakan pengembangan dari Yayasan Assa’adah Al-Islamiyyah Banten Pondok Pesantren Modern Assa’adah yang berlokasi di Desa Banjarsari Kec. Cipocok Kota Serang Provinsi Banten. Berdiri di tanah seluas 8.000 m2, saat ini AGIS menyelenggarakan pendidikan tingkat dasar yang menerapkan proses &amp;nbsp;pendidikan bermakna yang berorientasi kepada kemasyarakat&lt;/p&gt;', '', '', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH', 'SDIT  AS SA\'ADAH');
 
 -- --------------------------------------------------------
 
@@ -4706,52 +4637,6 @@ CREATE TABLE `oc_product_filter` (
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `oc_product_filter`
---
-
-INSERT INTO `oc_product_filter` (`product_id`, `filter_id`) VALUES
-(81, 2),
-(81, 13),
-(81, 290),
-(81, 533),
-(81, 542),
-(81, 543),
-(81, 545),
-(81, 546),
-(81, 547),
-(81, 549),
-(82, 11),
-(82, 12),
-(82, 202),
-(82, 538),
-(82, 539),
-(82, 542),
-(82, 543),
-(82, 544),
-(82, 546),
-(82, 547),
-(82, 548),
-(82, 549),
-(83, 0),
-(89, 3),
-(89, 4),
-(89, 10),
-(89, 11),
-(89, 14),
-(89, 202),
-(89, 542),
-(89, 543),
-(89, 545),
-(89, 546),
-(90, 235),
-(91, 3),
-(91, 4),
-(91, 532),
-(91, 545),
-(91, 546),
-(92, 489);
-
 -- --------------------------------------------------------
 
 --
@@ -4766,38 +4651,6 @@ CREATE TABLE `oc_product_image` (
   `image_description` text NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oc_product_image`
---
-
-INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `image_name`, `image_description`, `sort_order`) VALUES
-(3836, 91, 'catalog/sd-cilandak.jpg', '', '', 3),
-(3835, 91, 'catalog/preschool4.jpg', '', '', 2),
-(3834, 91, 'catalog/sdkkt2.jpg', '', '', 1),
-(3851, 81, 'catalog/photo_profile3.jpg', 'Ali', 'Guru4', 36),
-(3850, 81, 'catalog/photo_profile2.jpg', 'Eko', 'Guru3', 35),
-(3754, 82, 'catalog/pratiwi/3-1024x1024.jpg', '', '', 33),
-(3750, 82, 'catalog/pratiwi/IMG_20200206_085745-1536x1152.jpg', '', '', 4),
-(3753, 82, 'catalog/pratiwi/2-1-1024x1024.jpg', '', '', 32),
-(3752, 82, 'catalog/pratiwi/1-1-768x768.jpg', '', '', 31),
-(3751, 82, 'catalog/pratiwi/IMG_20200217_085637-1152x1536.jpg', '', '', 5),
-(3749, 82, 'catalog/pratiwi/IMG_20200203_105127-1536x1152.jpg', '', '', 3),
-(3748, 82, 'catalog/pratiwi/IMG_20200124_095139-1536x1152.jpg', '', '', 2),
-(3747, 82, 'catalog/pratiwi/IMG_20200108_105542-1536x1536.jpg', '', '', 1),
-(3847, 81, 'catalog/photo_profile4.jpg', 'Andi S.Pd', 'Wakil Kepala Sekolah', 32),
-(3849, 81, 'catalog/photo_profile8.jpg', 'Amin', 'Guru2', 34),
-(3848, 81, 'catalog/photo_profile6.jpg', 'Ahsan', 'Guru1', 33),
-(3846, 81, 'catalog/photo_profile5.jpg', 'Ahmad, M.Pd', 'Kepala Sekolah', 31),
-(3844, 81, 'catalog/sd-cilandak.jpg', '', '', 8),
-(3845, 81, 'catalog/photo_profile8.jpg', '', '', 11),
-(3843, 81, 'catalog/preschool4.jpg', '', '', 7),
-(3842, 81, 'catalog/preschool1.jpg', '', '', 6),
-(3841, 81, 'catalog/assaadah/WhatsApp-Image-2020-10-05-at-15.37.58.jpeg', 'title4', 'desc5', 5),
-(3840, 81, 'catalog/assaadah/IMG-20160525-WA0004.jpg', 'title3', 'desc4', 4),
-(3839, 81, 'catalog/assaadah/DSC_1091.jpg', 'title3', 'desc3', 3),
-(3838, 81, 'catalog/assaadah/13876543_137069596735568_5551423219638815175_n.jpg', 'title2', 'desc2', 2),
-(3837, 81, 'catalog/assaadah/13238979_1293189567376446_3452575133637010496_n.jpg', 'title1', 'desc1', 1);
 
 -- --------------------------------------------------------
 
@@ -4898,19 +4751,6 @@ CREATE TABLE `oc_product_to_category` (
   `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `oc_product_to_category`
---
-
-INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
-(81, 70),
-(82, 67),
-(83, 70),
-(89, 70),
-(90, 70),
-(91, 70),
-(92, 70);
-
 -- --------------------------------------------------------
 
 --
@@ -4944,19 +4784,6 @@ CREATE TABLE `oc_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `oc_product_to_store`
---
-
-INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
-(81, 0),
-(82, 0),
-(83, 0),
-(89, 0),
-(90, 0),
-(91, 0),
-(92, 0);
 
 -- --------------------------------------------------------
 
@@ -5240,7 +5067,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (173, 0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
 (177, 0, 'mfilter_version', 'mfilter_version', '2.0.5.6.4', 0),
 (178, 0, 'mega_filter_module', 'mega_filter_module', '[]', 1),
-(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"lflasmayLF_tYwL!WFuKexGuuHGip}ySBcddhhjjkmmdgm\"}', 1),
+(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"nzn7867gNZ!fGaNWAZhBs1XhhCXjl*gotcsdv79z6v69x6\"}', 1),
 (179, 0, 'mega_filter_settings', 'mega_filter_settings', '{\"show_number_of_products\":\"1\",\"calculate_number_of_products\":\"1\",\"show_loader_over_results\":\"1\",\"css_style\":\"\",\"content_selector\":\"#mfilter-content-container\",\"refresh_results\":\"immediately\",\"attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\"}},\"layout_c\":\"3\",\"display_live_filter\":{\"items\":\"1\"}}', 1),
 (180, 0, 'mega_filter_seo', 'mega_filter_seo', '{\"enabled\":\"0\"}', 1),
 (181, 0, 'mega_filter_status', 'mega_filter_status', '1', 0),
@@ -5517,7 +5344,6 @@ CREATE TABLE `oc_url_alias` (
 INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (730, 'manufacturer_id=8', 'apple'),
 (772, 'information_id=4', 'about_us'),
-(957, 'product_id=89', 'mts-al-hidayah'),
 (828, 'manufacturer_id=9', 'canon'),
 (829, 'manufacturer_id=5', 'htc'),
 (830, 'manufacturer_id=7', 'hewlett-packard'),
@@ -5525,13 +5351,7 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (832, 'manufacturer_id=10', 'sony'),
 (841, 'information_id=6', 'delivery'),
 (842, 'information_id=3', 'privacy'),
-(843, 'information_id=5', 'terms'),
-(963, 'product_id=82', 'pratiwi-school'),
-(996, 'product_id=81', 'sdit-as-sa-adah'),
-(977, 'product_id=83', 'sekolah-alam-indonesia'),
-(990, 'product_id=90', 'sd-alkautsar-depok'),
-(995, 'product_id=91', 'mts-al-husnah'),
-(989, 'product_id=92', 'sma-al-azhar');
+(843, 'information_id=5', 'terms');
 
 -- --------------------------------------------------------
 
@@ -10872,13 +10692,13 @@ ALTER TABLE `oc_api_session`
 -- AUTO_INCREMENT for table `oc_attribute`
 --
 ALTER TABLE `oc_attribute`
-  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `oc_attribute_group`
 --
 ALTER TABLE `oc_attribute_group`
-  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `oc_banner`
@@ -11064,7 +10884,7 @@ ALTER TABLE `oc_layout`
 -- AUTO_INCREMENT for table `oc_layout_module`
 --
 ALTER TABLE `oc_layout_module`
-  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=350;
+  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=376;
 
 --
 -- AUTO_INCREMENT for table `oc_layout_route`
@@ -11214,7 +11034,7 @@ ALTER TABLE `oc_product_discount`
 -- AUTO_INCREMENT for table `oc_product_image`
 --
 ALTER TABLE `oc_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3852;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3897;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option`
@@ -11340,7 +11160,7 @@ ALTER TABLE `oc_upload`
 -- AUTO_INCREMENT for table `oc_url_alias`
 --
 ALTER TABLE `oc_url_alias`
-  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=997;
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
 --
 -- AUTO_INCREMENT for table `oc_user`

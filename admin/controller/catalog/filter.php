@@ -41,6 +41,8 @@ class ControllerCatalogFilter extends Controller {
 		$this->load->model('catalog/filter');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			// echo '<pre>' . print_r($this->request->post,true) . '</pre>';
+			// die;
 			$this->model_catalog_filter->addFilter($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -370,6 +372,14 @@ class ControllerCatalogFilter extends Controller {
 			$data['sort_order'] = $filter_group_info['sort_order'];
 		} else {
 			$data['sort_order'] = '';
+		}
+
+		if (isset($this->request->post['filter_type'])) {
+			$data['filter_type'] = $this->request->post['filter_type'];
+		} elseif (!empty($filter_group_info)) {
+			$data['filter_type'] = $filter_group_info['checktype'];
+		} else {
+			$data['filter_type'] = '';
 		}
 
 		if (isset($this->request->post['filter'])) {

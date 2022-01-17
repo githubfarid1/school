@@ -68,7 +68,7 @@
                 <?php $counter++;
                 $isFirst = false;
                 $isBlock = false;
-                $countImage = 4;
+                $countImage = $isMobile ? 1 : 4;
                 if ($check == $countImage) {
                     $isBlock = true;
                     $check = 0;
