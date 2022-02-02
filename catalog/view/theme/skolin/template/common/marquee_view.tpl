@@ -11,7 +11,6 @@
 
         .news {
             width: 100%;
-            background: #ffffff;
             padding: 0 2%;
         }
 
@@ -34,8 +33,8 @@
         .news-content p:after {
             position: absolute;
             content: "";
-            border-left: 13px solid #e9ecef;
-            border-top: 13px solid transparent;
+            border-left: 13px solid #ffc107;
+            border-top: 10px solid transparent;
             border-right: 10px solid transparent;
             border-bottom: 10px solid transparent;
             top: 0px

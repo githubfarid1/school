@@ -543,7 +543,7 @@ class ControllerCatalogSchool extends Controller
             $educols = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id IN (" . $strIds . ") ORDER BY sort_order");
             foreach ($educols->rows as $col) {
                 if ($col['coltype'] <> 'images') {
-                    if ($col['coltype'] <> 'image') {
+                    if ($col['coltype'] <> 'image' && $col['coltype'] <> 'brosur') {
                         if (isset($this->request->post[$col['colname']])) {
                             $col['value'] = $this->request->post[$col['colname']];
                         } else {

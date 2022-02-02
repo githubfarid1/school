@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']          = 'Education Category';
+$_['heading_title']          = 'Admin Kategori Pendidikan';
 
 // Text
 $_['text_success']           = 'Success: You have modified Education Categories!';

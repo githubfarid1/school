@@ -4,13 +4,8 @@ class ControllerCatalogEducationCategory extends Controller
     public function index()
     {
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-            // echo '<pre>';
-            // print_r($this->request->post);
-            // echo '</pre>';
-            // //die;
-            $this->db->query("TRUNCATE " . DB_PREFIX . "education_category");
+            // $this->db->query("TRUNCATE " . DB_PREFIX . "education_category");
             $post = $this->request->post;
-
             if (isset($post['education_category'])) {
                 foreach ($post['education_category'] as $ekey => $edu) {
                     $columnIds = [];
@@ -32,10 +27,18 @@ class ControllerCatalogEducationCategory extends Controller
                             $attributeIds[] = $key;
                         }
                     }
+                    $found = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_category WHERE category_id = '" . (int)$ekey . "' LIMIT 1");
+                    if ($found->num_rows == 0) {
                     $this->db->query("INSERT INTO " . DB_PREFIX . "education_category SET category_id = '" . (int)$ekey . "',
                         column_ids ='" . json_encode($columnIds) . "', filter_ids ='" . json_encode($filterIds) . "', attribute_ids ='" . json_encode($attributeIds) . "'");
+                    } else {
+                        $this->db->query("UPDATE " . DB_PREFIX . "education_category SET category_id = '" . (int)$ekey . "',
+                        column_ids ='" . json_encode($columnIds) . "', filter_ids ='" . json_encode($filterIds) . "', attribute_ids ='" . json_encode($attributeIds) . "' WHERE category_id ='" . (int)$ekey . "'");
+                    }
                 }
+                $this->session->data['success'] = 'Data Kategori Pendidikan Disimpan!!';
             }
+
         }
         $educations = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_category");
         $eduarray = [];
@@ -105,7 +108,7 @@ class ControllerCatalogEducationCategory extends Controller
         $lang = $this->model_localisation_language->getLanguageByCode($langCode);
         $this->load->model('catalog/filter');
 
-        $data['column_list'] = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column ORDER BY sort_order")->rows;
+        $data['column_list'] = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE coltype <> 'group' ORDER BY sort_order")->rows;
         $data['filter_list'] = $this->model_catalog_filter->getFilterGroups(array('language_id' => $lang['language_id']));
         $this->load->model('catalog/attribute_group');
         $data['attribute_list'] = $this->model_catalog_attribute_group->getAttributeGroups(array('language_id' => $lang['language_id']));
@@ -135,7 +138,8 @@ class ControllerCatalogEducationCategory extends Controller
             if ($category_info) {
                 $list[] = array(
                     'category_id' => $category_info['category_id'],
-                    'name'        => ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name']
+                    'name'        => ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name'],
+                    'school_list' => $this->url->link('catalog/school&category_id=' . $category_info['category_id'], 'token=' . $this->session->data['token'], true),
                 );
             }
         }

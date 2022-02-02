@@ -5,11 +5,11 @@ $_['heading_title']                = 'Masuk ke Akun';
 // Text
 $_['text_account']                 = 'Akun';
 $_['text_login']                   = 'Masuk';
-$_['text_new_customer']            = 'Pelanggan Baru';
+$_['text_new_customer']            = 'DAFTAR BARU';
 $_['text_register']                = 'Daftar Account';
-$_['text_register_account']        = 'Dengan membuat akun anda akan dapat berbelanja lebih cepat, akan selalu diperbarui status pesanan, dan melacak pesanan yang telah anda buat sebelumnya.';
-$_['text_returning_customer']      = 'Pelanggan Setia';
-$_['text_i_am_returning_customer'] = 'Saya adalah pelanggan setia';
+$_['text_register_account']        = 'Dengan membuat akun anda akan dapat Melihat semua informasi sekolah, Download Brosur Sekolah, dan juga mendaftar online ke sekolah Tujuan.';
+$_['text_returning_customer']      = 'Login';
+$_['text_i_am_returning_customer'] = '';
 $_['text_forgotten']               = 'Lupa Kata Sandi';
 
 // Entry

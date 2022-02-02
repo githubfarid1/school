@@ -10,7 +10,7 @@ image/cache/
 system/cache/
 system/logs/
 
-system/storage/
+#system/storage/
 
 # vQmod log files
 vqmod/logs/*
@@ -18,3 +18,6 @@ vqmod/logs/*
 vqmod/vqcache/*
 vqmod/checked.cache
 vqmod/mods.cache
+data-indonesia/
+data-indonesia-master.zip
+

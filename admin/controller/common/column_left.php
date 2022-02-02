@@ -74,30 +74,38 @@ class ControllerCommonColumnLeft extends Controller
 			//frd
 			if ($this->user->hasPermission('access', 'catalog/education_category')) {
 				$catalog[] = array(
-					'name'	   => 'Kategori Pendidikan',
+					'name'	   => 'Admin Kategori Pendidikan',
 					'href'     => $this->url->link('catalog/education_category', 'token=' . $this->session->data['token'], true),
 					'children' => array()
 				);
 			}
-			//frd
-			$edulist = $this->educationList();
-			$edumenu = [];
-			foreach ($edulist as $key => $e) {
-				if ($this->user->hasPermission('access', 'catalog/school')) {
-					$edumenu[] = array(
-						'name'	   => $e['name'],
-						'href'     => $this->url->link('catalog/school&category_id=' . $e['category_id'], 'token=' . $this->session->data['token'], true),
-						'children' => array()
-					);
-				}
-			}
-			if ($this->user->hasPermission('access', 'catalog/school')) {
+			if ($this->user->hasPermission('access', 'catalog/education_category_catalog')) {
 				$catalog[] = array(
-					'name'	   => 'Daftar Sekolah',
-					'href'     => '',
-					'children' => $edumenu
+					'name'	   => 'Catalog Kategori Pendidikan',
+					'href'     => $this->url->link('catalog/education_category_catalog', 'token=' . $this->session->data['token'], true),
+					'children' => array()
 				);
 			}
+
+			//frd
+			// $edulist = $this->educationList();
+			// $edumenu = [];
+			// foreach ($edulist as $key => $e) {
+			// 	if ($this->user->hasPermission('access', 'catalog/school')) {
+			// 		$edumenu[] = array(
+			// 			'name'	   => $e['name'],
+			// 			'href'     => $this->url->link('catalog/school&category_id=' . $e['category_id'], 'token=' . $this->session->data['token'], true),
+			// 			'children' => array()
+			// 		);
+			// 	}
+			// }
+			// if ($this->user->hasPermission('access', 'catalog/school')) {
+			// 	$catalog[] = array(
+			// 		'name'	   => 'Daftar Sekolah',
+			// 		'href'     => '',
+			// 		'children' => $edumenu
+			// 	);
+			// }
 			if ($this->user->hasPermission('access', 'catalog/schooluser')) {
 				$catalog[] = array(
 					'name'	   => 'Daftar Sekolah',

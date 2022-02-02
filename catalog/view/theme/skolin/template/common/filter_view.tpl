@@ -3,7 +3,7 @@
     <div class="row">
         <?php foreach ($items as $item) { ?>
             <div class="col-md-6">
-                <p><i class="<?=$icon;?>"></i>&nbsp;<?= $item; ?></p>
+                <p class="mb-2"><i class="<?=$icon;?>" style="<?=isset($iconstyle) ? $iconstyle : '';?>"></i>&nbsp;<?= $item; ?></p>
             </div>
         <?php } ?>
     </div>

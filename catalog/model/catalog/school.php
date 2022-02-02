@@ -31,6 +31,9 @@ class ModelCatalogSchool extends Model
 				'monthly_cost'     => $query->row['price'],
 				'reg_status_id'     => $query->row['stock_status_id'],
 				'date_closed' => $query->row['date_closed'],
+				'brosur_front' => $query->row['brosur_front'],
+				'brosur_back' => $query->row['brosur_back'],
+				'isregister' => $query->row['isregister'],
 			);
 		} else {
 			return false;
@@ -322,6 +325,8 @@ class ModelCatalogSchool extends Model
 		return $product_attribute_group_data;
 	}
 
+
+
 	public function getProductOptions($product_id)
 	{
 		$product_option_data = array();
@@ -548,22 +553,93 @@ class ModelCatalogSchool extends Model
 
 		return $product_filter_data;
 	}
-	public function getProductAttribute($product_id, $attribute_id) {
 
-		$product_attribute = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' AND attribute_id = '" . (int)$attribute_id . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1")->row;
-		// echo '<pre>' . print_r($product_attribute, true) . '</pre>';
-		if($product_attribute) {
-			return array(
-				'attribute_id' => $product_attribute['attribute_id'],
-				'product_attribute_description' => $product_attribute['text']
+	public function getProductFilter($product_id, $group_filter_id)
+	{
+		$product_filter_group_data = array();
+
+		$product_filter_group = $this->db->query("SELECT ag.filter_group_id, agd.name FROM " . DB_PREFIX . "product_filter pa LEFT JOIN " . DB_PREFIX . "filter a ON (pa.filter_id = a.filter_id) LEFT JOIN " . DB_PREFIX . "filter_group ag ON (a.filter_group_id = ag.filter_group_id) LEFT JOIN " . DB_PREFIX . "filter_group_description agd ON (ag.filter_group_id = agd.filter_group_id) WHERE pa.product_id = '" . (int)$product_id . "' AND ag.filter_group_id ='" . (int)$group_filter_id . "' AND agd.language_id = '" . (int)$this->config->get('config_language_id') . "'  ORDER BY ag.sort_order, agd.name LIMIT 1")->row;
+
+		// echo '<pre>' . print_r($product_filter_group ,true) . '</pre>';
+		// die;
+		if (!empty($product_filter_group)) {
+			//foreach ($product_filter_group_query->rows as $product_filter_group) {
+			$product_filter_data = array();
+
+			$product_filter_query = $this->db->query("SELECT a.filter_id, ad.name FROM " . DB_PREFIX . "product_filter pa LEFT JOIN " . DB_PREFIX . "filter a ON (pa.filter_id = a.filter_id) LEFT JOIN " . DB_PREFIX . "filter_description ad ON (a.filter_id = ad.filter_id) WHERE pa.product_id = '" . (int)$product_id . "' AND a.filter_group_id = '" . (int)$product_filter_group['filter_group_id'] . "' AND ad.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY a.sort_order, ad.name");
+
+			foreach ($product_filter_query->rows as $product_filter) {
+				$product_filter_data[] = array(
+					'filter_id' => $product_filter['filter_id'],
+					'name'         => $product_filter['name'],
+					//'text'         => $product_filter['text']
+				);
+			}
+
+			$product_filter_group_data = array(
+				'filter_group_id' => $product_filter_group['filter_group_id'],
+				'name'               => $product_filter_group['name'],
+				'filter'          => $product_filter_data
 			);
+			//}
 
-		} else {
-			return array(
-				'attribute_id' => null,
-				'product_attribute_description' => null
-			);
-
+			return $product_filter_group_data;
 		}
+		return null;
 	}
+
+
+	// public function getProductAttribute($product_id, $attribute_id) {
+
+	// 	$product_attribute = $this->db->query("SELECT * FROM " . DB_PREFIX . "product_attribute WHERE product_id = '" . (int)$product_id . "' AND attribute_id = '" . (int)$attribute_id . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1")->row;
+	// 	// echo '<pre>' . print_r($product_attribute, true) . '</pre>';
+	// 	if($product_attribute) {
+	// 		return array(
+	// 			'attribute_id' => $product_attribute['attribute_id'],
+	// 			'product_attribute_description' => $product_attribute['text']
+	// 		);
+
+	// 	} else {
+	// 		return array(
+	// 			'attribute_id' => null,
+	// 			'product_attribute_description' => null
+	// 		);
+
+	// 	}
+	// }
+
+	public function getProductAttribute2($product_id, $group_attribute_id)
+	{
+		$product_attribute_group_data = array();
+
+		$product_attribute_group = $this->db->query("SELECT ag.attribute_group_id, agd.name, ag.showlabel FROM " . DB_PREFIX . "product_attribute pa LEFT JOIN " . DB_PREFIX . "attribute a ON (pa.attribute_id = a.attribute_id) LEFT JOIN " . DB_PREFIX . "attribute_group ag ON (a.attribute_group_id = ag.attribute_group_id) LEFT JOIN " . DB_PREFIX . "attribute_group_description agd ON (ag.attribute_group_id = agd.attribute_group_id) WHERE pa.product_id = '" . (int)$product_id . "' AND ag.attribute_group_id ='" . (int)$group_attribute_id . "' AND agd.language_id = '" . (int)$this->config->get('config_language_id') . "'  ORDER BY ag.sort_order, agd.name LIMIT 1")->row;
+		if (!empty($product_attribute_group)) {
+			//foreach ($product_attribute_group_query->rows as $product_attribute_group) {
+			$product_attribute_data = array();
+
+			$product_attribute_query = $this->db->query("SELECT a.attribute_id, ad.name, pa.text FROM " . DB_PREFIX . "product_attribute pa LEFT JOIN " . DB_PREFIX . "attribute a ON (pa.attribute_id = a.attribute_id) LEFT JOIN " . DB_PREFIX . "attribute_description ad ON (a.attribute_id = ad.attribute_id) WHERE pa.product_id = '" . (int)$product_id . "' AND a.attribute_group_id = '" . (int)$product_attribute_group['attribute_group_id'] . "' AND ad.language_id = '" . (int)$this->config->get('config_language_id') . "' AND pa.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY a.sort_order, ad.name");
+
+			foreach ($product_attribute_query->rows as $product_attribute) {
+				$product_attribute_data[] = array(
+					'attribute_id' => $product_attribute['attribute_id'],
+					'name'         => $product_attribute['name'],
+					'text'         => $product_attribute['text']
+				);
+			}
+
+			$product_attribute_group_data = array(
+				'attribute_group_id' => $product_attribute_group['attribute_group_id'],
+				'name'               => $product_attribute_group['name'],
+				'showlabel'			 => $product_attribute_group['showlabel'],
+				'attribute'          => $product_attribute_data
+			);
+			//}
+
+			return $product_attribute_group_data;
+		}
+		return null;
+	}
+
+
+
 }

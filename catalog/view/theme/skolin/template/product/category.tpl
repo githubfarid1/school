@@ -1,14 +1,8 @@
 <?php echo $header; ?>
 <div class="container">
-    <!-- <ul class="breadcrumb">
-        <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-            <li><a href="<?php echo $breadcrumb['href']; ?>">
-                    <?php echo $breadcrumb['text']; ?>
-                </a></li>
-        <?php } ?>
-    </ul> -->
     <?= $breadcrumbs; ?>
-
+</div>
+<div class="container alert alert-warning">
     <div class="row">
         <?php echo $column_left; ?>
         <?php if ($column_left && $column_right) { ?>
@@ -21,7 +15,8 @@
         <div id="content" class="<?php echo $class; ?>">
             <?php echo $content_top; ?>
             <h1>
-                <?php echo $heading_title; ?>
+                <?php //echo $heading_title;
+                ?>
             </h1>
             <?php if ($thumb || $description) { ?>
                 <div class="row">
@@ -41,22 +36,64 @@
                     <?php //echo $text_refine;
                     ?>
                 </h3>
-                <div class="row">
-                    <!--<ul>-->
-                    <?php foreach ($categories as $category) { ?>
-                        <div class="col-sm-3" style="margin-bottom: 25px;">
-                            <!--<li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>-->
-                            <div class="card" style="border-style: dotted; padding-bottom: 15px;">
-                                <div class="card-body">
-                                    <h3 class="card-title" style="text-align: center;"><a href="<?php echo $category['href']; ?>">
-                                            <?php echo $category['name']; ?>
-                                        </a></h3>
+                <div class="d-none d-md-block">
+                    <div class="row" style="background: url('image/catalog/front.png'); min-height: 750px;">
+                        <div class="col-md-6 mt-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                    <h1 style="color: #ffffff;">Cara Mudah</h1>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-10">
+                                    <h2 style="color: #ffffff;">Mencari Sekolah</h2>
                                 </div>
                             </div>
                         </div>
-                    <?php } ?>
-                    <!--</ul>-->
+                        <div class="col-md-6">
+                            <div class="row">
+                                <?php foreach ($categories as $category) { ?>
+                                    <div class="col-sm-6" style="margin-top: 35px;">
+                                        <!--<li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>-->
+                                        <div class="card" style="padding: 10px;  background-color: rgba(245, 245, 245, 1);opacity: .5;">
+                                            <div class="card-body">
+                                                <h3 class="card-title" style="text-align: center;"><a href="<?php echo $category['href']; ?>">
+                                                        <?php echo $category['name']; ?>
+                                                    </a></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
+
+
+                <div class="d-sm-block d-md-none">
+                    <div class="row">
+                        <?php foreach ($categories as $category) { ?>
+                            <div class="col-6" style="margin-top: 35px;">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title" style="text-align: center;"><a href="<?php echo $category['href']; ?>">
+                                                <?php echo $category['name']; ?>
+                                            </a></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+
+                    </div>
+
+                </div>
+
             <?php } ?>
             <?php if ($products) { ?>
                 <div class="row">

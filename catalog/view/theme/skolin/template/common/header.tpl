@@ -44,6 +44,7 @@
   <script defer src="catalog/view/javascript/font-awesome/js/all.js"></script>
   <link href="catalog/view/javascript/font-awesome/css/all.css" rel="stylesheet" type="text/css" />
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link href="catalog/view/theme/skolin/stylesheet/stylesheet.css" rel="stylesheet">
   <?php foreach ($styles as $style) { ?>
     <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
@@ -63,7 +64,8 @@
 
 <body class="<?php echo $class; ?>">
   <header>
-    <nav class="navbar navbar-expand-lg  navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <!-- <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-warning"> -->
       <a class="navbar-brand" href="#">
         <img src="<?php //$logo;
                   ?>" alt="">

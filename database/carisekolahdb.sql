@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 11, 2022 at 12:25 PM
+-- Generation Time: Feb 02, 2022 at 10:23 AM
 -- Server version: 10.5.8-MariaDB-1:10.5.8+maria~focal
 -- PHP Version: 7.4.13
 
@@ -221,7 +221,17 @@ INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 (38, 10, 7),
 (39, 17, 1),
 (40, 17, 2),
-(41, 17, 3);
+(41, 17, 3),
+(42, 19, 0),
+(43, 19, 0),
+(44, 19, 3),
+(45, 16, 1),
+(46, 16, 2),
+(47, 16, 3),
+(48, 16, 4),
+(49, 16, 5),
+(50, 16, 6),
+(51, 16, 7);
 
 -- --------------------------------------------------------
 
@@ -242,19 +252,19 @@ CREATE TABLE `oc_attribute_description` (
 
 INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`, `mf_tooltip`) VALUES
 (21, 2, '#beasiswa3', NULL),
-(20, 1, '#beasiswa2', NULL),
+(48, 2, '#video4', NULL),
 (20, 2, '#beasiswa2', NULL),
+(45, 2, '#video1', NULL),
 (16, 2, 'Phone', NULL),
 (15, 2, 'Whatsapp', NULL),
 (17, 2, 'Web', NULL),
-(17, 1, 'Web', NULL),
+(47, 2, '#video3', NULL),
 (18, 2, 'Email', NULL),
-(18, 1, 'Email', NULL),
-(19, 1, '#beasiswa1', NULL),
-(16, 1, 'Phone', NULL),
-(15, 1, 'Whatsapp', NULL),
+(46, 2, '#video2', NULL),
+(44, 2, '#prog3', NULL),
+(43, 2, '#prog2', NULL),
 (19, 2, '#beasiswa1', NULL),
-(21, 1, '#beasiswa3', NULL),
+(42, 2, '#prog1', NULL),
 (22, 2, '#extra1', NULL),
 (23, 2, '#extra2', NULL),
 (24, 2, '#extra3', NULL),
@@ -274,7 +284,10 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`, `
 (38, 2, 'Ahad', NULL),
 (39, 2, '#info1', NULL),
 (40, 2, '#info2', NULL),
-(41, 2, '#info3', NULL);
+(41, 2, '#info3', NULL),
+(49, 2, '#video5', NULL),
+(50, 2, '#video6', NULL),
+(51, 2, '#video7', NULL);
 
 -- --------------------------------------------------------
 
@@ -301,7 +314,8 @@ INSERT INTO `oc_attribute_group` (`attribute_group_id`, `sort_order`, `showlabel
 (13, 6, 0),
 (14, 7, 0),
 (15, 8, 1),
-(16, 10, 0);
+(16, 10, 0),
+(19, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -321,22 +335,15 @@ CREATE TABLE `oc_attribute_group_description` (
 
 INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id`, `name`) VALUES
 (10, 2, 'Jam Belajar'),
-(9, 1, 'Extracurriculars'),
 (17, 2, 'Info'),
 (9, 2, 'Ekstrakurikuler'),
-(10, 1, 'Study Time'),
 (11, 2, 'Prestasi'),
-(11, 1, 'Achievement'),
 (12, 2, 'Program'),
-(12, 1, 'Programs'),
 (13, 2, 'Beasiswa'),
-(13, 1, 'Scholarship'),
 (14, 2, 'Media Sosial'),
-(14, 1, 'Social Media'),
 (15, 2, 'Kontak'),
-(15, 1, 'Contacts'),
 (16, 2, 'Video Youtube'),
-(16, 1, 'Youtube Video');
+(19, 2, 'Program Keahlian');
 
 -- --------------------------------------------------------
 
@@ -1056,7 +1063,7 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 0, '2021-12-26 08:32:50'),
 (2, 'US Dollar', 'USD', '$', '', '2', 0.00007000, 0, '2022-01-03 13:39:14'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 0, '2021-12-26 08:32:34'),
-(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-01-11 12:15:11');
+(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-02-02 08:33:49');
 
 -- --------------------------------------------------------
 
@@ -1089,6 +1096,13 @@ CREATE TABLE `oc_customer` (
   `code` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_customer`
+--
+
+INSERT INTO `oc_customer` (`customer_id`, `customer_group_id`, `store_id`, `language_id`, `firstname`, `lastname`, `email`, `telephone`, `fax`, `password`, `salt`, `cart`, `wishlist`, `newsletter`, `address_id`, `custom_field`, `ip`, `status`, `approved`, `safe`, `token`, `code`, `date_added`) VALUES
+(2, 1, 0, 2, 'farid', '', 'kenan@okpazar.com', '03902922', '', 'd8d93752bf0b29f863cc47cbd97dc13fe4c47aed', 'wJrMwX0nR', NULL, NULL, 0, 0, '', '172.16.238.1', 1, 1, 0, '', '', '2022-01-17 08:39:09');
 
 -- --------------------------------------------------------
 
@@ -1170,6 +1184,13 @@ CREATE TABLE `oc_customer_ip` (
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_customer_ip`
+--
+
+INSERT INTO `oc_customer_ip` (`customer_ip_id`, `customer_id`, `ip`, `date_added`) VALUES
+(2, 2, '172.16.238.1', '2022-01-17 08:39:09');
 
 -- --------------------------------------------------------
 
@@ -1362,27 +1383,33 @@ CREATE TABLE `oc_education_category` (
   `category_id` int(11) NOT NULL,
   `column_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`column_ids`)),
   `filter_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`filter_ids`)),
-  `attribute_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`attribute_ids`))
+  `attribute_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`attribute_ids`)),
+  `column_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `filter_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `attribute_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `info_detail_theme` varchar(50) DEFAULT NULL,
+  `registration_theme` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `oc_education_category`
 --
 
-INSERT INTO `oc_education_category` (`category_id`, `column_ids`, `filter_ids`, `attribute_ids`) VALUES
-(64, '[1,5,9]', '[]', '[]'),
-(65, '[1,5,9]', '[]', '[]'),
-(66, '[1,5,9]', '[]', '[]'),
-(67, '[1,5,9]', '[]', '[]'),
-(68, '[1,5,9]', '[]', '[]'),
-(69, '[1,5,9]', '[]', '[]'),
-(70, '[1,5,9]', '[]', '[]'),
-(71, '[1,5,9]', '[]', '[]'),
-(72, '[1,5,9]', '[]', '[]'),
-(73, '[1,5,9]', '[]', '[]'),
-(74, '[1,5,9]', '[]', '[]'),
-(75, '[1,5,9]', '[]', '[]'),
-(76, '[1,5,9]', '[]', '[]');
+INSERT INTO `oc_education_category` (`category_id`, `column_ids`, `filter_ids`, `attribute_ids`, `column_json`, `filter_json`, `attribute_json`, `info_detail_theme`, `registration_theme`) VALUES
+(64, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(65, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(66, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(67, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(68, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(69, '[1,5,9,2,19,10,8,6,17,18]', '[4,8,2,7,6,5,3]', '[13,9,17,10]', '[{\"id\":10,\"column_theme\":\"images_carousel1_view\",\"screen_size\":\"12\",\"sort_order\":\"1\"},{\"id\":8,\"column_theme\":\"images_carousel2_view\",\"screen_size\":\"12\",\"sort_order\":\"3\"},{\"id\":16,\"column_theme\":\"group_identity_view\",\"screen_size\":\"\",\"sort_order\":\"2\"}]', '[{\"id\":4,\"filter_theme\":\"default\",\"screen_size\":\"12\",\"sort_order\":\"7\",\"icon\":\"\"},{\"id\":8,\"filter_theme\":\"filter_view\",\"screen_size\":\"6\",\"sort_order\":\"6\",\"icon\":\"\"},{\"id\":1,\"filter_theme\":\"filter_view\",\"screen_size\":\"12\",\"sort_order\":\"8\",\"icon\":\"\"}]', '[{\"id\":9,\"attribute_theme\":\"attribute_view\",\"screen_size\":\"6\",\"sort_order\":\"4\",\"icon\":\"&lt;i class=&quot;fas fa-user-clock&quot; style=&quot;font-size: 24px;&quot;&gt;&lt;/i&gt;\"},{\"id\":17,\"attribute_theme\":\"attribute_marquee_view\",\"screen_size\":\"12\",\"sort_order\":\"-1\",\"icon\":\"\"},{\"id\":10,\"attribute_theme\":\"attribute_table_view\",\"screen_size\":\"6\",\"sort_order\":\"5\",\"icon\":\"\"}]', 'paud_detail_template', 'paud_registration_form'),
+(70, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(71, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(72, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(73, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(74, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(75, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(76, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
+(77, '[1,5,9,2,19,8,17]', '[6]', '[10,16]', '[{\"id\":8,\"column_theme\":\"images_carousel2_view\",\"screen_size\":\"6\",\"sort_order\":\"\"},{\"id\":16,\"column_theme\":\"group_identity_view\",\"screen_size\":\"6\",\"sort_order\":\"\"}]', '[]', '[]', 'default', 'default');
 
 -- --------------------------------------------------------
 
@@ -1394,11 +1421,12 @@ CREATE TABLE `oc_education_column` (
   `education_column_id` int(11) NOT NULL,
   `description` varchar(50) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `colname` varchar(50) NOT NULL,
+  `colname` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `required` tinyint(1) DEFAULT NULL,
   `multilang` tinyint(1) DEFAULT NULL,
   `coltype` varchar(30) NOT NULL,
   `length` varchar(10) NOT NULL,
+  `templatable` tinyint(1) DEFAULT 0,
   `sort_order` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1406,19 +1434,23 @@ CREATE TABLE `oc_education_column` (
 -- Dumping data for table `oc_education_column`
 --
 
-INSERT INTO `oc_education_column` (`education_column_id`, `description`, `name`, `colname`, `required`, `multilang`, `coltype`, `length`, `sort_order`) VALUES
-(1, 'product_description.name', 'Nama Sekolah', 'school_name', 2, 1, 'text', '', 1),
-(2, 'product_description.description', 'Profil Sekolah', 'school_profile', 1, 1, 'textarea', '', 4),
-(3, 'product_image:41-45', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '41-45', 9),
-(5, 'product.address', 'Alamat', 'address', 2, 0, 'text', '', 2),
-(6, 'product.akreditasi', 'Status Akreditasi', 'akreditasi', 0, 0, 'text', '', 12),
-(7, 'product_image:46-50', 'Foto Program', 'photo_secondary', 0, 0, 'images', '46-50', 10),
-(8, 'product_image:21-40', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '21-40', 11),
-(9, 'product.image', 'Logo', 'photo_main', 2, 0, 'image', '', 3),
-(10, 'product_image:1-20', 'Foto Gallery', 'photo_secondary', 0, 0, 'images', '1-20', 6),
-(11, 'product_description.faq', 'FAQ', 'faq', 0, 1, 'textarea', '', 13),
-(12, 'product.price', 'SPP Bulanan', 'monthly_cost', 0, 0, 'number', '', 7),
-(13, 'product.price2', 'Biaya Masuk', 'first_cost', 0, 0, 'number', '', 8);
+INSERT INTO `oc_education_column` (`education_column_id`, `description`, `name`, `colname`, `required`, `multilang`, `coltype`, `length`, `templatable`, `sort_order`) VALUES
+(1, 'product_description.name', 'Nama Sekolah', 'school_name', 2, 1, 'text', '', 0, 1),
+(2, 'product_description.description', 'Profil Sekolah', 'school_profile', 2, 1, 'textarea', '', 0, 4),
+(3, 'product_image:41-45', 'Foto Promo', 'photo_secondary', 0, 0, 'images', '41-45', 1, 9),
+(5, 'product.address', 'Alamat', 'address', 2, 0, 'text', '', 0, 2),
+(6, 'product.akreditasi', 'Status Akreditasi', 'akreditasi', 0, 0, 'text', '', 0, 12),
+(7, 'product_image:61-70', 'Foto Program', 'photo_secondary', 0, 0, 'images', '61-70', 1, 10),
+(8, 'product_image:21-60', 'Foto Pengajar', 'photo_secondary', 0, 0, 'images', '21-60', 1, 11),
+(9, 'product.image', 'Logo', 'photo_main', 2, 0, 'image', '', 0, 3),
+(10, 'product_image:1-20', 'Foto Gallery', 'photo_secondary', 0, 0, 'images', '1-20', 1, 6),
+(11, 'product_description.faq', 'FAQ', 'faq', 0, 1, 'textarea', '', 0, 13),
+(12, 'product.price', 'SPP Bulanan', 'monthly_cost', 0, 0, 'currency', '', 0, 7),
+(13, 'product.price2', 'Biaya Masuk', 'first_cost', 0, 0, 'number', '', 0, 8),
+(16, 'Identitas Sekolah', 'Group Identitas Sekolah', '[1,2,5,9,6,17,18,19]', 0, 0, 'group', '', 0, 16),
+(17, 'product.brosur_front', 'Brosur Depan', 'brosur_front', 2, 0, 'brosur', '', 0, 15),
+(18, 'product.brosur_back', 'Brosur Belakang', 'brosur_back', 1, 0, 'brosur', '', 0, 16),
+(19, 'product.isregister', 'Pendaftaran', 'isregister', 2, 0, 'tinyint', '', 0, 4);
 
 -- --------------------------------------------------------
 
@@ -3352,7 +3384,6 @@ CREATE TABLE `oc_language` (
 --
 
 INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
-(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 2, 0),
 (2, 'Indonesia', 'id-id', 'id_ID', '', '', 1, 1);
 
 -- --------------------------------------------------------
@@ -3410,21 +3441,21 @@ INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `positi
 (3, 4, '0', 'content_top', 1),
 (20, 5, '0', 'column_left', 2),
 (69, 10, 'affiliate', 'column_right', 1),
-(68, 6, 'account', 'column_right', 1),
+(380, 6, 'account', 'column_right', 0),
 (67, 1, 'carousel.29', 'content_top', 3),
 (66, 1, 'slideshow.27', 'content_top', 1),
 (65, 1, 'featured.28', 'content_top', 2),
 (365, 13, 'mega_filter.6', 'column_left', 0),
 (367, 13, 'mega_filter.5', 'column_left', 0),
 (366, 3, 'mega_filter.5', 'column_left', 0),
-(369, 13, 'mega_filter.4', 'column_left', 0),
-(368, 3, 'mega_filter.4', 'column_left', 0),
-(371, 13, 'mega_filter.3', 'column_left', 0),
-(370, 3, 'mega_filter.3', 'column_left', 0),
+(400, 13, 'mega_filter.4', 'column_left', 0),
+(399, 3, 'mega_filter.4', 'column_left', 0),
+(386, 13, 'mega_filter.3', 'column_left', 0),
+(385, 3, 'mega_filter.3', 'column_left', 0),
 (373, 13, 'mega_filter.2', 'column_left', 0),
 (372, 3, 'mega_filter.2', 'column_left', 0),
-(375, 13, 'mega_filter.1', 'column_left', 0),
-(374, 3, 'mega_filter.1', 'column_left', 0),
+(398, 13, 'mega_filter.1', 'column_left', 0),
+(397, 3, 'mega_filter.1', 'column_left', 0),
 (259, 13, 'mega_filter.7', 'column_left', 0),
 (258, 3, 'mega_filter.7', 'column_left', 0),
 (261, 13, 'mega_filter.8', 'column_left', 0),
@@ -3457,7 +3488,7 @@ CREATE TABLE `oc_layout_route` (
 --
 
 INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
-(38, 6, 0, 'account/%'),
+(58, 6, 0, 'account/%'),
 (17, 10, 0, 'affiliate/%'),
 (56, 3, 0, 'product/category'),
 (42, 1, 0, 'common/home'),
@@ -3657,7 +3688,7 @@ CREATE TABLE `oc_mfilter_settings` (
 INSERT INTO `oc_mfilter_settings` (`idx`, `settings`) VALUES
 (6, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Sekolah Dasar - Primary\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"71\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
 (5, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"100\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"1\"},\"display_live_filter\":{\"enabled\":\"1\",\"items\":\"10\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Sekolah Dasar - SD\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"70\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
-(4, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - PAUD\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"69\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
+(4, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"mobile\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"6\":{\"enabled\":\"1\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"mobile\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\",\"sort_order\":\"\"},\"2\":{\"enabled\":\"1\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"mobile\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\",\"sort_order\":\"\"}},\"name\":\"Prasekolah - PAUD\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"69\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
 (3, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - preschool\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"67\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
 (2, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - TK\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"68\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}'),
 (1, '{\"attribs\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"},\"settings\":{\"display_in_group\":\"0\"}},\"options\":{\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"base_attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\",\"collapsed\":\"0\"},\"search\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"\",\"refresh_delay\":\"1000\",\"button\":\"0\"},\"manufacturers\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"model\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"sku\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"upc\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"ean\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"jan\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"isbn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"mpn\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"location\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"text\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"length\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"width\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"height\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"weight\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"slider\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"discounts\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\",\"display_live_filter\":\"\"},\"stock_status\":{\"enabled\":\"0\",\"sort_order\":\"\",\"display_as_type\":\"checkbox\",\"display_list_of_items\":\"\",\"collapsed\":\"0\"},\"rating\":{\"enabled\":\"0\",\"sort_order\":\"\",\"collapsed\":\"0\"}},\"configuration\":{\"show_loader_over_results\":\"1\",\"show_loader_over_filter\":\"0\",\"auto_scroll_to_results\":\"0\",\"add_pixels_from_top\":\"0\",\"ajax_pagination\":\"0\",\"infinite_scroll\":\"0\",\"refresh_results\":\"immediately\",\"display_list_of_items\":{\"type\":\"scroll\",\"max_height\":\"155\",\"standard_scroll\":\"0\",\"limit_of_items\":\"4\"},\"display_live_filter\":{\"enabled\":\"0\",\"items\":\"1\"},\"background_color_counter\":\"#428bca\",\"text_color_counter\":\"#ffffff\",\"background_color_search_button\":\"#428bca\",\"background_color_slider\":\"\",\"background_color_header\":\"\",\"text_color_header\":\"\",\"border_bottom_color_header\":\"\",\"image_size_width\":\"20\",\"image_size_height\":\"20\",\"color_of_loader_over_results\":\"\",\"color_of_loader_over_filter\":\"\",\"background_color_widget_button\":\"\",\"css_style\":\"\",\"javascript\":\"MegaFilter.prototype.beforeRequest = function() {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.beforeRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\\nMegaFilter.prototype.afterRender = function( htmlResponse, htmlContent, json ) {\\n\\tvar self = this;\\n};\\n\",\"content_selector\":\"#mfilter-content-container\",\"content_selector_h1\":\"#content h1,#content h2\",\"content_selector_pagination\":\"#mfilter-content-container .pagination:first\",\"content_selector_product\":\"#mfilter-content-container .product-layout:first\",\"type_of_condition\":\"or\",\"calculate_number_of_products\":\"1\",\"show_number_of_products\":\"1\",\"hide_inactive_values\":\"0\",\"show_reset_button\":\"0\",\"show_top_reset_button\":\"0\",\"in_stock_default_selected\":\"0\",\"manual_init\":\"0\",\"change_top_to_column_on_mobile\":\"0\"},\"filters\":{\"based_on_category\":\"0\",\"default\":{\"enabled\":\"0\",\"type\":\"checkbox\",\"display_live_filter\":\"\",\"collapsed\":\"0\",\"display_list_of_items\":\"\",\"sort_order_values\":\"\"}},\"name\":\"Prasekolah - daycare\",\"title\":{\"2\":\"Pencarian\"},\"layout_id\":[\"3\",\"13\"],\"category_id\":[\"66\"],\"store_id\":[\"0\"],\"position\":\"column_left\",\"inline_horizontal\":\"0\",\"display_always_as_widget\":\"0\",\"widget_with_swipe\":\"1\",\"widget_position\":\"\",\"display_selected_filters\":\"0\",\"status\":\"1\",\"theme\":\"\",\"sort_order\":\"\"}');
@@ -4575,8 +4606,19 @@ CREATE TABLE `oc_product` (
   `address` varchar(255) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `image_size_type` tinyint(1) NOT NULL,
-  `date_closed` date NOT NULL
+  `date_closed` date NOT NULL,
+  `brosur_pdf` varchar(100) DEFAULT NULL,
+  `brosur_front` varchar(255) DEFAULT NULL,
+  `brosur_back` varchar(255) DEFAULT NULL,
+  `isregister` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_product`
+--
+
+INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `price2`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `image_name`, `image_description`, `akreditasi`, `address`, `user_id`, `image_size_type`, `date_closed`, `brosur_pdf`, `brosur_front`, `brosur_back`, `isregister`) VALUES
+(93, 'PAUD Wahdah Islamiyah', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/log studal.jpg', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 552, '2022-02-02 10:07:52', '0000-00-00 00:00:00', '', '', 'A', 'Jl. Gajah mada 233 RT 3 RW 1 Candi, Sidoarjo Jawa timur Indonesia ', 3, 0, '0000-00-00', NULL, 'catalog/bro1.jpg', '', 1);
 
 -- --------------------------------------------------------
 
@@ -4590,6 +4632,26 @@ CREATE TABLE `oc_product_attribute` (
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_product_attribute`
+--
+
+INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
+(93, 40, 2, 'Sekolah akan mengadakan pertemuan wali murid pada 10 januari 2022'),
+(93, 39, 2, 'Pendaftaran berakhir pada 10 Februari 2022'),
+(93, 38, 2, 'Libur'),
+(93, 37, 2, 'Libur'),
+(93, 36, 2, '7:00 s/d 11:00'),
+(93, 35, 2, '7:00 s/d 13:00'),
+(93, 34, 2, '7:00 s/d 13:00'),
+(93, 33, 2, '7:00 s/d 13:00'),
+(93, 32, 2, '7:00 s/d 13:00'),
+(93, 26, 2, 'Masak'),
+(93, 22, 2, 'Matematika Club'),
+(93, 25, 2, 'Pramuka'),
+(93, 23, 2, 'Karate'),
+(93, 24, 2, 'Sepakbola');
 
 -- --------------------------------------------------------
 
@@ -4608,6 +4670,13 @@ CREATE TABLE `oc_product_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_keyword` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_product_description`
+--
+
+INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `description`, `faq`, `tag`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
+(93, 2, 'PAUD Wahdah Islamiyah', '&lt;p style=&quot;box-sizing: inherit; margin-bottom: 15px; color: rgb(114, 114, 114); font-family: Roboto, sans-serif; font-size: 14px;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;&lt;strong style=&quot;box-sizing: inherit;&quot;&gt;VISI&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;cont-box&quot; style=&quot;box-sizing: inherit; color: rgb(114, 114, 114); font-family: Roboto, sans-serif; font-size: 14px;&quot;&gt;&lt;p style=&quot;box-sizing: inherit; margin-bottom: 15px;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Terwujudnya sekolah Islam yang amanah, unggul, mandiri, inovatif dalam menghasilkan lulusan kompeten dan bertaqwa&lt;/span&gt;&lt;/p&gt;&lt;hr style=&quot;height: 1px; background-color: rgb(204, 204, 204); border-top: 0px; margin-bottom: 1.5em;&quot;&gt;&lt;p style=&quot;box-sizing: inherit; margin-bottom: 15px;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;&lt;strong style=&quot;box-sizing: inherit;&quot;&gt;MISI&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;ol style=&quot;box-sizing: inherit; margin-right: 0px; margin-bottom: 0.5em; margin-left: 0px; list-style-position: initial; list-style-image: initial; padding: 0px 0px 0px 20px;&quot;&gt;&lt;li style=&quot;box-sizing: inherit;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Mengaplikasikan prinsip-prinsip Islam berbasis Alquran dan hadits dalam pengelolaan seklah yang amanah dan profesional.&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: inherit;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Mengembangkan keunggulan dalam pencapaian standar-standar pendidikan dengan memanfaatkan perkembangan teknologi dan informasi.&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: inherit;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Mengelola sumber-sumber daya secara amanah, efektif dan efisien guna mencapai kemandirian dan pengembangan sekolah.&lt;/span&gt;&lt;/li&gt;&lt;li style=&quot;box-sizing: inherit;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Memfasilitasi kegiatan belajar berkelanjutan bagi seluruh warga sekolah dan mendorong inovasi penunjang mutu lulusan kompetitif dan bertaqwa.&lt;/span&gt;&lt;/li&gt;&lt;/ol&gt;&lt;hr style=&quot;height: 1px; background-color: rgb(204, 204, 204); border-top: 0px; margin-bottom: 1.5em;&quot;&gt;&lt;p style=&quot;box-sizing: inherit; margin-bottom: 15px;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;&lt;strong style=&quot;box-sizing: inherit;&quot;&gt;TUJUAN&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;box-sizing: inherit; margin-bottom: 15px;&quot;&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;Membentuk pribadi anak didik yang unggul baik dalam aspek Pembiasaan maupun aspek Perkembangan Kemampuan Dasar dengan dasar Iman dan Taqwa kepada Allah SWT.&lt;/span&gt;&lt;/p&gt;&lt;div&gt;&lt;span style=&quot;box-sizing: inherit; color: rgb(0, 0, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;', '', '', 'PAUD Wahdah Islamiyah', 'PAUD Wahdah Islamiyah', 'PAUD Wahdah Islamiyah');
 
 -- --------------------------------------------------------
 
@@ -4637,6 +4706,24 @@ CREATE TABLE `oc_product_filter` (
   `filter_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `oc_product_filter`
+--
+
+INSERT INTO `oc_product_filter` (`product_id`, `filter_id`) VALUES
+(93, 8),
+(93, 11),
+(93, 14),
+(93, 489),
+(93, 533),
+(93, 534),
+(93, 535),
+(93, 538),
+(93, 542),
+(93, 543),
+(93, 545),
+(93, 546);
+
 -- --------------------------------------------------------
 
 --
@@ -4651,6 +4738,27 @@ CREATE TABLE `oc_product_image` (
   `image_description` text NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_product_image`
+--
+
+INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `image_name`, `image_description`, `sort_order`) VALUES
+(4559, 93, 'catalog/qrcode.png', '', '', 30),
+(4558, 93, 'catalog/photo_profile6.jpg', '', '', 29),
+(4557, 93, 'catalog/logo.jpg', '', '', 28),
+(4556, 93, 'catalog/photo_profile1.png', '', '', 27),
+(4555, 93, 'catalog/photo7.jpeg', '', '', 26),
+(4554, 93, 'catalog/photo_profile3.jpg', '', '', 25),
+(4553, 93, 'catalog/photo_profile8.jpg', '', '', 24),
+(4552, 93, 'catalog/photo_profile4.jpg', '', '', 23),
+(4551, 93, 'catalog/photo_profile6.jpg', '', '', 22),
+(4550, 93, 'catalog/photo_profile2.jpg', '', '', 21),
+(4549, 93, 'catalog/tkit-bait.jpg', '', '', 5),
+(4548, 93, 'catalog/sdjkt1.jpg', '', '', 4),
+(4547, 93, 'catalog/sd-muh-4.jpg', '', '', 3),
+(4546, 93, 'catalog/preschool3.jpg', '', '', 2),
+(4545, 93, 'catalog/preschool2.jpg', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -4751,6 +4859,13 @@ CREATE TABLE `oc_product_to_category` (
   `category_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `oc_product_to_category`
+--
+
+INSERT INTO `oc_product_to_category` (`product_id`, `category_id`) VALUES
+(93, 69);
+
 -- --------------------------------------------------------
 
 --
@@ -4784,6 +4899,13 @@ CREATE TABLE `oc_product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_product_to_store`
+--
+
+INSERT INTO `oc_product_to_store` (`product_id`, `store_id`) VALUES
+(93, 0);
 
 -- --------------------------------------------------------
 
@@ -4979,17 +5101,17 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (2073, 0, 'theme_default', 'theme_default_image_location_height', '50', 0),
 (4, 0, 'voucher', 'voucher_sort_order', '8', 0),
 (5, 0, 'voucher', 'voucher_status', '1', 0),
-(2039, 0, 'config', 'config_compression', '0', 0),
-(2040, 0, 'config', 'config_secure', '0', 0),
-(2041, 0, 'config', 'config_password', '1', 0),
-(2042, 0, 'config', 'config_shared', '0', 0),
-(2043, 0, 'config', 'config_encryption', 'W962p7BFdaPvOCtHDGqbKa30smDHZcFj9KDOEmqXvjpQoZFsVdxpb72WN26lW3KHbBNjYiHqQcXclvcFne1XRKueVBQGLwWsiRMl6uYmyVB6lxB9rsb12AA3NCmppDsnVdtxUHaoxaecX6fEP1Y4VvXu8B57cZoVAGRUsnEV59CiLLttKvIey0B2vSZiYg3XtvrJOjwJ8JZ3C9qlyeJOMl9HqghE5jdqbJ4zzM8lAKxsMEK2fkkhwW1kaeXOOTW88YpmDI708PUndfLfXmXFi9CYARrrsSTFDbRs7t37qXS8COjV0QyFSRStsMw70JxASwsZt50PtNOnJEdoozOfNj5iznIklmvOIF7beNxpnmrcKS3xtBbtvtEaiYcgr9kvQYyFLF40FrAe4ZcqXW50dG0jxenAGiGVGItkAMh3EMCDaCl9RlILnrjba5p7KqIh9r0kTcD7IbCQAX4RWcEUaDDSKeSaOXJHlJOvSU11aHZWBIX9GFlhcnsD7iwYLOZCgQQLEe5lehtHUeDtxCKQcmPRHca203Dt6WWnQxtI4PtTPfboUuEgksiaFxnOy2xkviTWwDNZjhvvO7CqlOcNQYT6JtamG3Zj4D1voSOafwm0zf5xj1KfR7dAMM04XGhvGwRBvR9Bi0plMoOQOuU0r2bZC7BctqXcTdyg1MieJElsU4h9fzLuOtxvJ7lhIdpQqs2DWgovPmmf4QyOBrlmWoIiXdwgioj0bPN2P4m2A4X9zQr6nK89gzizwys2dYuWd325uYnyPobE9acsaYlQ8MUTSCfGge3bB0zUnfOFeohSVeY9kQ0qNEN1ZQLVcgMz0VyC1onjZNn1ti0b7G3OXobRMKymOWVH4mI9GLN35aC3Gqp8yEn0x8RHvd71xqujIvQi0DgZgUGy1L8JQ5NjN8xfdyDGqtcZPj9s5Ivyu0w2fHprUW9BORq9nt9NDICSDIoPBKWJJFLd71axzxDPCXo3j3bSwtVCtwqi3PnIOgfdzOJOcYvpydoe9oPmIPY6', 0),
-(2049, 0, 'config', 'config_error_filename', 'error.log', 0),
-(2044, 0, 'config', 'config_file_max_size', '300000', 0),
-(2045, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
-(2046, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
-(2047, 0, 'config', 'config_error_display', '1', 0),
-(2048, 0, 'config', 'config_error_log', '1', 0),
+(2712, 0, 'config', 'config_error_display', '1', 0),
+(2713, 0, 'config', 'config_error_log', '1', 0),
+(2714, 0, 'config', 'config_error_filename', 'error.log', 0),
+(2701, 0, 'config', 'config_maintenance', '0', 0),
+(2702, 0, 'config', 'config_seo_url', '0', 0),
+(2703, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(2704, 0, 'config', 'config_compression', '0', 0),
+(2705, 0, 'config', 'config_secure', '0', 0),
+(2706, 0, 'config', 'config_password', '1', 0),
+(2707, 0, 'config', 'config_shared', '0', 0),
+(2708, 0, 'config', 'config_encryption', 'W962p7BFdaPvOCtHDGqbKa30smDHZcFj9KDOEmqXvjpQoZFsVdxpb72WN26lW3KHbBNjYiHqQcXclvcFne1XRKueVBQGLwWsiRMl6uYmyVB6lxB9rsb12AA3NCmppDsnVdtxUHaoxaecX6fEP1Y4VvXu8B57cZoVAGRUsnEV59CiLLttKvIey0B2vSZiYg3XtvrJOjwJ8JZ3C9qlyeJOMl9HqghE5jdqbJ4zzM8lAKxsMEK2fkkhwW1kaeXOOTW88YpmDI708PUndfLfXmXFi9CYARrrsSTFDbRs7t37qXS8COjV0QyFSRStsMw70JxASwsZt50PtNOnJEdoozOfNj5iznIklmvOIF7beNxpnmrcKS3xtBbtvtEaiYcgr9kvQYyFLF40FrAe4ZcqXW50dG0jxenAGiGVGItkAMh3EMCDaCl9RlILnrjba5p7KqIh9r0kTcD7IbCQAX4RWcEUaDDSKeSaOXJHlJOvSU11aHZWBIX9GFlhcnsD7iwYLOZCgQQLEe5lehtHUeDtxCKQcmPRHca203Dt6WWnQxtI4PtTPfboUuEgksiaFxnOy2xkviTWwDNZjhvvO7CqlOcNQYT6JtamG3Zj4D1voSOafwm0zf5xj1KfR7dAMM04XGhvGwRBvR9Bi0plMoOQOuU0r2bZC7BctqXcTdyg1MieJElsU4h9fzLuOtxvJ7lhIdpQqs2DWgovPmmf4QyOBrlmWoIiXdwgioj0bPN2P4m2A4X9zQr6nK89gzizwys2dYuWd325uYnyPobE9acsaYlQ8MUTSCfGge3bB0zUnfOFeohSVeY9kQ0qNEN1ZQLVcgMz0VyC1onjZNn1ti0b7G3OXobRMKymOWVH4mI9GLN35aC3Gqp8yEn0x8RHvd71xqujIvQi0DgZgUGy1L8JQ5NjN8xfdyDGqtcZPj9s5Ivyu0w2fHprUW9BORq9nt9NDICSDIoPBKWJJFLd71axzxDPCXo3j3bSwtVCtwqi3PnIOgfdzOJOcYvpydoe9oPmIPY6', 0),
 (95, 0, 'free_checkout', 'free_checkout_status', '1', 0),
 (96, 0, 'free_checkout', 'free_checkout_order_status_id', '1', 0),
 (97, 0, 'shipping', 'shipping_sort_order', '3', 0),
@@ -5019,7 +5141,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (121, 0, 'reward', 'reward_sort_order', '2', 0),
 (122, 0, 'reward', 'reward_status', '1', 0),
 (123, 0, 'category', 'category_status', '1', 0),
-(124, 0, 'account', 'account_status', '1', 0),
+(2167, 0, 'account', 'account_status', '0', 0),
 (125, 0, 'affiliate', 'affiliate_status', '1', 0),
 (2071, 0, 'theme_default', 'theme_default_image_cart_height', '47', 0),
 (2070, 0, 'theme_default', 'theme_default_image_cart_width', '47', 0),
@@ -5067,94 +5189,94 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (173, 0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
 (177, 0, 'mfilter_version', 'mfilter_version', '2.0.5.6.4', 0),
 (178, 0, 'mega_filter_module', 'mega_filter_module', '[]', 1),
-(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"nzn7867gNZ!fGaNWAZhBs1XhhCXjl*gotcsdv79z6v69x6\"}', 1),
+(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"v8v5645dVoPsDnVLNofCm?pffZpgj^duezsd885xx56794\"}', 1),
 (179, 0, 'mega_filter_settings', 'mega_filter_settings', '{\"show_number_of_products\":\"1\",\"calculate_number_of_products\":\"1\",\"show_loader_over_results\":\"1\",\"css_style\":\"\",\"content_selector\":\"#mfilter-content-container\",\"refresh_results\":\"immediately\",\"attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\"}},\"layout_c\":\"3\",\"display_live_filter\":{\"items\":\"1\"}}', 1),
 (180, 0, 'mega_filter_seo', 'mega_filter_seo', '{\"enabled\":\"0\"}', 1),
 (181, 0, 'mega_filter_status', 'mega_filter_status', '1', 0),
 (182, 0, 'mega_filter_themes', 'mega_filter_themes', '{\".mfilter-light-theme\":{\"code\":\"\\/* \\/\\/ HORIZONTAL TOP \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/*\\/\\r\\n\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li {\\r\\n\\tborder-top: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-heading {\\r\\n\\tborder-left: 1px solid #dbdee1;\\r\\n}\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-content-opts {\\r\\n\\tborder-right: 1px solid #dbdee1;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li .mfilter-heading .mfilter-heading-content{\\r\\n\\tmargin-left: 10px;\\r\\n\\tborder: none;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-cat_checkbox .mfilter-tb \\u003E .mfilter-tb-as-tr, \\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb {\\r\\n\\tbackground: #f5f5f5;\\r\\n\\tbackground-image: -moz-linear-gradient(center top , #f5f5f5, #f1f1f1);\\r\\n\\tborder: 1px solid #dedede;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:first-child .mfilter-heading,\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:first-child .mfilter-content-opts {\\r\\n\\tborder-top: 1px solid #dbdee1;\\r\\n}\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:last-child .mfilter-heading,\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content \\u003E ul \\u003E li:last-child .mfilter-content-opts {\\r\\n\\tborder-bottom: 1px solid #dbdee1;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb-as-tr .mfilter-tb-as-td{\\r\\n\\tborder-top: none;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-cat_checkbox .mfilter-tb \\u003E .mfilter-tb-as-tr:hover, \\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-tb .mfilter-tb:hover {\\r\\n\\tbackground-color: #f8f8f8;\\r\\n    background-image: -moz-linear-gradient(center top , #f8f8f8, #f1f1f1);\\r\\n    border: 1px solid #c6c6c6;\\r\\n    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-inputs{\\r\\n\\tmargin-left: 5px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-inputs input{\\r\\n\\tmargin: 2px 0;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-price-slider {\\r\\n\\tmargin: 6px 0 0 10px;\\r\\n}\\r\\n\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-search{\\r\\n\\tmargin: 0 16px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-search #mfilter-opts-search{\\r\\n\\tmargin-top: 2px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-category-tree{\\r\\n\\tmargin: 6px 0 0 10px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content .mfilter-button-top {\\r\\n\\tborder-bottom: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-content .mfilter-button-bottom {\\r\\n\\tborder-top: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-button-top.mfilter-light-theme {\\r\\n\\tborder-bottom: 1px solid #EEEEEE;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-slider-inputs .mfilter-opts-slider-min{\\r\\n\\tmargin-left: 13px;\\r\\n}\\r\\n\\r\\n.mfilter-content_top.mfilter-light-theme .mfilter-text .mfilter-slider-inputs input{\\r\\n\\tmargin-left: 13px;\\r\\n\\twidth: 96%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-inline-horizontal .mfilter-scroll-left,\\r\\n.mfilter-light-theme .mfilter-inline-horizontal .mfilter-scroll-right {\\r\\n\\tvertical-align: middle;\\r\\n}\\r\\n\\r\\n\\/* \\/\\/ VERTICAL \\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\/*\\/\\r\\n\\r\\n.mfilter-light-theme .mfilter-content {\\r\\n\\tborder: none;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading {\\r\\n\\tfont-weight: bold;\\r\\n\\tcolor: black;\\r\\n\\tbackground: none;\\r\\n}\\r\\n\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-text \\u003E i {\\r\\n\\tbackground: #ecd8d8;\\r\\n\\tmargin-bottom: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-content {\\r\\n\\tpadding: 16px 8px 1px 8px;\\r\\n\\tborder-bottom: 1px solid #c1c6c6;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-category a{\\r\\n\\tcolor: black;\\r\\n\\tmargin-left: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-tb-as-tr:hover{\\r\\n\\tbackground-color: #f8f8f8;\\r\\n\\tbackground-image: -moz-linear-gradient(center top , #f8f8f8, #f1f1f1);\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-tb-as-td {\\r\\n\\tborder-top: 1px solid #dcdcdc;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme label.mfilter-tb-as-td {\\r\\n\\tcolor: black;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-disabled label.mfilter-tb-as-td {\\r\\n\\tcolor: gray;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-heading-text \\u003E span {\\r\\n\\tpadding-left: 12px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-button-more {\\r\\n\\tcolor: black;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-opts-container {\\r\\n\\tborder:none;\\r\\n}\\r\\n \\r\\n.mfilter-light-theme .mfilter-price-slider {\\r\\n\\tpadding: 0 0 5px 4px !important;\\r\\n\\tmargin-right: 0px !important;\\r\\n\\tbackground: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider .ui-slider-handle,\\r\\n.mfilter-light-theme #mfilter-price-slider .ui-slider-handle {\\r\\n\\twidth: 18px !important;\\r\\n\\theight: 12px !important;\\r\\n\\tbackground: white !important;\\r\\n\\tmargin-top: -1px;\\r\\n\\tbackground-size: cover;\\r\\n\\tbackground-repeat: no-repeat;\\r\\n\\tbackground-position: center center;\\r\\n\\t-webkit-border-radius: 99em;\\r\\n\\t-moz-border-radius: 99em;\\r\\n\\tborder-radius: 99em;\\r\\n\\tborder: 1px solid #eee;\\r\\n\\tbox-shadow: 0px 0px 3px rgba(0, 0, 0, 0.4); \\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider,\\r\\n.mfilter-light-theme #mfilter-price-slider {\\r\\n\\tbackground: lightgrey !important;\\r\\n\\theight: 3px !important;\\r\\n\\tmargin: 10px 6px 0 12px !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-slider-slider .ui-slider-range,\\r\\n.mfilter-light-theme #mfilter-price-slider .ui-slider-range {\\r\\n\\tbackground: #428bca !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-search{\\r\\n\\tmargin: 0 5px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-search #mfilter-opts-search {\\r\\n\\tmargin-top: 2px;\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n          -webkit-box-shadow: none !important;\\r\\n          -moz-box-shadow: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-col-input {\\r\\n\\tpadding-right: 4px !important;\\r\\n\\tpadding-left: 2px !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-category-tree ul li.mfilter-to-parent {\\r\\n\\tmargin-top: 3px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-selected-filters-cnt {\\r\\n\\tmargin-bottom: 20px;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-content .mfilter-selected-filters .mfilter-selected-filters-cnt a \\u003E span {\\r\\n\\tborder-bottom: 1px dotted #c1c6c6;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-select select {\\r\\n\\twidth: 96%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-text .mfilter-slider-inputs input{\\r\\n\\twidth: 94%;\\r\\n\\tmargin-left: auto;\\r\\n\\tmargin-right: auto;\\r\\n}\\r\\n\\r\\n.mfilter-light-theme .mfilter-price-inputs \\u003E input{\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\tpadding: 0 0 0 10px;\\r\\n\\tmargin: 8px 0 8px 0;\\r\\n\\theight: 30px;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n}\\r\\n \\r\\n.mfilter-light-theme .mfilter-slider-inputs input{\\r\\n\\tborder: #dcdcdc solid 1px;\\r\\n\\tborder-radius: 2px !important;\\r\\n\\theight: 30px;\\r\\n\\tcolor: black;\\r\\n\\tbox-shadow: none !important;\\r\\n        -webkit-box-shadow: none !important;\\r\\n        -moz-box-shadow: none !important;\\r\\n }\\r\\n.mfilter-light-theme .mfilter-col-count{\\r\\n\\t padding-right: 2px;\\r\\n }\",\"name\":\"Light Theme\"}}', 1),
-(2074, 0, 'mfilter_latest_ver', 'mfilter_latest_ver', '{\"time\":1641974980,\"ver\":\"2.0.5.6.8\",\"ignore\":\"2.0.5.6.8\"}', 1),
-(2038, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
-(2037, 0, 'config', 'config_seo_url', '0', 0),
-(2035, 0, 'config', 'config_mail_alert_email', '', 0),
-(2036, 0, 'config', 'config_maintenance', '0', 0),
-(2034, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
-(2033, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
-(2032, 0, 'config', 'config_mail_smtp_port', '25', 0),
-(2031, 0, 'config', 'config_mail_smtp_password', '', 0),
-(2030, 0, 'config', 'config_mail_smtp_username', '', 0),
-(2029, 0, 'config', 'config_mail_smtp_hostname', '', 0),
-(2028, 0, 'config', 'config_mail_parameter', '', 0),
-(2026, 0, 'config', 'config_ftp_status', '0', 0),
-(2027, 0, 'config', 'config_mail_protocol', 'mail', 0),
-(2025, 0, 'config', 'config_ftp_root', '', 0),
-(2024, 0, 'config', 'config_ftp_password', '', 0),
-(2023, 0, 'config', 'config_ftp_username', '', 0),
-(2022, 0, 'config', 'config_ftp_port', '21', 0),
-(2021, 0, 'config', 'config_ftp_hostname', 'carisekolah.loc', 0),
-(2020, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
-(2019, 0, 'config', 'config_logo', 'catalog/logo-cs.png', 0),
-(2018, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
-(2017, 0, 'config', 'config_captcha', '', 0),
-(2016, 0, 'config', 'config_return_status_id', '2', 0),
-(2015, 0, 'config', 'config_return_id', '0', 0),
-(2014, 0, 'config', 'config_affiliate_id', '4', 0),
-(2013, 0, 'config', 'config_affiliate_commission', '5', 0),
-(2012, 0, 'config', 'config_affiliate_auto', '0', 0),
-(2011, 0, 'config', 'config_affiliate_approval', '0', 0),
-(2010, 0, 'config', 'config_stock_checkout', '0', 0),
-(2009, 0, 'config', 'config_stock_warning', '0', 0),
-(2008, 0, 'config', 'config_stock_display', '0', 0),
-(2007, 0, 'config', 'config_api_id', '1', 0),
-(2006, 0, 'config', 'config_fraud_status_id', '7', 0),
-(2005, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
-(2004, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
-(2003, 0, 'config', 'config_order_status_id', '1', 0),
-(2002, 0, 'config', 'config_checkout_id', '5', 0),
-(2001, 0, 'config', 'config_checkout_guest', '1', 0),
-(2000, 0, 'config', 'config_cart_weight', '1', 0),
-(1999, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
-(1998, 0, 'config', 'config_account_id', '3', 0),
-(1997, 0, 'config', 'config_login_attempts', '5', 0),
-(1996, 0, 'config', 'config_customer_price', '0', 0),
-(1995, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
-(1994, 0, 'config', 'config_customer_group_id', '1', 0),
-(1992, 0, 'config', 'config_customer_activity', '0', 0),
-(1993, 0, 'config', 'config_customer_search', '0', 0),
-(1991, 0, 'config', 'config_customer_online', '0', 0),
-(1990, 0, 'config', 'config_tax_customer', 'shipping', 0),
-(1989, 0, 'config', 'config_tax_default', 'shipping', 0),
-(1988, 0, 'config', 'config_tax', '1', 0),
-(1987, 0, 'config', 'config_voucher_max', '1000', 0),
-(1986, 0, 'config', 'config_voucher_min', '1', 0),
-(1985, 0, 'config', 'config_review_guest', '1', 0),
+(2715, 0, 'mfilter_latest_ver', 'mfilter_latest_ver', '{\"time\":1643693830,\"ver\":\"2.0.5.6.8\",\"ignore\":\"2.0.5.6.8\"}', 1),
+(2709, 0, 'config', 'config_file_max_size', '300000', 0),
+(2710, 0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
+(2711, 0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(2699, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
+(2700, 0, 'config', 'config_mail_alert_email', '', 0),
+(2698, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
+(2697, 0, 'config', 'config_mail_smtp_port', '25', 0),
+(2696, 0, 'config', 'config_mail_smtp_password', '', 0),
+(2695, 0, 'config', 'config_mail_smtp_username', '', 0),
+(2694, 0, 'config', 'config_mail_smtp_hostname', '', 0),
+(2693, 0, 'config', 'config_mail_parameter', '', 0),
+(2692, 0, 'config', 'config_mail_protocol', 'mail', 0),
+(2691, 0, 'config', 'config_ftp_status', '0', 0),
+(2690, 0, 'config', 'config_ftp_root', '', 0),
+(2689, 0, 'config', 'config_ftp_password', '', 0),
+(2688, 0, 'config', 'config_ftp_username', '', 0),
+(2687, 0, 'config', 'config_ftp_port', '21', 0),
+(2684, 0, 'config', 'config_logo', 'catalog/logo-cs.png', 0),
+(2686, 0, 'config', 'config_ftp_hostname', 'carisekolah.loc', 0),
+(2685, 0, 'config', 'config_icon', 'catalog/cart.png', 0),
+(2683, 0, 'config', 'config_captcha_page', '[\"review\",\"return\",\"contact\"]', 1),
+(2681, 0, 'config', 'config_return_status_id', '2', 0),
+(2682, 0, 'config', 'config_captcha', '', 0),
+(2680, 0, 'config', 'config_return_id', '0', 0),
+(2679, 0, 'config', 'config_affiliate_id', '4', 0),
+(2678, 0, 'config', 'config_affiliate_commission', '5', 0),
+(2677, 0, 'config', 'config_affiliate_auto', '0', 0),
+(2676, 0, 'config', 'config_affiliate_approval', '0', 0),
+(2675, 0, 'config', 'config_stock_checkout', '0', 0),
+(2674, 0, 'config', 'config_stock_warning', '0', 0),
+(2673, 0, 'config', 'config_stock_display', '0', 0),
+(2672, 0, 'config', 'config_api_id', '1', 0),
+(2671, 0, 'config', 'config_fraud_status_id', '7', 0),
+(2670, 0, 'config', 'config_complete_status', '[\"5\",\"3\"]', 1),
+(2667, 0, 'config', 'config_checkout_id', '5', 0),
+(2668, 0, 'config', 'config_order_status_id', '1', 0),
+(2669, 0, 'config', 'config_processing_status', '[\"5\",\"1\",\"2\",\"12\",\"3\"]', 1),
+(2666, 0, 'config', 'config_checkout_guest', '1', 0),
+(2665, 0, 'config', 'config_cart_weight', '1', 0),
+(2664, 0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(2663, 0, 'config', 'config_account_id', '3', 0),
+(2662, 0, 'config', 'config_login_attempts', '5', 0),
+(2661, 0, 'config', 'config_customer_price', '0', 0),
+(2660, 0, 'config', 'config_customer_group_display', '[\"1\"]', 1),
+(2659, 0, 'config', 'config_customer_group_id', '1', 0),
+(2658, 0, 'config', 'config_customer_search', '0', 0),
+(2657, 0, 'config', 'config_customer_activity', '0', 0),
+(2656, 0, 'config', 'config_customer_online', '0', 0),
+(2655, 0, 'config', 'config_tax_customer', 'shipping', 0),
+(2654, 0, 'config', 'config_tax_default', 'shipping', 0),
+(2653, 0, 'config', 'config_tax', '1', 0),
+(2652, 0, 'config', 'config_voucher_max', '1000', 0),
+(2651, 0, 'config', 'config_voucher_min', '1', 0),
+(2650, 0, 'config', 'config_review_guest', '1', 0),
+(2649, 0, 'config', 'config_review_status', '1', 0),
 (2051, 0, 'theme_default', 'theme_default_status', '1', 0),
-(1960, 0, 'config', 'config_meta_description', 'Cari Sekolah', 0),
-(1961, 0, 'config', 'config_meta_keyword', '', 0),
-(1962, 0, 'config', 'config_theme', 'theme_default', 0),
-(1963, 0, 'config', 'config_layout_id', '4', 0),
-(1964, 0, 'config', 'config_name', 'Your Store', 0),
-(1965, 0, 'config', 'config_owner', 'Your Name', 0),
-(1966, 0, 'config', 'config_address', 'Address 1', 0),
-(1967, 0, 'config', 'config_geocode', '', 0),
-(1968, 0, 'config', 'config_email', 'esmsgatewaycom@gmail.com', 0),
-(1969, 0, 'config', 'config_telephone', '123456789', 0),
-(1970, 0, 'config', 'config_fax', '', 0),
-(1971, 0, 'config', 'config_image', '', 0),
-(1972, 0, 'config', 'config_open', '', 0),
-(1973, 0, 'config', 'config_comment', '', 0),
-(1974, 0, 'config', 'config_country_id', '100', 0),
-(1975, 0, 'config', 'config_zone_id', '1513', 0),
-(1976, 0, 'config', 'config_language', 'id-id', 0),
-(1977, 0, 'config', 'config_admin_language', 'id-id', 0),
-(1978, 0, 'config', 'config_currency', 'IDR', 0),
-(1979, 0, 'config', 'config_currency_auto', '1', 0),
-(1980, 0, 'config', 'config_length_class_id', '1', 0),
-(1981, 0, 'config', 'config_weight_class_id', '1', 0),
-(1982, 0, 'config', 'config_product_count', '1', 0),
-(1983, 0, 'config', 'config_limit_admin', '20', 0),
-(1984, 0, 'config', 'config_review_status', '1', 0),
+(2648, 0, 'config', 'config_limit_admin', '20', 0),
+(2647, 0, 'config', 'config_product_count', '1', 0),
+(2646, 0, 'config', 'config_weight_class_id', '1', 0),
+(2645, 0, 'config', 'config_length_class_id', '1', 0),
+(2644, 0, 'config', 'config_currency_auto', '1', 0),
+(2643, 0, 'config', 'config_currency', 'IDR', 0),
+(2642, 0, 'config', 'config_admin_language', 'id-id', 0),
+(2641, 0, 'config', 'config_language', 'id-id', 0),
+(2640, 0, 'config', 'config_zone_id', '1513', 0),
+(2639, 0, 'config', 'config_country_id', '100', 0),
+(2638, 0, 'config', 'config_comment', '', 0),
+(2637, 0, 'config', 'config_open', '', 0),
+(2636, 0, 'config', 'config_image', '', 0),
+(2635, 0, 'config', 'config_fax', '', 0),
+(2634, 0, 'config', 'config_telephone', '123456789', 0),
+(2633, 0, 'config', 'config_email', 'esmsgatewaycom@gmail.com', 0),
+(2632, 0, 'config', 'config_geocode', '', 0),
+(2631, 0, 'config', 'config_address', 'Address 1', 0),
+(2630, 0, 'config', 'config_owner', 'Your Name', 0),
+(2629, 0, 'config', 'config_name', 'Your Store', 0),
+(2628, 0, 'config', 'config_layout_id', '4', 0),
+(2627, 0, 'config', 'config_theme', 'theme_default', 0),
+(2626, 0, 'config', 'config_meta_keyword', '', 0),
+(2625, 0, 'config', 'config_meta_description', 'Cari Sekolah', 0),
 (2050, 0, 'theme_default', 'theme_default_directory', 'skolin', 0),
-(1959, 0, 'config', 'config_meta_title', 'Cari Sekolah', 0);
+(2624, 0, 'config', 'config_meta_title', 'Cari Sekolah', 0);
 
 -- --------------------------------------------------------
 
@@ -5351,7 +5473,8 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (832, 'manufacturer_id=10', 'sony'),
 (841, 'information_id=6', 'delivery'),
 (842, 'information_id=3', 'privacy'),
-(843, 'information_id=5', 'terms');
+(843, 'information_id=5', 'terms'),
+(1081, 'product_id=93', 'paud-wahdah-islamiyah');
 
 -- --------------------------------------------------------
 
@@ -5372,18 +5495,20 @@ CREATE TABLE `oc_user` (
   `code` varchar(40) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `date_added` datetime NOT NULL
+  `date_added` datetime NOT NULL,
+  `folder_image` varchar(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `oc_user`
 --
 
-INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`) VALUES
-(1, 1, 'admin', '04531060f2031971b090b3a88adfcbaebf344b10', 'A05hMGf8k', 'John', 'Doe', 'esmsgatewaycom@gmail.com', '', '', '172.16.238.1', 1, '2021-12-24 02:00:31'),
-(2, 11, 'moderator', '21ff4a09e936500fcd866dab341435deac01540f', 'AlxVwnHGn', 'Ali', 'Wirasmara', 'admin@carisekolah.co.id', '', '', '172.16.238.1', 1, '2022-01-02 03:07:34'),
-(3, 12, 'user_sekolah1', '7890252171f09abcb7148a34880e1d0e26dc5091', 'KfybaQsyz', 'Mohamad', 'Farid', 'admin@sekolah.com', '', '', '172.16.238.1', 1, '2022-01-02 04:45:26'),
-(4, 12, 'user_sekolah2', '74b6299ea42d7d16b5dd160e919928e6cbaeaf74', 'KCaIW96mD', 'Ali ', 'Wirasmara', 'ali@gmail.com', '', '', '172.16.238.1', 1, '2022-01-08 12:37:29');
+INSERT INTO `oc_user` (`user_id`, `user_group_id`, `username`, `password`, `salt`, `firstname`, `lastname`, `email`, `image`, `code`, `ip`, `status`, `date_added`, `folder_image`) VALUES
+(1, 1, 'admin', '04531060f2031971b090b3a88adfcbaebf344b10', 'A05hMGf8k', 'John', 'Doe', 'esmsgatewaycom@gmail.com', '', '', '172.16.238.1', 1, '2021-12-24 02:00:31', NULL),
+(2, 11, 'moderator', '21ff4a09e936500fcd866dab341435deac01540f', 'AlxVwnHGn', 'Ali', 'Wirasmara', 'admin@carisekolah.co.id', '', '', '172.16.238.1', 1, '2022-01-02 03:07:34', NULL),
+(3, 12, 'user_sekolah1', '7890252171f09abcb7148a34880e1d0e26dc5091', 'KfybaQsyz', 'Mohamad', 'Farid', 'admin@sekolah.com', '', '', '172.16.238.1', 1, '2022-01-02 04:45:26', 'user_sekolah1'),
+(4, 12, 'user_sekolah2', '74b6299ea42d7d16b5dd160e919928e6cbaeaf74', 'KCaIW96mD', 'Ali ', 'Wirasmara', 'ali@gmail.com', '', '', '172.16.238.1', 1, '2022-01-08 12:37:29', 'user_sekolah2'),
+(7, 12, 'user_sekolah3', 'f2b14b41f7c833c88073d001615d91ee27a9c22f', 'POBAX2ViH', 'sdsd', 'sds', 'testerx@gmail.com', '', '', '172.16.238.1', 1, '2022-01-17 02:56:24', 'user_sekolah3');
 
 -- --------------------------------------------------------
 
@@ -5402,9 +5527,9 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"catalog\\/schooluser\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"catalog\\/schooluser\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}'),
+(1, 'Administrator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/education_category_catalog\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"catalog\\/schooluser\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/education_category\",\"catalog\\/education_category_catalog\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"catalog\\/school\",\"catalog\\/schooluser\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/menu\",\"design\\/theme\",\"design\\/translation\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/analytics\\/google_analytics\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/dashboard\\/activity\",\"extension\\/dashboard\\/chart\",\"extension\\/dashboard\\/customer\",\"extension\\/dashboard\\/map\",\"extension\\/dashboard\\/online\",\"extension\\/dashboard\\/order\",\"extension\\/dashboard\\/recent\",\"extension\\/dashboard\\/sale\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/analytics\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/dashboard\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/fraud\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/openbaypro\",\"extension\\/fraud\\/fraudlabspro\",\"extension\\/fraud\\/ip\",\"extension\\/fraud\\/maxmind\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\\/account\",\"extension\\/module\\/affiliate\",\"extension\\/module\\/amazon_login\",\"extension\\/module\\/amazon_pay\",\"extension\\/module\\/banner\",\"extension\\/module\\/bestseller\",\"extension\\/module\\/carousel\",\"extension\\/module\\/category\",\"extension\\/module\\/divido_calculator\",\"extension\\/module\\/ebay_listing\",\"extension\\/module\\/featured\",\"extension\\/module\\/filter\",\"extension\\/module\\/google_hangouts\",\"extension\\/module\\/html\",\"extension\\/module\\/information\",\"extension\\/module\\/klarna_checkout_module\",\"extension\\/module\\/latest\",\"extension\\/module\\/laybuy_layout\",\"extension\\/module\\/pilibaba_button\",\"extension\\/module\\/pp_button\",\"extension\\/module\\/pp_login\",\"extension\\/module\\/sagepay_direct_cards\",\"extension\\/module\\/sagepay_server_cards\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/store\",\"extension\\/openbay\",\"extension\\/openbay\\/amazon\",\"extension\\/openbay\\/amazon_listing\",\"extension\\/openbay\\/amazon_product\",\"extension\\/openbay\\/amazonus\",\"extension\\/openbay\\/amazonus_listing\",\"extension\\/openbay\\/amazonus_product\",\"extension\\/openbay\\/ebay\",\"extension\\/openbay\\/ebay_profile\",\"extension\\/openbay\\/ebay_template\",\"extension\\/openbay\\/etsy\",\"extension\\/openbay\\/etsy_product\",\"extension\\/openbay\\/etsy_shipping\",\"extension\\/openbay\\/etsy_shop\",\"extension\\/openbay\\/fba\",\"extension\\/payment\\/amazon_login_pay\",\"extension\\/payment\\/authorizenet_aim\",\"extension\\/payment\\/authorizenet_sim\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/bluepay_hosted\",\"extension\\/payment\\/bluepay_redirect\",\"extension\\/payment\\/cardconnect\",\"extension\\/payment\\/cardinity\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/divido\",\"extension\\/payment\\/eway\",\"extension\\/payment\\/firstdata\",\"extension\\/payment\\/firstdata_remote\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/g2apay\",\"extension\\/payment\\/globalpay\",\"extension\\/payment\\/globalpay_remote\",\"extension\\/payment\\/klarna_account\",\"extension\\/payment\\/klarna_checkout\",\"extension\\/payment\\/klarna_invoice\",\"extension\\/payment\\/laybuy\",\"extension\\/payment\\/liqpay\",\"extension\\/payment\\/nochex\",\"extension\\/payment\\/paymate\",\"extension\\/payment\\/paypoint\",\"extension\\/payment\\/payza\",\"extension\\/payment\\/perpetual_payments\",\"extension\\/payment\\/pilibaba\",\"extension\\/payment\\/pp_express\",\"extension\\/payment\\/pp_payflow\",\"extension\\/payment\\/pp_payflow_iframe\",\"extension\\/payment\\/pp_pro\",\"extension\\/payment\\/pp_pro_iframe\",\"extension\\/payment\\/pp_standard\",\"extension\\/payment\\/realex\",\"extension\\/payment\\/realex_remote\",\"extension\\/payment\\/sagepay_direct\",\"extension\\/payment\\/sagepay_server\",\"extension\\/payment\\/sagepay_us\",\"extension\\/payment\\/securetrading_pp\",\"extension\\/payment\\/securetrading_ws\",\"extension\\/payment\\/skrill\",\"extension\\/payment\\/twocheckout\",\"extension\\/payment\\/web_payment_software\",\"extension\\/payment\\/worldpay\",\"extension\\/shipping\\/auspost\",\"extension\\/shipping\\/citylink\",\"extension\\/shipping\\/fedex\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/parcelforce_48\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/royal_mail\",\"extension\\/shipping\\/ups\",\"extension\\/shipping\\/usps\",\"extension\\/shipping\\/weight\",\"extension\\/store\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/coupon\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/klarna_fee\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"extension\\/total\\/voucher\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/mega_filter\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/customer_search\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}'),
 (10, 'Demonstration', ''),
-(11, 'Moderator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/school\",\"common\\/filemanager\",\"module\\/mega_filter\",\"user\\/userschool\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/education_category\",\"catalog\\/filter\",\"catalog\\/school\",\"common\\/filemanager\",\"module\\/mega_filter\",\"user\\/userschool\"]}'),
+(11, 'Moderator', '{\"access\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/education_category\",\"catalog\\/education_category_catalog\",\"catalog\\/filter\",\"catalog\\/school\",\"common\\/filemanager\",\"module\\/mega_filter\",\"user\\/userschool\"],\"modify\":[\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/education_category\",\"catalog\\/education_category_catalog\",\"catalog\\/filter\",\"catalog\\/school\",\"common\\/filemanager\",\"module\\/mega_filter\",\"user\\/userschool\"]}'),
 (12, 'Admin Sekolah', '{\"access\":[\"catalog\\/schooluser\",\"common\\/filemanager\"],\"modify\":[\"catalog\\/schooluser\",\"common\\/filemanager\"]}');
 
 -- --------------------------------------------------------
@@ -10644,7 +10769,7 @@ ALTER TABLE `oc_zone_to_geo_zone`
 -- AUTO_INCREMENT for table `oc_address`
 --
 ALTER TABLE `oc_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `oc_affiliate`
@@ -10692,13 +10817,13 @@ ALTER TABLE `oc_api_session`
 -- AUTO_INCREMENT for table `oc_attribute`
 --
 ALTER TABLE `oc_attribute`
-  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `oc_attribute_group`
 --
 ALTER TABLE `oc_attribute_group`
-  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `attribute_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `oc_banner`
@@ -10722,7 +10847,7 @@ ALTER TABLE `oc_cart`
 -- AUTO_INCREMENT for table `oc_category`
 --
 ALTER TABLE `oc_category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `oc_country`
@@ -10758,7 +10883,7 @@ ALTER TABLE `oc_currency`
 -- AUTO_INCREMENT for table `oc_customer`
 --
 ALTER TABLE `oc_customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_activity`
@@ -10782,13 +10907,13 @@ ALTER TABLE `oc_customer_history`
 -- AUTO_INCREMENT for table `oc_customer_ip`
 --
 ALTER TABLE `oc_customer_ip`
-  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_ip_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_login`
 --
 ALTER TABLE `oc_customer_login`
-  MODIFY `customer_login_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `customer_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `oc_customer_reward`
@@ -10830,7 +10955,7 @@ ALTER TABLE `oc_download`
 -- AUTO_INCREMENT for table `oc_education_column`
 --
 ALTER TABLE `oc_education_column`
-  MODIFY `education_column_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `education_column_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `oc_event`
@@ -10848,13 +10973,13 @@ ALTER TABLE `oc_extension`
 -- AUTO_INCREMENT for table `oc_filter`
 --
 ALTER TABLE `oc_filter`
-  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=550;
+  MODIFY `filter_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=551;
 
 --
 -- AUTO_INCREMENT for table `oc_filter_group`
 --
 ALTER TABLE `oc_filter_group`
-  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `filter_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `oc_geo_zone`
@@ -10884,13 +11009,13 @@ ALTER TABLE `oc_layout`
 -- AUTO_INCREMENT for table `oc_layout_module`
 --
 ALTER TABLE `oc_layout_module`
-  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=376;
+  MODIFY `layout_module_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=401;
 
 --
 -- AUTO_INCREMENT for table `oc_layout_route`
 --
 ALTER TABLE `oc_layout_route`
-  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `layout_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `oc_length_class`
@@ -11022,7 +11147,7 @@ ALTER TABLE `oc_order_voucher`
 -- AUTO_INCREMENT for table `oc_product`
 --
 ALTER TABLE `oc_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `oc_product_discount`
@@ -11034,7 +11159,7 @@ ALTER TABLE `oc_product_discount`
 -- AUTO_INCREMENT for table `oc_product_image`
 --
 ALTER TABLE `oc_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3897;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4560;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option`
@@ -11106,7 +11231,7 @@ ALTER TABLE `oc_review`
 -- AUTO_INCREMENT for table `oc_setting`
 --
 ALTER TABLE `oc_setting`
-  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2075;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2716;
 
 --
 -- AUTO_INCREMENT for table `oc_stock_status`
@@ -11160,13 +11285,13 @@ ALTER TABLE `oc_upload`
 -- AUTO_INCREMENT for table `oc_url_alias`
 --
 ALTER TABLE `oc_url_alias`
-  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1082;
 
 --
 -- AUTO_INCREMENT for table `oc_user`
 --
 ALTER TABLE `oc_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `oc_user_group`

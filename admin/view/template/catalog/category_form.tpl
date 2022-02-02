@@ -28,7 +28,7 @@
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-general" data-toggle="tab"><?php echo $tab_general; ?></a></li>
             <li><a href="#tab-data" data-toggle="tab"><?php echo $tab_data; ?></a></li>
-            <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li>
+            <!-- <li><a href="#tab-design" data-toggle="tab"><?php echo $tab_design; ?></a></li> -->
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab-general">
@@ -64,13 +64,13 @@
                       <?php } ?>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" style="display:none;">
                     <label class="col-sm-2 control-label" for="input-meta-description<?php echo $language['language_id']; ?>"><?php echo $entry_meta_description; ?></label>
                     <div class="col-sm-10">
                       <textarea name="category_description[<?php echo $language['language_id']; ?>][meta_description]" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_description'] : ''; ?></textarea>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" style="display:none;">
                     <label class="col-sm-2 control-label" for="input-meta-keyword<?php echo $language['language_id']; ?>"><?php echo $entry_meta_keyword; ?></label>
                     <div class="col-sm-10">
                       <textarea name="category_description[<?php echo $language['language_id']; ?>][meta_keyword]" rows="5" placeholder="<?php echo $entry_meta_keyword; ?>" id="input-meta-keyword<?php echo $language['language_id']; ?>" class="form-control"><?php echo isset($category_description[$language['language_id']]) ? $category_description[$language['language_id']]['meta_keyword'] : ''; ?></textarea>
@@ -91,7 +91,7 @@
                   <?php } ?>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" class="form-control" />
@@ -104,7 +104,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label"><?php echo $entry_store; ?></label>
                 <div class="col-sm-10">
                   <div class="well well-sm" style="height: 150px; overflow: auto;">
@@ -135,7 +135,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" class="form-control" />
@@ -144,13 +144,13 @@
                   <?php } ?>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label"><?php echo $entry_image; ?></label>
                 <div class="col-sm-10"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="<?php echo $thumb; ?>" alt="" title="" data-placeholder="<?php echo $placeholder; ?>" /></a>
                   <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" title="<?php echo $help_top; ?>"><?php echo $entry_top; ?></span></label>
                 <div class="col-sm-10">
                   <div class="checkbox">
@@ -164,7 +164,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" style="display:none;">
                 <label class="col-sm-2 control-label" for="input-column"><span data-toggle="tooltip" title="<?php echo $help_column; ?>"><?php echo $entry_column; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="column" value="<?php echo $column; ?>" placeholder="<?php echo $entry_column; ?>" id="input-column" class="form-control" />
@@ -240,7 +240,7 @@
   </div>
   <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
   <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
-  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
   <script type="text/javascript"><!--
 $('input[name=\'path\']').autocomplete({
 	'source': function(request, response) {
@@ -267,7 +267,7 @@ $('input[name=\'path\']').autocomplete({
 		$('input[name=\'parent_id\']').val(item['value']);
 	}
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('input[name=\'filter\']').autocomplete({
 	'source': function(request, response) {
@@ -296,7 +296,7 @@ $('input[name=\'filter\']').autocomplete({
 $('#category-filter').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
-//--></script> 
+//--></script>
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 //--></script></div>

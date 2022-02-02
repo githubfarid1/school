@@ -2,14 +2,13 @@
 class ControllerProductSchool extends Controller
 {
 	private $error = array();
+	private $poscard_size = [1300, 700];
+	private $thumbposcard_size = [256, 192];
+	private $photo_size = [240, 278];
+
 
 	public function index()
 	{
-		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('product/school&product_id=' . $this->request->get['product_id'], '', true);
-
-			$this->response->redirect($this->url->link('account/login', '', true));
-		}
 
 		$this->load->language('product/school');
 		$device = new Mobile();
@@ -282,7 +281,6 @@ class ControllerProductSchool extends Controller
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
 
-
 			$data['school_profile'] = html_entity_decode($product_info['school_profile'], ENT_QUOTES, 'UTF-8');
 
 
@@ -297,14 +295,24 @@ class ControllerProductSchool extends Controller
 			} else {
 				$identity['logo'] = '';
 			}
-
+			/*if ($this->check_brosur(PHOTO_BROSUR_FRONT_ID, $this->request->get['product_id']) <> 0) {
+				$filename = strtolower(trim($identity['school_name']) . '-1');
+				$filename = preg_replace('/[^A-Za-z0-9-]+/', '-', $filename);
+				$identity['download1'] = $this->url->link('product/school/download', 'product_id=' . (int)$this->request->get['product_id'] . '&filename=' . $filename . '&brosur_id=' . PHOTO_BROSUR_FRONT_ID);
+			}
+			if ($this->check_brosur(PHOTO_BROSUR_BACK_ID, $this->request->get['product_id']) <> 0) {
+				$filename = strtolower(trim($identity['school_name']) . '-2');
+				$filename = preg_replace('/[^A-Za-z0-9-]+/', '-', $filename);
+				$identity['download2'] = $this->url->link('product/school/download', 'product_id=' . (int)$this->request->get['product_id'] . '&filename=' . $filename . '&brosur_id=' . PHOTO_BROSUR_BACK_ID);
+			}
+			$identity['daftar'] = $this->url->link('product/school/daftar', 'product_id=' . (int)$this->request->get['product_id']);
 			$identity['qrcode'] = $this->model_tool_image->resize('catalog/qrcode.png', $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
 			$data['identity_view'] = $this->load->view('common/school_identity_view', $identity);
-
+			*/
 
 
 			//Image gallery
-			$gallery['images'] = array();
+			/*$gallery['images'] = array();
 			$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)PHOTO_GALLERY_ID . "' LIMIT 1");
 			$index = $edu->row['length'];
 			$ar = explode("-", $index);
@@ -366,27 +374,33 @@ class ControllerProductSchool extends Controller
 			$teacher['isMobile'] = $data['mobile'];
 			$data['teacher_view'] = $this->load->view('common/carousel2_view', $teacher);
 
-
-
-
-			$itemFilters[] =
+			$itemFilters[FILTER_FASILITAS_SEKOLAH_ID] =
 				array(
-					'id' => FILTER_FASILITAS_SEKOLAH_ID,
 					'icon' => 'fas fa-landmark',
 					'items' => []
 				);
+			$itemFilters[FILTER_PROGRAM_KEAHLIAN_ID] =
+				array(
+					'icon' => 'fas fa-graduation-cap',
+					'items' => [],
+					'iconstyle' => 'font-size: 20px;',
+				);
+
 			foreach ($itemFilters as $key => $itemFilter) {
 				$filters = $this->model_catalog_school->getProductFilters($this->request->get['product_id']);
 				$strIds = implode(", ", $filters);
-				$fg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id ='" . (int)$itemFilter['id'] . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
-				$lg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_group_id ='" . (int)$itemFilter['id'] . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' AND filter_id IN (" . $strIds . ")");
-				$itemFilters[$key]['text_header'] = $fg->row['name'];
-				$itemFilters[$key]['items'] = [];
-				foreach ($lg->rows as $r) {
-					$itemFilters[$key]['items'][] = $r['name'];
+				$fg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_group_description WHERE filter_group_id ='" . (int)$key . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' LIMIT 1");
+				if ($fg->num_rows <> 0) {
+					$lg = $this->db->query("SELECT * FROM " . DB_PREFIX . "filter_description WHERE filter_group_id ='" . (int)$key . "' AND language_id ='" . (int)$this->config->get('config_language_id') . "' AND filter_id IN (" . $strIds . ")");
+					$itemFilters[$key]['text_header'] = $fg->row['name'];
+					$itemFilters[$key]['items'] = [];
+					foreach ($lg->rows as $r) {
+						$itemFilters[$key]['items'][] = $r['name'];
+					}
 				}
 			}
-			$data['fasilitas_view'] = $this->load->view('common/filter_view', $itemFilters[0]);
+			$data['fasilitas_view'] = $this->load->view('common/filter_view', $itemFilters[FILTER_FASILITAS_SEKOLAH_ID]);
+			$data['program_keahlian_view'] = $this->load->view('common/filter_view', $itemFilters[FILTER_PROGRAM_KEAHLIAN_ID]);
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['monthly_cost'] = $this->currency->format($product_info['monthly_cost'], $this->session->data['currency']);
@@ -402,41 +416,67 @@ class ControllerProductSchool extends Controller
 			}
 
 
-			$itemAttributes[] =
+
+			$itemAttributes[ATTRIBUTE_EKSTRAKURIKULER_ID] =
 				array(
-					'id' => ATTRIBUTE_EKSTRAKURIKULER_ID,
 					'icon' => 'fas fa-history',
 					'iconstyle' => 'font-size: 24px;',
 					'items' => []
 				);
-			$itemAttributes[] =
+			$itemAttributes[ATTRIBUTE_JAM_ID] =
 				array(
-					'id' => ATTRIBUTE_JAM_ID,
 					'icon' => 'fas fa-history',
 					'iconstyle' => 'font-size: 24px;',
 					'items' => [],
 					'header_itemlabel' => 'Jam',
 					'header_itemtext' => 'Hari'
 				);
-			$itemAttributes[] =
+			$itemAttributes[ATTRIBUTE_INFO_ID] =
 				array(
-					'id' => ATTRIBUTE_INFO_ID,
 					'icon' => 'fas fa-history',
 					'iconstyle' => 'font-size: 24px;',
 					'items' => []
 				);
-				$itemAttributes[] =
+			$itemAttributes[ATTRIBUTE_PROGRAM_KEAHLIAN_ID] =
 				array(
-					'id' => 18,
+					'icon' => 'fas fa-book-open',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+
+			$itemAttributes[ATTRIBUTE_VIDEO_ID] =
+				array(
 					'icon' => 'fas fa-university',
 					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+			$itemAttributes[ATTRIBUTE_FASILITAS_ID] =
+				array(
+					'icon' => 'fas fa-university',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+			$itemAttributes[ATTRIBUTE_FASILITAS_ID] =
+				array(
+					'icon' => 'fas fa-university',
+					'iconstyle' => 'font-size: 24px;',
+					'items' => []
+				);
+			$itemAttributes[ATTRIBUTE_CONTACT_ID] =
+				array(
+					'iconstyle' => 'font-size: 27px;',
+					'items' => []
+				);
+			$itemAttributes[ATTRIBUTE_SOCMED_ID] =
+				array(
+					'iconstyle' => 'font-size: 27px;',
 					'items' => []
 				);
 
 			$attributes = $this->model_catalog_school->getProductAttributes($this->request->get['product_id']);
 			foreach ($attributes as $atg) {
 				foreach ($itemAttributes as $key => $iatt) {
-					if ($atg['attribute_group_id'] == $iatt['id']) {
+					if ($atg['attribute_group_id'] == $key) {
 						$itemAttributes[$key]['text_header'] = $atg['name'];
 						$itemAttributes[$key]['showlabel'] = $atg['showlabel'];
 						$itemAttributes[$key]['items'] = [];
@@ -448,10 +488,155 @@ class ControllerProductSchool extends Controller
 					}
 				}
 			}
-			$data['ekstrakur_view'] = $this->load->view('common/attribute_view', $itemAttributes[0]);
-			$data['jambelajar_view'] = $this->load->view('common/attribute_table_view', $itemAttributes[1]);
-			$data['info_view'] = $this->load->view('common/marquee_view', $itemAttributes[2]);
-			$data['fasilitas_view'] = $this->load->view('common/attribute_view', $itemAttributes[3]);
+			$data['ekstrakur_view'] = $this->load->view('common/attribute_view', $itemAttributes[ATTRIBUTE_EKSTRAKURIKULER_ID]);
+			$data['jambelajar_view'] = $this->load->view('common/attribute_table_view', $itemAttributes[ATTRIBUTE_JAM_ID]);
+			$data['info_view'] = $this->load->view('common/marquee_view', $itemAttributes[ATTRIBUTE_INFO_ID]);
+			// $data['fasilitas_view'] = $this->load->view('common/attribute_view', $itemAttributes[3]);
+			$data['prog_view'] = $this->load->view('common/attribute_view', $itemAttributes[ATTRIBUTE_PROGRAM_KEAHLIAN_ID]);
+			$data['fasilitas_att_view'] = $this->load->view('common/attribute_view', $itemAttributes[ATTRIBUTE_FASILITAS_ID]);
+			$data['contact_view'] = $this->load->view('common/attribute_formatted_view', $itemAttributes[ATTRIBUTE_CONTACT_ID]);
+			$data['socmed_view'] = $this->load->view('common/attribute_formatted_view', $itemAttributes[ATTRIBUTE_SOCMED_ID]);
+
+			$itemAttributes[ATTRIBUTE_VIDEO_ID]['div_id'] = 'videoCarousel';
+			$itemAttributes[ATTRIBUTE_VIDEO_ID]['isMobile'] = $data['mobile'];
+			$data['video_view'] = $this->load->view('common/video_view', $itemAttributes[ATTRIBUTE_VIDEO_ID]);
+
+			*/
+
+			$categories = $this->model_catalog_school->getCategories($product_id);
+			//print_r($categories);
+
+
+			$category_id = $categories[0]['category_id'];
+			$builder = array();
+
+			$educat = $this->db->query("SELECT * FROM `" . DB_PREFIX . "education_category` WHERE category_id ='" . (int)$category_id . "' LIMIT 1");
+			$attributeJson = json_decode($educat->row['attribute_json']);
+			$columnJson = json_decode($educat->row['column_json']);
+			$filterJson = json_decode($educat->row['filter_json']);
+			// print_r(json_decode($educat->row['column_ids']));
+			$divId = 0;
+			// echo '<pre>' . print_r($columnJson,true) . '</pre>';
+			// die;
+			foreach ($columnJson as $value) {
+				$divId++;
+				$vardata = [];
+				$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)$value->id . "' LIMIT 1")->row;
+				if ($edu['coltype'] == 'images') {
+					$vardata['images'] = array();
+					$index = $edu['length'];
+					$ar = explode("-", $index);
+					$start = (int)$ar[0];
+					$end = (int)$ar[1];
+					$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
+
+					foreach ($results as $result) {
+						$vardata['images'][] = array(
+							'postcard' => $this->model_tool_image->resize($result['image'], $this->poscard_size[0], $this->poscard_size[1]),
+							'thumbpostcard' => $this->model_tool_image->resize($result['image'], $this->thumbposcard_size[0], $this->thumbposcard_size[1]),
+							'photo' => $this->model_tool_image->resize($result['image'], $this->photo_size[0], $this->photo_size[1]),
+							'image_name' => $result['image_name'],
+							'image_description' => html_entity_decode($result['image_description'], ENT_QUOTES, 'UTF-8'),
+						);
+					}
+				} elseif ($edu['coltype'] == 'group') {
+					$colnames = json_decode($edu['colname']);
+					$arraystr = implode(',', $colnames);
+					$educol = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id IN (" . $arraystr . ")")->rows;
+					foreach ($educol as $col) {
+						if ($col['coltype'] == 'text') {
+							$vardata[$col['colname']] = $product_info[$col['colname']];
+						} elseif ($col['coltype'] == 'image') {
+							$vardata[$col['colname']] = $this->model_tool_image->resize($product_info[$col['colname']], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height'));
+							//print_r($vardata[$col['colname']]);
+						} elseif ($col['coltype'] == 'textarea') {
+							$vardata[$col['colname']] = html_entity_decode($product_info[$col['colname']], ENT_QUOTES, 'UTF-8');
+
+						} elseif ($col['coltype'] == 'number') {
+							$vardata[$col['colname']] = (int)$product_info[$col['colname']];
+						} elseif ($col['coltype'] == 'currency') {
+							$vardata[$col['colname']] = $this->currency->format($product_info[$col['colname']], $this->session->data['currency']);
+						} elseif ($col['coltype'] == 'date') {
+							$vardata[$col['colname']] = date($this->language->get('date_format_short'), strtotime($product_info[$col['colname']]));
+						} elseif ($col['coltype'] == 'brosur') {
+							//print_r($product_info[$col['colname']]);
+							if (!empty($product_info[$col['colname']])) {
+								$filename = strtolower(trim($product_info['school_name']) . '-1');
+								$filename = preg_replace('/[^A-Za-z0-9-]+/', '-', $filename);
+								$vardata[$col['colname']] = $this->url->link('product/school/download', 'product_id=' . (int)$this->request->get['product_id'] . '&filename=' . $filename . '&colname=' . $col['colname']);
+							}
+						} elseif ($col['coltype'] == 'tinyint') {
+							if ($col['colname'] == 'isregister') {
+								if ($product_info[$col['colname']] == 1) {
+									$vardata['daftar'] = $this->url->link('product/school/daftar', 'product_id=' . (int)$this->request->get['product_id']);
+								}
+							} else {
+								$vardata[$col['colname']] = (int)$product_info[$col['colname']];
+							}
+						}
+					}
+
+
+					// echo '<pre>' . print_r($vardata,true) . '</pre>';
+					// die;
+				}
+				$vardata['div_id'] = 'divId' . $divId;
+				$vardata['isMobile'] = $data['mobile'];
+				$vardata['text_header'] = $edu['name'];
+				$vardata['screen_size'] = $value->screen_size;
+
+				$view_theme = $value->column_theme == 'default' ? ('product/default_view/' . 'attribute_view') : 'product/column_view/' . $value->column_theme;
+				$builder[] = array('sort_order' => $value->sort_order, 'view' => $this->load->view($view_theme, $vardata));
+			}
+			// echo '<pre>' . print_r($columnJson, true) . '</pre>';
+			// die;
+			// echo '<pre>' . print_r($attributeJson, true) . '</pre>';
+			// $columns = array_column($attributeJson, 'sort_order');
+			// array_multisort($columns, SORT_ASC, $attributeJson);
+			//$data['views'] = array();
+			foreach ($attributeJson as $value) {
+				$divId++;
+				$vardata = [];
+				$vardata = $this->model_catalog_school->getProductAttribute2($this->request->get['product_id'], $value->id);
+				// echo '<pre>' . print_r($value,true) . '</pre>';
+				// die;
+				//echo '<pre>' . print_r($attributes, true) . '</pre>';
+				// foreach ($attributes as $atg) {
+				// 	foreach ($itemAttributes as $key => $iatt) {
+				// 		if ($atg['attribute_group_id'] == $key) {
+				// 			$itemAttributes[$key]['text_header'] = $atg['name'];
+				// 			$itemAttributes[$key]['showlabel'] = $atg['showlabel'];
+				// 			$itemAttributes[$key]['items'] = [];
+				// 			if (!empty($atg['attribute'])) {
+				// 				foreach ($atg['attribute'] as $att) {
+				// 					$itemAttributes[$key]['items'][] = array('label' => $att['name'], 'text' => $att['text']);
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// }
+				//$attributes['sort_order'] = $value->sort_order;
+				$vardata['div_id'] = 'divId' . $divId;
+				$vardata['icon'] = html_entity_decode($value->icon);
+				$vardata['isMobile'] = $data['mobile'];
+				$vardata['screen_size'] = $value->screen_size;
+				$view_theme = $value->attribute_theme == 'default' ? ('product/default_view/' . 'attribute_view') : 'product/attribute_view/' . $value->attribute_theme;
+				$builder[] = array('sort_order' => $value->sort_order, 'view' => $this->load->view($view_theme, $vardata));
+			}
+
+
+			foreach ($filterJson as $value) {
+				$divId++;
+				$vardata = [];
+				$vardata = $this->model_catalog_school->getProductFilter($this->request->get['product_id'], $value->id);
+				$vardata['div_id'] = 'divId' . $divId;
+				$vardata['icon'] = html_entity_decode($value->icon);
+				$vardata['isMobile'] = $data['mobile'];
+				$vardata['screen_size'] = $value->screen_size;
+				$view_theme = $value->filter_theme == 'default' ? ('product/default_view/' . 'filter_view') : 'product/filter_view/' . $value->filter_theme;
+				$builder[] = array('sort_order' => $value->sort_order, 'view' => $this->load->view($view_theme, $vardata));
+			}
+
 
 			if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
 				$data['monthly_cost'] = $this->currency->format($product_info['monthly_cost'], $this->session->data['currency']);
@@ -537,7 +722,11 @@ class ControllerProductSchool extends Controller
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
-
+			// echo '<pre>' . print_r($builder,true) . '</pre>';
+			$column = array_column($builder, 'sort_order');
+			array_multisort($column, SORT_ASC, $builder);
+			$data['views'] = $builder;
+			// echo '<pre>' . print_r($data['view'],true) . '</pre>';
 			$this->response->setOutput($this->load->view('product/school', $data));
 		} else {
 			$url = '';
@@ -760,5 +949,162 @@ class ControllerProductSchool extends Controller
 
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
+	}
+
+	public function download()
+	{
+		if ($this->customer->isLogged()) {
+			$image = $this->db->query("SELECT " . $this->request->get['colname'] . " FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$this->request->get['product_id'] . "' LIMIT 1")->row;
+			$original = DIR_IMAGE . $image[$this->request->get['colname']];
+			$ext = pathinfo($original, PATHINFO_EXTENSION);
+			$filename = $this->request->get['filename'];
+			$filename .= '.' . $ext;
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($original));
+			flush(); // Flush system output buffer
+			readfile($original);
+		} else {
+			$this->session->data['redirect'] = $this->url->link('product/school&product_id=' . $this->request->get['product_id'], '', true);
+			$this->response->redirect($this->url->link('account/login', '', true));
+		}
+	}
+
+
+
+	// public function download_old()
+	// {
+	// 	if ($this->customer->isLogged()) {
+	// 		$brosur['images'] = array();
+	// 		$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)PHOTO_BROSUR_ID . "' LIMIT 1");
+	// 		$index = $edu->row['length'];
+	// 		$ar = explode("-", $index);
+	// 		$start = (int)$ar[0];
+	// 		$end = (int)$ar[1];
+	// 		$this->load->model('catalog/school');
+	// 		$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
+	// 		if (count($results) <> 0) {
+	// 			$tmpfile = tempnam(DIR_IMAGE . "tmp", "pdf");
+	// 			rename($tmpfile, $tmpfile .= '.pdf');
+	// 			$images = array();
+	// 			foreach ($results as $result) {
+	// 				$images[] = DIR_IMAGE . $result['image'];
+	// 			}
+	// 			$pdf = new Imagick($images);
+	// 			$pdf->setImageFormat('pdf');
+	// 			$pdf->writeImages($tmpfile, true);
+	// 			header('Content-Type: application/pdf');
+	// 			header('Content-Length: ' . filesize($tmpfile));
+	// 			$filename = $this->request->get['filename'];
+	// 			$filename .= '.pdf';
+	// 			header('Content-Disposition: attachment; filename="' . $filename . '"');
+	// 			readfile($tmpfile);
+	// 			unlink($tmpfile);
+	// 		}
+	// 	} else {
+	// 		$this->session->data['redirect'] = $this->url->link('product/school&product_id=' . $this->request->get['product_id'], '', true);
+	// 		$this->response->redirect($this->url->link('account/login', '', true));
+	// 	}
+	// }
+
+	// public function download()
+	// {
+	// 	if ($this->customer->isLogged()) {
+	// 		$brosur['images'] = array();
+	// 		$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)$this->request->get['brosur_id'] . "' LIMIT 1");
+	// 		$index = $edu->row['length'];
+	// 		$ar = explode("-", $index);
+	// 		$start = (int)$ar[0];
+	// 		$end = (int)$ar[1];
+	// 		$this->load->model('catalog/school');
+	// 		$results = $this->model_catalog_school->getProductImages($this->request->get['product_id'], $start, $end);
+	// 		if (count($results) <> 0) {
+	// 			foreach ($results as $result) {
+	// 				$original = DIR_IMAGE . $result['image'];
+	// 				$ext = pathinfo($original, PATHINFO_EXTENSION);
+	// 				$filename = $this->request->get['filename'];
+	// 				$filename .= '.' . $ext;
+	// 				header('Content-Description: File Transfer');
+	// 				header('Content-Type: application/octet-stream');
+	// 				header('Content-Disposition: attachment; filename="' . basename($filename) . '"');
+	// 				header('Expires: 0');
+	// 				header('Cache-Control: must-revalidate');
+	// 				header('Pragma: public');
+	// 				header('Content-Length: ' . filesize($original));
+	// 				flush(); // Flush system output buffer
+	// 				readfile($original);
+	// 			}
+	// 		}
+	// 	} else {
+	// 		$this->session->data['redirect'] = $this->url->link('product/school&product_id=' . $this->request->get['product_id'], '', true);
+	// 		$this->response->redirect($this->url->link('account/login', '', true));
+	// 	}
+	// }
+
+
+	// public function check_brosur($brosur_id, $product_id)
+	// {
+	// 	$edu = $this->db->query("SELECT * FROM " . DB_PREFIX . "education_column WHERE education_column_id ='" . (int)$brosur_id . "' LIMIT 1");
+	// 	$index = $edu->row['length'];
+	// 	$ar = explode("-", $index);
+	// 	$start = (int)$ar[0];
+	// 	$end = (int)$ar[1];
+	// 	$this->load->model('catalog/school');
+	// 	$results = $this->model_catalog_school->getProductImages($product_id, $start, $end);
+	// 	return count($results);
+	// }
+
+	public function daftar()
+	{
+		$data = array();
+		$data['column_left'] = $this->load->controller('common/column_left');
+		$data['column_right'] = $this->load->controller('common/column_right');
+		$data['content_top'] = $this->load->controller('common/content_top');
+		$data['content_bottom'] = $this->load->controller('common/content_bottom');
+		$data['footer'] = $this->load->controller('common/footer');
+		$data['header'] = $this->load->controller('common/header');
+		$religions = ['Islam', 'Kristen', 'Protestan', 'Hindu',	'Budha'];
+		$ke = 0;
+		foreach ($religions as $rel) {
+			$ke++;
+			$data['religions'][$ke] = $rel;
+		}
+
+		$jobs = ['Karyawan Swasta', 'Pekerja Kontrak', 'Serabutan', 'Pedagang', 'Petani', 'PNS', 'TNI/Polri', 'Pengusaha', 'Tidak Bekerja', 'Sudah Meninggal', 'Ojek Online', 'Pensiunan', 'Nelayan', 'Freelance', 'Driver', 'Pilot', 'Pramugari'];
+		$ke = 0;
+		foreach ($jobs as $rel) {
+			$ke++;
+			$data['jobs'][$ke] = $rel;
+		}
+		$salaries = ['Kurang dari 1 Juta', '1 Juta s/d 3 Juta', '3 Juta s/d 5 Juta', '5 Juta s/d 10 Juta', '10 Juta keatas'];
+		$ke = 0;
+		foreach ($salaries as $rel) {
+			$ke++;
+			$data['salaries'][$ke] = $rel;
+		}
+		$educations = ['SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3'];
+		$ke = 0;
+		foreach ($educations as $rel) {
+			$ke++;
+			$data['educations'][$ke] = $rel;
+		}
+		$relations = ['Paman', 'Bibi', 'Kakek', 'Nenek', 'Saudara Kandung', 'Lainnya'];
+		$ke = 0;
+		foreach ($relations as $rel) {
+			$ke++;
+			$data['relations'][$ke] = $rel;
+		}
+		$edulevels = ['Preschool', 'Sekolah Dasar', 'SMP', 'SMA', 'SMK'];
+		$ke = 0;
+		foreach ($edulevels as $rel) {
+			$ke++;
+			$data['edulevels'][$ke] = $rel;
+		}
+
+		$this->response->setOutput($this->load->view('product/registration_form', $data));
 	}
 }

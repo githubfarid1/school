@@ -56,7 +56,7 @@
                                             </div>
                                         </div>
                                     <?php } ?>
-                                    <?php if ($col['coltype'] == 'number') { ?>
+                                    <?php if ($col['coltype'] == 'number' || $col['coltype'] == 'currency') { ?>
                                         <div class="form-group <?php echo $col['required'] == 2 ? 'required' : ''; ?>">
                                             <div class="col-sm-2 control-label">
                                                 <label for="<?= $col['colname']; ?>"><?= $col['name']; ?></label>
@@ -78,6 +78,38 @@
                                             </div>
                                         </div>
                                     <?php } ?>
+                                    <?php if ($col['coltype'] == 'tinyint') { ?>
+                                        <div class="form-group <?php echo $col['required'] == 2 ? 'required' : ''; ?>">
+                                            <div class="col-sm-2 control-label">
+                                                <label for="<?= $col['colname']; ?>"><?= $col['name']; ?></label>
+                                            </div>
+
+                                            <div class="col-sm-10">
+                                                <select name="<?= $col['colname']; ?>" id="" class="form-control">
+                                                    <?php if ($col['value']) { ?>
+                                                        <option value="1" selected="selected"><?php echo $text_enabled; ?></option>
+                                                        <option value="0"><?php echo $text_disabled; ?></option>
+                                                    <?php } else { ?>
+                                                        <option value="1"><?php echo $text_enabled; ?></option>
+                                                        <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+
+
+                                        </div>
+                                    <?php } ?>
+
+                                    <?php if ($col['coltype'] == 'date') { ?>
+                                        <div class="form-group <?php echo $col['required'] == 2 ? 'required' : ''; ?>">
+                                            <div class="col-sm-2 control-label">
+                                                <label for="<?= $col['colname']; ?>"><?= $col['name']; ?></label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <input type="date" name="<?= $col['colname']; ?>" id="" class="form-control" placeholder="" aria-describedby="helpId" value="<?= $col['value']; ?>">
+                                            </div>
+                                        </div>
+                                    <?php } ?>
 
                                 <?php } ?>
 
@@ -86,7 +118,7 @@
                         <div class="tab-pane" id="tab-image">
                             <div class="tab-content">
                                 <?php foreach ($columns as $col) { ?>
-                                    <?php if ($col['coltype'] == 'image') { ?>
+                                    <?php if ($col['coltype'] == 'image' || $col['coltype'] == 'brosur') { ?>
                                         <div class="form-group <?php echo $col['required'] == 2 ? 'required' : ''; ?>">
                                             <div class="row">
                                                 <div class="col-sm-2 control-label" style="margin-bottom: 15px;">

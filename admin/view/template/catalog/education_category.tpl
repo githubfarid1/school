@@ -31,70 +31,56 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
       </div>
     <?php } ?>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-list"></i>
-          <?php echo $text_list; ?>
-        </h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-2">
-            <h4><strong>
-                <?= $text_education; ?>
-              </strong></h4>
-          </div>
-          <div class="col-md-3">
-            <h4><strong>
-                General
-              </strong></h4>
-          </div>
-          <div class="col-md-3">
-            <h4><strong>
-                Filter
-              </strong></h4>
-          </div>
-          <div class="col-md-3">
-            <h4><strong>
-                Attribute
-              </strong></h4>
-          </div>
+    <div class="row">
+      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-education">
+        <?php foreach ($education_list as $ed) { ?>
+          <div class="col-12">
+            <a style="display:inline-block; width: 100%;" class="btn btn-success" role="button" data-toggle="collapse" href="#collapse-<?= $ed['category_id']; ?>" aria-expanded="false" aria-controls="collapse-<?= $ed['category_id']; ?>">
+              <p>
+                <h4><?= $ed['name']; ?></h4>
+              </p>
+            </a>
+            <div class="collapse" id="collapse-<?= $ed['category_id']; ?>">
+              <div class="thumbnail">
+                <div class="caption">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <h4 class="alert alert-info"><strong>Umum</strong></h4>
+                      <?php foreach ($column_list as $key => $cl) { ?>
+                        <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]" <?= $cl['required'] == '2' ? 'checked onclick="return false;"' : ''; ?> <?php echo isset($education_category[$ed['category_id']]['column'][$cl['education_column_id']]) ? 'checked' : ''; ?>>
+                        <label for="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]"><?= $cl['name']; ?></label><br />
+                      <?php }  ?>
 
-        </div>
-        <hr>
-        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-education">
-          <?php foreach ($education_list as $ed) { ?>
-            <div class="row">
-              <div class="col-md-2">
-                <h4><strong>
-                  <?= $ed['name']; ?>
-                </h4></strong>
-              </div>
+                    </div>
+                    <div class="col-md-4">
+                      <h4 class="alert alert-info"><strong>Filter</strong></h4>
+                      <?php foreach ($filter_list as $fl) { ?>
+                        <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][filter][<?= $fl['filter_group_id']; ?>]" <?php echo isset($education_category[$ed['category_id']]['filter'][$fl['filter_group_id']]) ? 'checked' : ''; ?> id="">
+                        <label for="education_category[<?php echo $ed['category_id']; ?>][filter][<?= $fl['filter_group_id']; ?>]"><?= $fl['name']; ?></label><br />
+                      <?php } ?>
+                    </div>
+                    <div class="col-md-4">
+                      <h4 class="alert alert-info"><strong>Attribute</strong></h4>
+                      <?php foreach ($attribute_list as $al) { ?>
+                        <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][attribute][<?= $al['attribute_group_id']; ?>]" <?php echo isset($education_category[$ed['category_id']]['attribute'][$al['attribute_group_id']]) ? 'checked' : ''; ?> id="">
+                        <label for="education_category[<?php echo $ed['category_id']; ?>][attribute][<?= $al['attribute_group_id']; ?>]"><?= $al['name']; ?></label><br />
+                      <?php } ?>
+                    </div>
 
-              <div class="col-md-3">
-                <?php foreach ($column_list as $key => $cl) { ?>
-                  <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]" <?=$cl['required'] == '2' ? 'checked onclick="return false;"':'';?> <?php echo isset($education_category[$ed['category_id']]['column'][$cl['education_column_id']]) ? 'checked' : ''; ?>>
-                  <label for="education_category[<?php echo $ed['category_id']; ?>][column][<?= $cl['education_column_id']; ?>]"><?= $cl['name']; ?></label><br />
-                <?php }  ?>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <div class="form-group">
+                        <a href="<?= $ed['school_list']; ?>"><button type="button" class="btn btn-primary">Lihat Daftar Sekolah</button></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-3">
-                <?php foreach ($filter_list as $fl) { ?>
-                  <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][filter][<?= $fl['filter_group_id']; ?>]" <?php echo isset($education_category[$ed['category_id']]['filter'][$fl['filter_group_id']]) ? 'checked' : ''; ?> id="">
-                  <label for="education_category[<?php echo $ed['category_id']; ?>][filter][<?= $fl['filter_group_id']; ?>]"><?= $fl['name']; ?></label><br />
-                <?php } ?>
-              </div>
-              <div class="col-md-3">
-                <?php foreach ($attribute_list as $al) { ?>
-                  <input type="checkbox" name="education_category[<?php echo $ed['category_id']; ?>][attribute][<?= $al['attribute_group_id']; ?>]" <?php echo isset($education_category[$ed['category_id']]['attribute'][$al['attribute_group_id']]) ? 'checked' : ''; ?> id="">
-                  <label for="education_category[<?php echo $ed['category_id']; ?>][attribute][<?= $al['attribute_group_id']; ?>]"><?= $al['name']; ?></label><br />
-                <?php } ?>
-
-              </div>
-
             </div>
-            <hr>
-          <?php } ?>
-        </form>
-      </div>
+          </div>
+        <?php } ?>
+      </form>
     </div>
   </div>
+</div>
