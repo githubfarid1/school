@@ -1,6 +1,6 @@
 <?php if (!empty($filter)) { ?>
     <h3><strong><?= $name; ?></strong></h3>
-    <div class="row">
+    <div class="row my-3">
         <div class="col-md-<?= $screen_size; ?>">
             <div class="row">
                 <?php foreach ($filter as $item) { ?>

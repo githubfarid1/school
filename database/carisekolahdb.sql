@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Feb 02, 2022 at 10:23 AM
+-- Generation Time: Feb 21, 2022 at 12:05 AM
 -- Server version: 10.5.8-MariaDB-1:10.5.8+maria~focal
 -- PHP Version: 7.4.13
 
@@ -231,7 +231,11 @@ INSERT INTO `oc_attribute` (`attribute_id`, `attribute_group_id`, `sort_order`) 
 (48, 16, 4),
 (49, 16, 5),
 (50, 16, 6),
-(51, 16, 7);
+(51, 16, 7),
+(52, 14, 1),
+(53, 14, 2),
+(54, 14, 3),
+(55, 14, 4);
 
 -- --------------------------------------------------------
 
@@ -287,7 +291,11 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`, `
 (41, 2, '#info3', NULL),
 (49, 2, '#video5', NULL),
 (50, 2, '#video6', NULL),
-(51, 2, '#video7', NULL);
+(51, 2, '#video7', NULL),
+(52, 2, 'Facebook', NULL),
+(53, 2, 'Instagram', NULL),
+(54, 2, 'Twitter', NULL),
+(55, 2, 'Tiktok', NULL);
 
 -- --------------------------------------------------------
 
@@ -1063,7 +1071,7 @@ INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbo
 (1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 0, '2021-12-26 08:32:50'),
 (2, 'US Dollar', 'USD', '$', '', '2', 0.00007000, 0, '2022-01-03 13:39:14'),
 (3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 0, '2021-12-26 08:32:34'),
-(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-02-02 08:33:49');
+(4, 'Rupiah', 'IDR', 'Rp', '', '', 1.00000000, 1, '2022-02-07 02:00:57');
 
 -- --------------------------------------------------------
 
@@ -1401,7 +1409,7 @@ INSERT INTO `oc_education_category` (`category_id`, `column_ids`, `filter_ids`, 
 (66, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
 (67, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
 (68, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
-(69, '[1,5,9,2,19,10,8,6,17,18]', '[4,8,2,7,6,5,3]', '[13,9,17,10]', '[{\"id\":10,\"column_theme\":\"images_carousel1_view\",\"screen_size\":\"12\",\"sort_order\":\"1\"},{\"id\":8,\"column_theme\":\"images_carousel2_view\",\"screen_size\":\"12\",\"sort_order\":\"3\"},{\"id\":16,\"column_theme\":\"group_identity_view\",\"screen_size\":\"\",\"sort_order\":\"2\"}]', '[{\"id\":4,\"filter_theme\":\"default\",\"screen_size\":\"12\",\"sort_order\":\"7\",\"icon\":\"\"},{\"id\":8,\"filter_theme\":\"filter_view\",\"screen_size\":\"6\",\"sort_order\":\"6\",\"icon\":\"\"},{\"id\":1,\"filter_theme\":\"filter_view\",\"screen_size\":\"12\",\"sort_order\":\"8\",\"icon\":\"\"}]', '[{\"id\":9,\"attribute_theme\":\"attribute_view\",\"screen_size\":\"6\",\"sort_order\":\"4\",\"icon\":\"&lt;i class=&quot;fas fa-user-clock&quot; style=&quot;font-size: 24px;&quot;&gt;&lt;/i&gt;\"},{\"id\":17,\"attribute_theme\":\"attribute_marquee_view\",\"screen_size\":\"12\",\"sort_order\":\"-1\",\"icon\":\"\"},{\"id\":10,\"attribute_theme\":\"attribute_table_view\",\"screen_size\":\"6\",\"sort_order\":\"5\",\"icon\":\"\"}]', 'paud_detail_template', 'paud_registration_form'),
+(69, '[1,5,9,2,19,10,8,6,17,18]', '[4,8,2,7,6,5,3]', '[13,9,17,10,15,14,16]', '[{\"id\":10,\"column_theme\":\"images_carousel1_view\",\"screen_size\":\"12\",\"sort_order\":\"1\"},{\"id\":8,\"column_theme\":\"images_carousel2_view\",\"screen_size\":\"6\",\"sort_order\":\"4\"},{\"id\":16,\"column_theme\":\"group_identity_view\",\"screen_size\":\"\",\"sort_order\":\"2\"},{\"id\":20,\"column_theme\":\"group_profile_view\",\"screen_size\":\"\",\"sort_order\":\"3\"}]', '[{\"id\":4,\"filter_theme\":\"default\",\"screen_size\":\"6\",\"sort_order\":\"8\",\"icon\":\"\"},{\"id\":8,\"filter_theme\":\"filter_view\",\"screen_size\":\"6\",\"sort_order\":\"7\",\"icon\":\"\"},{\"id\":1,\"filter_theme\":\"filter_view\",\"screen_size\":\"12\",\"sort_order\":\"9\",\"icon\":\"\"}]', '[{\"id\":9,\"attribute_theme\":\"attribute_view\",\"screen_size\":\"6\",\"sort_order\":\"5\",\"icon\":\"&lt;i class=&quot;fas fa-user-clock&quot; style=&quot;font-size: 24px;&quot;&gt;&lt;/i&gt;\"},{\"id\":17,\"attribute_theme\":\"attribute_marquee_view\",\"screen_size\":\"12\",\"sort_order\":\"-1\",\"icon\":\"\"},{\"id\":10,\"attribute_theme\":\"attribute_table_view\",\"screen_size\":\"6\",\"sort_order\":\"6\",\"icon\":\"\"},{\"id\":15,\"attribute_theme\":\"attribute_formatted_view\",\"screen_size\":\"6\",\"sort_order\":\"10\",\"icon\":\"\"},{\"id\":14,\"attribute_theme\":\"attribute_formatted_view\",\"screen_size\":\"6\",\"sort_order\":\"11\",\"icon\":\"\"},{\"id\":16,\"attribute_theme\":\"attribute_video_view\",\"screen_size\":\"6\",\"sort_order\":\"12\",\"icon\":\"\"}]', 'paud_detail_template', 'paud_registration_form'),
 (70, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
 (71, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
 (72, '[1,5,9,2,19,17]', '[]', '[]', '[]', '[]', '[]', 'default', 'default'),
@@ -1447,10 +1455,11 @@ INSERT INTO `oc_education_column` (`education_column_id`, `description`, `name`,
 (11, 'product_description.faq', 'FAQ', 'faq', 0, 1, 'textarea', '', 0, 13),
 (12, 'product.price', 'SPP Bulanan', 'monthly_cost', 0, 0, 'currency', '', 0, 7),
 (13, 'product.price2', 'Biaya Masuk', 'first_cost', 0, 0, 'number', '', 0, 8),
-(16, 'Identitas Sekolah', 'Group Identitas Sekolah', '[1,2,5,9,6,17,18,19]', 0, 0, 'group', '', 0, 16),
+(16, 'group.identitas_sekolah', 'Identitas Sekolah', '[1,5,9,6,17,18,19]', 0, 0, 'group', '', 0, 16),
 (17, 'product.brosur_front', 'Brosur Depan', 'brosur_front', 2, 0, 'brosur', '', 0, 15),
 (18, 'product.brosur_back', 'Brosur Belakang', 'brosur_back', 1, 0, 'brosur', '', 0, 16),
-(19, 'product.isregister', 'Pendaftaran', 'isregister', 2, 0, 'tinyint', '', 0, 4);
+(19, 'product.isregister', 'Pendaftaran', 'isregister', 2, 0, 'tinyint', '', 0, 4),
+(20, 'group.profile_sekolah', 'Profile Sekolah', '[2]\r\n', 2, 0, 'group', '', 0, 17);
 
 -- --------------------------------------------------------
 
@@ -3297,7 +3306,7 @@ INSERT INTO `oc_information` (`information_id`, `bottom`, `sort_order`, `status`
 (3, 1, 3, 1),
 (4, 1, 1, 1),
 (5, 1, 4, 1),
-(6, 1, 2, 1);
+(6, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -3323,7 +3332,6 @@ INSERT INTO `oc_information_description` (`information_id`, `language_id`, `titl
 (4, 1, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
 (5, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
 (3, 1, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
-(6, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
 (4, 2, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
 (5, 2, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
 (3, 2, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
@@ -3340,6 +3348,13 @@ CREATE TABLE `oc_information_to_layout` (
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_information_to_layout`
+--
+
+INSERT INTO `oc_information_to_layout` (`information_id`, `store_id`, `layout_id`) VALUES
+(6, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -4618,7 +4633,7 @@ CREATE TABLE `oc_product` (
 --
 
 INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `price2`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`, `image_name`, `image_description`, `akreditasi`, `address`, `user_id`, `image_size_type`, `date_closed`, `brosur_pdf`, `brosur_front`, `brosur_back`, `isregister`) VALUES
-(93, 'PAUD Wahdah Islamiyah', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/log studal.jpg', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 552, '2022-02-02 10:07:52', '0000-00-00 00:00:00', '', '', 'A', 'Jl. Gajah mada 233 RT 3 RW 1 Candi, Sidoarjo Jawa timur Indonesia ', 3, 0, '0000-00-00', NULL, 'catalog/bro1.jpg', '', 1);
+(93, 'PAUD Wahdah Islamiyah', '', '', '', '', '', '', '', 0, 1, 'catalog/logo/log studal.jpg', 0, 1, '0.0000', '0.0000', 0, 0, '0000-00-00', '0.00000000', 0, '0.00000000', '0.00000000', '0.00000000', 0, 1, 1, 0, 1, 602, '2022-02-03 13:08:19', '0000-00-00 00:00:00', '', '', 'A', 'Jl. Gajah mada 233 RT 3 RW 1 Candi, Sidoarjo Jawa timur Indonesia ', 3, 0, '0000-00-00', NULL, 'catalog/bro1.jpg', '', 1);
 
 -- --------------------------------------------------------
 
@@ -4638,6 +4653,17 @@ CREATE TABLE `oc_product_attribute` (
 --
 
 INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`, `text`) VALUES
+(93, 47, 2, 'https://www.youtube.com/watch?v=AMgCPYHyo20 | Video 3'),
+(93, 46, 2, 'https://www.youtube.com/watch?v=Myrh2hWcy2 | Video 2'),
+(93, 45, 2, 'https://www.youtube.com/watch?v=3Gar7pTeBVI | Video Tentang apa 1'),
+(93, 17, 2, 'assadah.com'),
+(93, 16, 2, '04343434'),
+(93, 15, 2, '+6281234383922'),
+(93, 18, 2, 'opencartplugin@gmail.com'),
+(93, 55, 2, 'tiktok.com'),
+(93, 54, 2, 'twitter.com'),
+(93, 53, 2, 'instagram.com'),
+(93, 52, 2, 'facebook.com'),
 (93, 40, 2, 'Sekolah akan mengadakan pertemuan wali murid pada 10 januari 2022'),
 (93, 39, 2, 'Pendaftaran berakhir pada 10 Februari 2022'),
 (93, 38, 2, 'Libur'),
@@ -4744,21 +4770,21 @@ CREATE TABLE `oc_product_image` (
 --
 
 INSERT INTO `oc_product_image` (`product_image_id`, `product_id`, `image`, `image_name`, `image_description`, `sort_order`) VALUES
-(4559, 93, 'catalog/qrcode.png', '', '', 30),
-(4558, 93, 'catalog/photo_profile6.jpg', '', '', 29),
-(4557, 93, 'catalog/logo.jpg', '', '', 28),
-(4556, 93, 'catalog/photo_profile1.png', '', '', 27),
-(4555, 93, 'catalog/photo7.jpeg', '', '', 26),
-(4554, 93, 'catalog/photo_profile3.jpg', '', '', 25),
-(4553, 93, 'catalog/photo_profile8.jpg', '', '', 24),
-(4552, 93, 'catalog/photo_profile4.jpg', '', '', 23),
-(4551, 93, 'catalog/photo_profile6.jpg', '', '', 22),
-(4550, 93, 'catalog/photo_profile2.jpg', '', '', 21),
-(4549, 93, 'catalog/tkit-bait.jpg', '', '', 5),
-(4548, 93, 'catalog/sdjkt1.jpg', '', '', 4),
-(4547, 93, 'catalog/sd-muh-4.jpg', '', '', 3),
-(4546, 93, 'catalog/preschool3.jpg', '', '', 2),
-(4545, 93, 'catalog/preschool2.jpg', '', '', 1);
+(4619, 93, 'catalog/qrcode.png', '', '', 30),
+(4618, 93, 'catalog/photo_profile6.jpg', '', '', 29),
+(4617, 93, 'catalog/logo.jpg', '', '', 28),
+(4616, 93, 'catalog/photo_profile1.png', '', '', 27),
+(4615, 93, 'catalog/photo7.jpeg', '', '', 26),
+(4614, 93, 'catalog/photo_profile3.jpg', '', '', 25),
+(4613, 93, 'catalog/photo_profile8.jpg', '', '', 24),
+(4612, 93, 'catalog/photo_profile4.jpg', '', '', 23),
+(4611, 93, 'catalog/photo_profile6.jpg', '', '', 22),
+(4610, 93, 'catalog/photo_profile2.jpg', '', '', 21),
+(4609, 93, 'catalog/tkit-bait.jpg', '', '', 5),
+(4608, 93, 'catalog/sdjkt1.jpg', '', '', 4),
+(4607, 93, 'catalog/sd-muh-4.jpg', '', '', 3),
+(4606, 93, 'catalog/preschool3.jpg', '', '', 2),
+(4605, 93, 'catalog/preschool2.jpg', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -5189,7 +5215,7 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (173, 0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
 (177, 0, 'mfilter_version', 'mfilter_version', '2.0.5.6.4', 0),
 (178, 0, 'mega_filter_module', 'mega_filter_module', '[]', 1),
-(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"v8v5645dVoPsDnVLNofCm?pffZpgj^duezsd885xx56794\"}', 1),
+(183, 0, 'mfilter_license', 'mfilter_license', '{\"data\":\"505<>,<xyqWzX7yAiqct8}wccewvnOxkfzmc32>224>?1,\"}', 1),
 (179, 0, 'mega_filter_settings', 'mega_filter_settings', '{\"show_number_of_products\":\"1\",\"calculate_number_of_products\":\"1\",\"show_loader_over_results\":\"1\",\"css_style\":\"\",\"content_selector\":\"#mfilter-content-container\",\"refresh_results\":\"immediately\",\"attribs\":{\"price\":{\"enabled\":\"1\",\"sort_order\":\"-1\"}},\"layout_c\":\"3\",\"display_live_filter\":{\"items\":\"1\"}}', 1),
 (180, 0, 'mega_filter_seo', 'mega_filter_seo', '{\"enabled\":\"0\"}', 1),
 (181, 0, 'mega_filter_status', 'mega_filter_status', '1', 0),
@@ -5471,10 +5497,10 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (830, 'manufacturer_id=7', 'hewlett-packard'),
 (831, 'manufacturer_id=6', 'palm'),
 (832, 'manufacturer_id=10', 'sony'),
-(841, 'information_id=6', 'delivery'),
+(1082, 'information_id=6', 'delivery'),
 (842, 'information_id=3', 'privacy'),
 (843, 'information_id=5', 'terms'),
-(1081, 'product_id=93', 'paud-wahdah-islamiyah');
+(1086, 'product_id=93', 'paud-wahdah-islamiyah');
 
 -- --------------------------------------------------------
 
@@ -10817,7 +10843,7 @@ ALTER TABLE `oc_api_session`
 -- AUTO_INCREMENT for table `oc_attribute`
 --
 ALTER TABLE `oc_attribute`
-  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `attribute_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `oc_attribute_group`
@@ -10955,7 +10981,7 @@ ALTER TABLE `oc_download`
 -- AUTO_INCREMENT for table `oc_education_column`
 --
 ALTER TABLE `oc_education_column`
-  MODIFY `education_column_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `education_column_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `oc_event`
@@ -11159,7 +11185,7 @@ ALTER TABLE `oc_product_discount`
 -- AUTO_INCREMENT for table `oc_product_image`
 --
 ALTER TABLE `oc_product_image`
-  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4560;
+  MODIFY `product_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4620;
 
 --
 -- AUTO_INCREMENT for table `oc_product_option`
@@ -11285,7 +11311,7 @@ ALTER TABLE `oc_upload`
 -- AUTO_INCREMENT for table `oc_url_alias`
 --
 ALTER TABLE `oc_url_alias`
-  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1082;
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1087;
 
 --
 -- AUTO_INCREMENT for table `oc_user`

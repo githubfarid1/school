@@ -1,5 +1,5 @@
 <?php if (!empty($attribute)) { ?>
-    <div class="row">
+    <div class="row my-3">
         <div class="col-md-<?= $screen_size; ?>">
 
             <h3><strong><?= $name; ?></strong></h3>

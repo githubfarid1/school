@@ -1,4 +1,4 @@
-<div class="d-none d-md-block mt-5">
+<div class="d-none d-md-block my-3">
     <div class="row  align-items-center">
         <div class="col-md-1">
             <img class="mx-auto d-block" src="<?= $photo_main; ?>" alt="">
@@ -31,7 +31,7 @@
 
         </div>
     </div>
-    <div class="row align-items-center mt-2">
+    <!-- <div class="row align-items-center mt-2">
         <div class="col-8">
             <?php if ($school_profile <> '') { ?>
                 <p></p>
@@ -39,7 +39,7 @@
                 <p><?= $school_profile; ?></p>
             <?php } ?>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <div class="d-sm-block d-md-none">
@@ -84,13 +84,13 @@
         </div>
 
     </div>
-    <?php if ($school_profile <> '') { ?>
+    <!-- <?php if ($school_profile <> '') { ?>
         <div class="row">
             <div class="col-12">
                 <h3><strong>Profile Sekolah</strong></h3>
                 <p><?= $school_profile; ?></p>
             </div>
         </div>
-    <?php } ?>
+    <?php } ?> -->
 </div>
 <br>
